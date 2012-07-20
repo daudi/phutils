@@ -4,20 +4,28 @@ fix.dumb.excel.percents.and.commas <-
         ## as csv files it stupidly saves % symbols in csv files.
         ## This function strips the % and makes the number numeric.
 
-        if (is.null(dim(x))) {
+	fix.percents <- function(x) {
             x <- gsub("%", "", x)
+	}
+	fix.commas <- function(x) {
             x <- gsub(",", "", x)
+	}
+        if (is.null(dim(x))) {
+            x <- fix.percents(x)
+            x <- fix.commas(x)
             x <- as.numeric(x)
         } else {
             for (i in cols) {
+                ## If excel has done this then the data will have been read in as factors
+                ## so we only need to worry about columns that contain factors.
                 if (is.factor(x[, i])) {
                     if (any(grepl("%", levels(x[, i])))) {
-                        x[, i] <- gsub("%", "", levels(x[, i]))
+                        x[, i] <- fix.percents(x[, i])
                     }
                     if (any(grepl(",", levels(x[, i])))) {
-                        x[, i] <- gsub(",", "", levels(x[, i]))
+                        x[, i] <- fix.commas(x[, i])
                     }
-                    x[, i] <- as.numeric(as.character(x[, i]))
+                    x[, i] <- as.numeric(x[, i])
                 }
             }
         }
