@@ -2,7 +2,10 @@ searchable.html.table <- function(x,
                                   title = "My table",
                                   header = "Searchable HTML table",
                                   width.pc = NULL,
-                                  file = "searchable.html.table.html") {
+                                  file = "searchable.html.table.html",
+                                  html.before.table = NULL,
+                                  html.after.table = NULL
+                                  ) {
 
 
 html.top <- function(title = "My table", header = "Searchable HTML table", table.header) {
@@ -97,7 +100,7 @@ tr.noshow { display: none;}
 </head>
 <body>
 
-<h1>", header, "</h1>
+<h1>", header, "</h1>", html.before.table, "
 
 
 <input id=\"searchInput\" value=\"Type To Filter\"><br/>
@@ -111,6 +114,7 @@ html.bottom <- function() {
 
     paste("</tbody>
 </table>
+          <p>", html.after.table, "</p>
 <p>
  <small>Updated:", Sys.Date(), "</small>
 </p>
