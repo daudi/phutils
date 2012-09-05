@@ -151,11 +151,11 @@ table.body <- function(x) {
 
 
 
-    table.header <- table.head(z, width.pc)
+    table.header <- table.head(x, width.pc)
 
     cat(
         html.top(title, header, table.header = table.header),
-        table.body(z),
+        table.body(x),
         html.bottom(),
         file = file)
 
@@ -163,8 +163,8 @@ table.body <- function(x) {
 
 
 ### EXAMPLE
-x <- 1:20
-y <- letters[x]
-z <- data.frame(x = x, y = y)
+## x <- 1:20
+## y <- letters[x]
+## z <- data.frame(x = x, y = y)
 
 
