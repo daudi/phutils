@@ -1,5 +1,9 @@
 ### Hacking HTML.data.frame to see if I can add options for COLSPAN and ROWSPAN in the header
 
+### I've started trying to add in a link to download the data. 
+### It is not quite working yet.
+
+
 "HTML.data.frame" <- function(
                               x, file=get(".HTML.file"),
                               Border = 1, innerBorder = 0,
@@ -20,11 +24,15 @@
                               sortableDF = getOption("R2HTML.sortableDF"),
                               row.names = TRUE,
                               table.header = NULL,
+                              CSV.path = NULL,
+                              CSV.local.root = NULL,
+                              CSV.server.root = CSV.local.root,
                               ...)
 {
 
     check.for.small.counts(x)
-
+    if (!is.null(CSV.path)) write.csv(x, file = paste0(CSV.local.root, "/", CSV.path), row.names = FALSE)
+    
     cat("\n", file = file, append = append)
 
     # Handle sortableDF argument
@@ -98,7 +106,7 @@
                   )
    }
 
-
+  
    x.formatted <- format(x, digits = digits, nsmall = nsmall,
                          big.mark = big.mark, big.interval = big.interval,
                          decimal.mark = decimal.mark)
@@ -129,7 +137,9 @@
                   paste(VecDebut, VecMilieu, VecFin, sep = "", collapse = ""))
    }
    txt <- paste(txt, "\n\t</tbody>\n</table>\n",
-                if (!is.null(Border)) "</td></table>\n","<br>")
+                if (!is.null(Border)) "</td></table>\n",
+                if (!is.null(CSV.path)) paste0("<a href=\"", paste0(CSV.server.root, "/", CSV.path),"\">Download these data</a>\n"),
+                "<br>")
    cat(txt, "\n", file = file, sep = "", append = TRUE)
  }
 
