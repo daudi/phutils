@@ -1,8 +1,5 @@
 ### Hacking HTML.data.frame to see if I can add options for COLSPAN and ROWSPAN in the header
 
-### I've started trying to add in a link to download the data. 
-### It is not quite working yet.
-
 
 "HTML.data.frame" <- function(
                               x, file=get(".HTML.file"),
