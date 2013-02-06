@@ -8,7 +8,8 @@ dateToQuarter <- function(x, year.first = FALSE) {
   qtrs[month %in% c("01","02","03")] <- "Q4"
   
   finYr1 <- strftime(x, format = "%Y")
-  finYr1[month == "02"] <- as.numeric(finYr1[month == "02"]) - 1
+  # finYr1[month == "02"] <- as.numeric(finYr1[month == "02"]) - 1
+  finYr1[month %in% c("01","02","03")] <- as.numeric(finYr1[month %in% c("01","02","03")]) - 1  # Amended by MC 2013-02-01
   finYr2 <- as.numeric(finYr1) + 1
   if (year.first) {
     y <- paste0(finYr1, "/", finYr2, " ", qtrs)
