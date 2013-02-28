@@ -1,6 +1,6 @@
 ##' Calculate confidence intervals for a simple proportion
 ##' 
-##' Currently only able to do 95% confidence intervals. It would not be tricky to 
+##' Currently only able to do 95\% confidence intervals. It would not be tricky to 
 ##' extend this function to allow other intervals.
 ##' 
 ##' @param x The numerator in a percentage calculation.
