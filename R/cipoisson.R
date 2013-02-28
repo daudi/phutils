@@ -1,6 +1,54 @@
 ### https://stat.ethz.ch/pipermail/r-help/2008-February/154897.html
 ### Use for SMR, e.g. HSMR.
 
+
+
+##' Function to calculate lower and upper estimates based on the poisson
+##' distribution.
+##' 
+##' This function is useful for calculating confidence intervals for a
+##' standardised mortality ratio (SMR) e.g. HSMR.
+##' 
+
+##' 
+
+##' 
+##' @param k The number of observed events.
+##' @param time
+##' 
+
+##' @param p
+##' 
+
+##' @param method
+##' 
+
+##' @return The lower and upper number of events.
+##' @author Terry Therneau, Mayo Clinic
+##' @references Therneau, T.
+##' https://stat.ethz.ch/pipermail/r-help/2008-February/154897.html
+##' @keywords utils
+##' @examples
+##' 
+##' ### Example from Statistics with Confidence (1989), page 60.
+##' 
+##' observed <- 64
+##' expected <- 45.6
+##' 
+##' SMR <- observed / expected * 100
+##' limits <- cipoisson(observed) * 100
+##' limits
+##' ci.limits <- limits / expected 
+##' ci.limits
+##' 
+##' ci.hsmr <- function(observed, expected) {
+##'   SMR <- observed / expected * 100
+##'   limits <- cipoisson(observed) * 100
+##'   ci.limits <- limits / expected 
+##'   list(smr = SMR, ci.limits = ci.limits)
+##' }
+##' 
+##' 
 "cipoisson" <- 
   function(k, time = 1, p = 0.95, method = c("exact", "anscombe") ) {
     nn <- max(length(k), length(time), length(p))

@@ -1,3 +1,30 @@
+##' Function to create an HTML page with a searchable table.
+##' 
+##' This function takes a data.frame and creates an HTML page with an HTML
+##' table. The table has a search box to provide a rapid search of the table.
+##' 
+##' For the search to work jquery-1.4.1.min.js or newer needs to be in the same
+##' directory as the generated HTML page.
+##' 
+##' @param x A data.frame object.
+##' @param title The title that will in the browser tab.
+##' @param header A header that will appear above the table.
+##' @param width.pc A vector of values to specify the width of each column in
+##' percents. The default NULL will allow the browser to decide the width of
+##' each column.
+##' @param file The name of the output file.
+##' @param html.before.table Any arbitrary HTML code to include before the
+##' table (and after the header).
+##' @param html.after.table Any arbitrary HTML code to include after the table.
+##' @return %% ~Describe the value returned %% If it is a LIST, use %%
+##' \item{comp1 }{Description of 'comp1'} %% \item{comp2 }{Description of
+##' 'comp2'} %% ... No value is returned. This function is useful because its
+##' side-effects.
+##' @note %% ~~further notes~~
+##' @author David Whiting dwhiting@@nhs.net
+##' @seealso %% ~~objects to See Also as \code{\link{help}}, ~~~
+##' @references %% ~put references to the literature/web site here ~
+##' @keywords utils
 searchable.html.table <- function(x,
                                   title = "My table",
                                   header = "Searchable HTML table",
