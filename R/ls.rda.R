@@ -1,12 +1,21 @@
-#' List the contents of and Rda file
-#' 
-#' @param x The path to an Rda file.
-#' @param show.str If TRUE show the structure of each object in the Rda file. The default is FALSE.
-#' @return A vector of object names.
-#' @keywords utils
-
-
-
+##' List the objects in an Rda file.
+##' 
+##' List the objects in an Rda file. Optionally print the structure of each
+##' object.
+##' 
+##' List the objects in an Rda file.
+##' 
+##' @param x The path of the Rda file.
+##' @param details If TRUE, show summary details of each object, including
+##' object name, class, short description and size in Kb.
+##' @return A vector with the names of the objects in the file. If details =
+##' TRUE then a dataframe with summary details about each object.
+##' @author David Whiting, dwhiting@@nhs.net
+##' @keywords utils
+##' @examples
+##' 
+##' ##   x <- ls.rda("example.Rda")
+##' 
 ls.rda <- function(x, details = FALSE) {
   local.ls.rda.y <- local({
     local.ls.rda.y <- load(x)
