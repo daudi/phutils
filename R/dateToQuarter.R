@@ -28,6 +28,7 @@
 dateToQuarter <- function(x, year.first = FALSE) {
   # Convert date used to Quarter plus financial year (e.g. 2010-05-15 to Q1 2010/11)
   # year.first: specify if the output should be Q1 2010/11 or 2010/11 Q1
+  i <- is.na(x)
   month <- strftime(x, format = "%m")
   qtrs <- character(length(month))
   qtrs[month %in% c("04","05", "06")] <- "Q1"
@@ -44,5 +45,6 @@ dateToQuarter <- function(x, year.first = FALSE) {
   } else {
     y <- paste0(qtrs, " ", finYr1, "/", finYr2)
   }
+  y[i] <- NA
   y
 }
