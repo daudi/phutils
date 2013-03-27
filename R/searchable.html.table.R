@@ -25,6 +25,7 @@
 ##' @seealso %% ~~objects to See Also as \code{\link{help}}, ~~~
 ##' @references %% ~put references to the literature/web site here ~
 ##' @keywords utils
+##' @export
 searchable.html.table <- function(x,
                                   title = "My table",
                                   header = "Searchable HTML table",

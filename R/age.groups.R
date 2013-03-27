@@ -39,6 +39,8 @@
 ##' unlist(lapply(ages, age.groups, age.breaks))
 ##' ## 0-4   0-4   5-9   65-69 20-24 0-4   55-59 30-34
 ##' 
+##' @export
+
 age.groups <-
 function(x, y, final.open = TRUE) {
 	## x: age in years (must be integers I think)

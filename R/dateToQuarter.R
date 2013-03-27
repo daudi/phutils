@@ -24,6 +24,7 @@
 ##' 
 ##' 
 ##' 
+##' @export
 ##' 
 dateToQuarter <- function(x, year.first = FALSE) {
   # Convert date used to Quarter plus financial year (e.g. 2010-05-15 to Q1 2010/11)

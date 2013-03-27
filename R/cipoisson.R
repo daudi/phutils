@@ -49,6 +49,7 @@
 ##' }
 ##' 
 ##' 
+##' @export
 "cipoisson" <- 
   function(k, time = 1, p = 0.95, method = c("exact", "anscombe") ) {
     nn <- max(length(k), length(time), length(p))

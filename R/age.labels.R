@@ -29,6 +29,7 @@
 ##' 
 ##' 
 ##' 
+##' @export
 age.labels <-
 function(from, to, by) {
 	## Purpose: create age labels, e.g. 0-4, 5-9... 85+

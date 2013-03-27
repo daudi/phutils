@@ -16,6 +16,7 @@
 ##' 
 ##' ##   x <- ls.rda("example.Rda")
 ##' 
+##' @export
 ls.rda <- function(x, details = FALSE) {
   local.ls.rda.y <- local({
     local.ls.rda.y <- load(x)

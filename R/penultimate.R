@@ -5,6 +5,7 @@
 ##' data type is determined by the data type of the vector.
 ##' @keywords utils
 ##' 
+##' @export
 
 penultimate <- function(x){
   y <- sort(unique(x))

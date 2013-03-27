@@ -31,6 +31,7 @@
 ##' 
 ##' splice(z, zz)
 ##' 
+##' @export
 ##' 
 splice <- function (x, y) {
   stopifnot(ncol(x) == ncol(y))

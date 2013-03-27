@@ -13,6 +13,7 @@
 ##' @examples 
 ##' ci.proportion(3, 20) 
 ##' 
+##' @export
 
 ci.proportion <- function(x, n){
   p <- x / n

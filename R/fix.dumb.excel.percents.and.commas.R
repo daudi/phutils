@@ -18,6 +18,7 @@
 ##' function).
 ##' @author David Whiting, dwhiting@@nhs.net
 ##' @keywords utils
+##' @export
 fix.dumb.excel.percents.and.commas <-
     function(x, cols = 1:ncol(x)) {
         ## When Excel saves columns of numbers formatted as percents
