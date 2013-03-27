@@ -1,4 +1,148 @@
-#R sparklines
+##' Create sparklines
+##'
+##' Simple function to create sparklines.
+##'   
+##'   @param ydata Numeric vector of data to display.
+##'   @param eng A single value for England (or any other comparator). If NULL (the default) this is not shown.
+##'   @param width The width of the sparkline in inches.
+##'   @param height The height of the sparkline in inches.
+##'   @param sigfigs 
+##'   @param line.col The colour of the line.
+##'   @param cex Character expansion (the size of the font)
+##'   
+##'   @examples
+##' temppar<-par(no.readonly = TRUE) # store default graphics parameters
+##' 
+##' width <- 1
+##' height <- 0.5
+##' 
+##' ## Five sparklines in one png file.
+##' png(file = "test.png", width = 150, height = 250)
+##' split.screen(c(5,1))
+##' spark.mai <- c(0.10, 0.05, 0.10, 0.05)
+##' 
+##' screen(1)
+##' par(mai = spark.mai)
+##' sparkline(line.col = "black", cex = 0.7)
+##' 
+##' screen(2)
+##' par(mai = spark.mai)
+##' sparkline(line.col = "black", cex = 0.7)
+##' 
+##' screen(3)
+##' par(mai = spark.mai)
+##' sparkline(line.col = "black", cex = 0.7)
+##' 
+##' screen(4)
+##' par(mai = spark.mai)
+##' sparkline(line.col = "black", cex = 0.7)
+##' 
+##' screen(5)
+##' par(mai = spark.mai)
+##' sparkline(line.col = "black", cex = 0.7)
+##' 
+##' 
+##' close.screen(all = TRUE)
+##' par(temppar) # restore graphics defaults
+##' dev.off()
+##' 
+##' 
+##' ## A single sparkline in a png file
+##' png(file = "test.png", width = 150, height = 50)
+##' spark.mai <- c(0.10, 0.05, 0.10, 0.05)
+##' par(mai = spark.mai)
+##' sparkline(line.col = "black", cex = 0.7)
+##' par(temppar) # restore graphics defaults
+##' dev.off()
+##' 
+##' 
+##' ## Single sparkline with annotation. 
+##' ## It seems that height must be >= 140 if using screen() which means
+##' ## that it is too large and the font relatively too small.
+##' png(file = "test.png", width = 400, height = 140)
+##' split.screen(c(1, 2))
+##' spark.mai <- c(0.10, 0.05, 0.10, 0.05)
+##' 
+##' screen(1)
+##' par(mai = spark.mai)
+##' sparkline(line.col = "black", cex = 0.7)
+##' 
+##' screen(2)
+##' text(0, 0.5, "This is a test", adj = c(0, 0))
+##' close.screen(all = TRUE)
+##' par(temppar) # restore graphics defaults
+##' dev.off()
+##' 
+##' 
+##' 
+##' 
+##' 
+##' ## Five sparklines with text in one png file.
+##' ## This works nicely, except the resolution is poor.
+##' ## 12 pixels per mm.
+##' 
+##' rag.rate <- function(status) {
+##'   ## Add a block of rag-rated rectangles
+##'   ## status: a vector of "R", "A", and "G"s.
+##'   num.items <- length(status)
+##'   rag <- c("R", "A", "G")
+##'   rag.colours <- c("red", "orange", "green")
+##'   rag.status <- rag.colours[match(status, rag)]
+##'   rag.xpos <- seq(from = 0, by = 1 / num.items, length.out = num.items)
+##'   rag.xpos2 <- seq(to = 1, by = 1 / num.items, length.out = num.items)
+##'   rag.text.xpos <- (rag.xpos + rag.xpos2) / 2
+##'   plot.new()
+##'   rect(rag.xpos, 0, 1, 1, col = rag.status)
+##'   text(rag.text.xpos, 0.5, labels = status, cex = cex)
+##' }
+##' 
+##' ind.row <- function(n, narrative, rag){
+##'   screen1 <- ((n - 1) * 3) + 1
+##'   screen2 <- screen1 + 1
+##'   screen3 <- screen1 + 2
+##'   
+##'   screen(screen1)
+##'   text(0, 0.8, narrative, adj = c(0, 1), cex = cex.text)
+##'   
+##'   screen(screen2)
+##'   par(mai = spark.mai)
+##'   sparkline(line.col = "black", cex = cex, eng = "3.2")
+##'   
+##'   screen(screen3)
+##'   par(mai = spark.mai)
+##'   rag.rate(rag)
+##'   
+##' }
+##' 
+##' 
+##' reso <- 300
+##' widthmm <- 170 ## 170mm fits nicely in A4
+##' heightmm <- 200
+##' cex <- 0.5
+##' cex.text <- 1
+##' png(file = "test.png", width = widthmm, height = heightmm, units = "mm", res = reso)
+##' split.screen(c(10, 3))
+##' spark.mai <- c(0.10, 0.05, 0.10, 0.05)
+##' 
+##' ind.row(1, "IND001: Mortality considered\namenable to healthcare", c("A", "R", "G", "G"))
+##' ind.row(2, "IND002: Life expectancy\nat 75 - males.", c("G", "R", "G", "G"))
+##' ind.row(3, "IND003: Life expectancy\nat 75 - females.", c("A", "G", "A", "A"))
+##' ind.row(4, "IND004: Under 75 mortality\nrate from cardiovascular\ndisease.", c("A", "G", "G", "R"))
+##' ind.row(5, "IND005: Under 75 mortality\nrate from respiratory\ndisease.", c("R", "R", "G", "A"))
+##' ind.row(6, "IND006: This is a wibble.\nNext line.", c("R", "R", "G", "A"))
+##' ind.row(7, "IND007: This is a wibble.\nNext line.", c("R", "R", "G", "A"))
+##' ind.row(8, "IND008: This is a wibble.\nNext line.", c("R", "R", "G", "A"))
+##' ind.row(9, "IND009: This is a wibble.\nNext line.", c("R", "R", "G", "A"))
+##' ind.row(10, "IND010: This is a wibble.\nNext line.", c("R", "R", "G", "A"))
+##' 
+##' 
+##' close.screen(all = TRUE)
+##' par(temppar) # restore graphics defaults
+##' dev.off()
+##'   
+##'   
+##'   
+##' @export
 sparkline <- function(ydata = rnorm(100,500,50), 
                       eng = NULL,
                       width = 1.5, height = 0.5, sigfigs = 4,
