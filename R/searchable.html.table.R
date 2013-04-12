@@ -16,16 +16,10 @@
 ##' @param html.before.table Any arbitrary HTML code to include before the
 ##' table (and after the header).
 ##' @param html.after.table Any arbitrary HTML code to include after the table.
-##' @return %% ~Describe the value returned %% If it is a LIST, use %%
-##' \item{comp1 }{Description of 'comp1'} %% \item{comp2 }{Description of
-##' 'comp2'} %% ... No value is returned. This function is useful because its
-##' side-effects.
-##' @note %% ~~further notes~~
-##' @author David Whiting dwhiting@@nhs.net
-##' @seealso %% ~~objects to See Also as \code{\link{help}}, ~~~
-##' @references %% ~put references to the literature/web site here ~
+##' @author David Whiting david.whiting@@publichealth.me.uk
 ##' @keywords utils
 ##' @export
+
 searchable.html.table <- function(x,
                                   title = "My table",
                                   header = "Searchable HTML table",
