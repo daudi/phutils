@@ -1,6 +1,30 @@
-### Hacking HTML.data.frame to see if I can add options for COLSPAN and ROWSPAN in the header
+##' Customised version of HTML.data.frame
+##' Hacking HTML.data.frame to see if I can add options for COLSPAN and ROWSPAN in the header
 
 ##' @export
+
+##' @examples
+##' EXAMPLE OF HOW TO USE MULTILINE HEADER ROW
+##' x <- 1:10
+##' y <- letters[1:10]
+##' z <- rep(c("x", "y"), 5)
+##' z <- data.frame(x, y, z)
+
+##' jina <- matrix(c("Deaths", "Pop", NA,
+##'                   NA, "Males", "Females"),
+##'                   ncol = 3, byrow = TRUE)
+##' jina.col <- matrix(c(1, 2, 0, 1, 1, 1), ncol = 3, byrow = TRUE)
+##' jina.row <- matrix(c(2, 1, 1, 0, 1, 1), ncol = 3, byrow = TRUE)
+
+##' my.table.header <- list(names = jina,
+##'                         col.spec = jina.col,
+##'                         row.spec = jina.row,
+##'                         css.class = c("firstline", "secondline"))
+
+##' HTML.data.frame(x, file = "0.html", table.header = my.table.header)
+##' HTML(x, file = "0.html", caption = "", big.mark = ",", nsmall = 1, table.header = my.table.header)
+
+
 
 "HTML.data.frame" <- function(
                               x, file=get(".HTML.file"),
@@ -48,13 +72,11 @@
 
    # if (!is.null(digits)) x[] = lapply(x, FUN = function(vec) if (is.numeric(vec)) round(vec, digits) else vec)
 
-   txt <- paste("\n<p align=\"",align,"\">", sep = "")
+   txt <- ""
    txtcaption <- ifelse(is.null(caption),
                         "",
-                        paste("\n<caption align=\"", captionalign,
-                              "\" class=\"", classcaption, "\">",
-                              caption,
-                              "</caption>\n", sep=""))
+                        paste("\n<caption class=\"", classcaption, "\">",
+                              caption, "</caption>\n", sep=""))
 
    if (!is.null(Border))
      txt <- paste(txt, "\n<table cellspacing=\"0\" border=\"", Border, "\">",
@@ -135,9 +157,9 @@
                   paste(VecDebut, VecMilieu, VecFin, sep = "", collapse = ""))
    }
    txt <- paste(txt, "\n\t</tbody>\n</table>\n",
-                if (!is.null(Border)) "</td></table>\n",
+                if (!is.null(Border)) "</td></tr></table>\n",
                 if (!is.null(CSV.path)) paste0("<a href=\"", paste0(CSV.server.root, "/", CSV.path),"\">Download these data</a>\n"),
-                "<br>")
+                "<br />")
    cat(txt, "\n", file = file, sep = "", append = TRUE)
  }
 
@@ -244,23 +266,3 @@ check.for.small.counts <- function(x, threshold = 5) {
 }
 
 
-## EXAMPLE OF HOW TO USE MULTILINE HEADER ROW
-
-## x <- 1:10
-## y <- letters[1:10]
-## z <- rep(c("x", "y"), 5)
-## z <- data.frame(x, y, z)
-
-## jina <- matrix(c("Deaths", "Pop", NA,
-##                   NA, "Males", "Females"),
-##                   ncol = 3, byrow = TRUE)
-## jina.col <- matrix(c(1, 2, 0, 1, 1, 1), ncol = 3, byrow = TRUE)
-## jina.row <- matrix(c(2, 1, 1, 0, 1, 1), ncol = 3, byrow = TRUE)
-
-## my.table.header <- list(names = jina,
-##                         col.spec = jina.col,
-##                         row.spec = jina.row,
-##                         css.class = c("firstline", "secondline"))
-
-## HTML.data.frame(x, file = "0.html", table.header = my.table.header)
-## HTML(x, file = "0.html", caption = "", big.mark = ",", nsmall = 1, table.header = my.table.header)
