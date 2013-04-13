@@ -1,4 +1,5 @@
 ##' Customised version of HTML.data.frame
+##' 
 ##' Hacking HTML.data.frame to see if I can add options for COLSPAN and ROWSPAN in the header
 
 ##' @export
@@ -120,7 +121,7 @@
                  "</th>"
                  )
      dmf <- paste(VecDebut, VecMilieu, VecFin, sep = "", collapse = "")
-     txt <- paste(txt, "\n\t<tr class=\"", classfirstline, "\">",
+     txt <- paste0(txt, "\n\t<tr class=\"", classfirstline, "\">",
                   dmf,
                   "\n\t</tr>"
                   )
@@ -190,7 +191,8 @@ html.table.header.rows <- function(x, num.cols, row.names, classfirstline) {
   col.spec <- x$col.spec
   row.spec <- x$row.spec
   css.class <- x$css.class
-  if (is.null(css.class)) css.class <- classfirstline
+  if (is.null(css.class)) 
+    css.class <- classfirstline
   x <- x$names
 
 
@@ -210,9 +212,9 @@ html.table.header.rows <- function(x, num.cols, row.names, classfirstline) {
 
   ## Why do I do this?
   if (nrow(x) > 1) {
-	x[2:nrow(x), 1] <- NA
+    x[2:nrow(x), 1] <- NA
   }
-
+  
   html <- NULL
 
   col.spec <- span.spec(col.spec, span.type = "colspan")
@@ -221,13 +223,13 @@ html.table.header.rows <- function(x, num.cols, row.names, classfirstline) {
   if (is.matrix(x) | is.data.frame(x)) {
     y <- x
     for (i in 1:nrow(x)) {
-      html <- paste(html, "<tr class=\"", css.class[i], "\">", sep = "")
+      html <- paste0(html, "<tr class=\"", css.class[i], "\">")
       for (j in 1:ncol(x)) {
         if (!is.na(x[i, j]))
-          y[i, j] <- paste("<th ", col.spec[i, j], row.spec[i, j], ">", x[i, j], "</th>", sep = "")
+          y[i, j] <- paste0("<th ", col.spec[i, j], row.spec[i, j], ">", x[i, j], "</th>")
       }
-      html <- paste(html, paste(y[i , !is.na(y[i, ])], collapse = "\n"))
-      html <- paste(html, "\n</tr>\n")
+      html <- paste0(html, paste0(y[i , !is.na(y[i, ])], collapse = "\n"))
+      html <- paste0(html, "\n</tr>\n")
     }
   }
   paste(html, "\n")
