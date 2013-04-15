@@ -28,7 +28,7 @@
 
 
 "HTML.data.frame" <- function(
-                              x, file=get(".HTML.file"),
+                              x, file = get(".HTML.file"),
                               Border = 1, innerBorder = 0,
                               classfirstline = "firstline",
                               classfirstcolumn = "firstcolumn",
@@ -165,20 +165,13 @@
  }
 
 
-"HTMLReplaceNA"<-
-    function(Vec, Replace = " ")
+HTMLReplaceNA <- function (Vec, Replace = " ") 
 {
-    Vec <- as.character(Vec)
-    for(i in 1:length(Vec))
-    {
-        Vec[i] <- gsub(" ", "", Vec[i])
-        if((Vec[i] == "NA") | (Vec[i] == "NaN") | is.na(Vec[i])){
-            Vec[i] <- Replace
-        }
-    }
-    Vec
+  Vec <- as.character(Vec)
+  i <- is.na(Vec) | Vec == "NA" | Vec == "NaN" | grepl(" *NA *", Vec)
+  Vec[i] <- Replace
+  Vec
 }
-
 
 
 
