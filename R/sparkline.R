@@ -124,17 +124,6 @@
 ##' split.screen(c(10, 3))
 ##' spark.mai <- c(0.10, 0.05, 0.10, 0.05)
 ##' 
-##' ind.row(1, "IND001: Mortality considered\namenable to healthcare", c("A", "R", "G", "G"))
-##' ind.row(2, "IND002: Life expectancy\nat 75 - males.", c("G", "R", "G", "G"))
-##' ind.row(3, "IND003: Life expectancy\nat 75 - females.", c("A", "G", "A", "A"))
-##' ind.row(4, "IND004: Under 75 mortality\nrate from cardiovascular\ndisease.", c("A", "G", "G", "R"))
-##' ind.row(5, "IND005: Under 75 mortality\nrate from respiratory\ndisease.", c("R", "R", "G", "A"))
-##' ind.row(6, "IND006: This is a wibble.\nNext line.", c("R", "R", "G", "A"))
-##' ind.row(7, "IND007: This is a wibble.\nNext line.", c("R", "R", "G", "A"))
-##' ind.row(8, "IND008: This is a wibble.\nNext line.", c("R", "R", "G", "A"))
-##' ind.row(9, "IND009: This is a wibble.\nNext line.", c("R", "R", "G", "A"))
-##' ind.row(10, "IND010: This is a wibble.\nNext line.", c("R", "R", "G", "A"))
-##' 
 ##' 
 ##' close.screen(all = TRUE)
 ##' par(temppar) # restore graphics defaults
