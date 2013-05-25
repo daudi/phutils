@@ -5,7 +5,6 @@
 ##' @export
 
 ##' @examples
-##' EXAMPLE OF HOW TO USE MULTILINE HEADER ROW
 ##' x <- 1:10
 ##' y <- letters[1:10]
 ##' z <- rep(c("x", "y"), 5)
@@ -16,14 +15,14 @@
 ##'                   ncol = 3, byrow = TRUE)
 ##' jina.col <- matrix(c(1, 2, 0, 1, 1, 1), ncol = 3, byrow = TRUE)
 ##' jina.row <- matrix(c(2, 1, 1, 0, 1, 1), ncol = 3, byrow = TRUE)
-
+##
 ##' my.table.header <- list(names = jina,
 ##'                         col.spec = jina.col,
 ##'                         row.spec = jina.row,
 ##'                         css.class = c("firstline", "secondline"))
+## 
+##' HTML.data.frame(z, file = "0.html", table.header = my.table.header)
 
-##' HTML.data.frame(x, file = "0.html", table.header = my.table.header)
-##' HTML(x, file = "0.html", caption = "", big.mark = ",", nsmall = 1, table.header = my.table.header)
 
 
 
