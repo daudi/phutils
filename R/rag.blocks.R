@@ -23,6 +23,7 @@ rag.blocks <- function(status, cex = 1) {
   rag <- c("R", "A", "G")
   rag.colours <- c("red", "orange", "green")
   rag.status <- rag.colours[match(status, rag)]
+  rag.status[is.na(rag.status)] <- "white"
   rag.xpos <- seq(from = 0, by = 1 / num.items, length.out = num.items)
   rag.xpos2 <- seq(to = 1, by = 1 / num.items, length.out = num.items)
   rag.text.xpos <- (rag.xpos + rag.xpos2) / 2
