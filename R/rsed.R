@@ -15,12 +15,18 @@
 #' @param show.only If TRUE (the default) don't actually change anything. Only really useful if verbose = TRUE
 #' @param verbose If TRUE (the default) provide verbose information about the changes.
 #'
+#' @export
 #' @return Invisibly returns a dataframe showing the files matched, and the lines that match before and after changes.
 #'
 rsed <- function(old = NULL, new = NULL,
                  path = ".", pattern = NULL, recursive = FALSE,
                  ignore.case = FALSE, show.only = TRUE, verbose = TRUE,
                  make.backup = TRUE) {
+  
+  if (is.null(old))
+    stop("Please specify an expression to replace (old = NULL)")
+  if (is.null(new))
+    stop("Please specify a replacement expression (new = NULL)")
   
   x <- list.files(path = path, pattern = pattern, recursive = recursive,
                   ignore.case = ignore.case)
