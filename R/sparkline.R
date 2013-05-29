@@ -74,6 +74,48 @@
 ##' dev.off()
 ##' 
 ##' 
+##' ## Nice example using PDF is easier than PNG. Can copy in adobe reader then paste into
+##' ## other documents. 
+##' 
+##' ind.row <- function(n, narrative, rag){
+##'screen1 <- ((n - 1) * 3) + 1
+##'screen2 <- screen1 + 1
+##'screen3 <- screen1 + 2
+##'
+##'screen(screen1)
+##'text(0, 0.8, narrative, adj = c(0, 1), cex = cex.text)
+##'
+##'screen(screen2)
+##'par(mai = spark.mai)
+##'sparkline(line.col = "black", cex = cex, eng = "3.2")
+##'
+##'screen(screen3)
+##'par(mai = spark.mai)
+##'rag.blocks(rag, blocks=FALSE, symbol.cex = 6)
+##'
+##'}
+##'
+##'
+##'cex <- 0.5
+##'cex.text <- 1
+##'spark.mai <- c(0.10, 0.05, 0.10, 0.05)
+##'
+##'pdf("test.pdf")
+##'split.screen(c(10, 3))
+##'ind.row(1, "This is a test", c("R", "G", "A", "G"))
+##'ind.row(2, "This is a test", c("G", "G", "A", "G"))
+##'ind.row(3, "This is a test", c("G", "R", "A", "G"))
+##'ind.row(4, "This is a test", c("G", "G", "A", "A"))
+##'
+##'close.screen(all = TRUE)
+##'dev.off()
+##' 
+##' 
+##' 
+##' 
+##' 
+##' 
+##' 
 ##' 
 ##' 
 ##' 
