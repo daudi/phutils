@@ -1,7 +1,7 @@
 Package: phutils
 Type: Package
 Title: Utilities for the Public Health Intelligence Team in Medway
-Version: 1.1.16
+Version: 1.1.17
 Date: 2013-05-29
 Author: David Whiting, Mark Chambers, Laura Bottle
 Maintainer: David Whiting  <david.whiting@publichealth.me.uk>
@@ -29,3 +29,4 @@ Collate:
     'is.valid.NHSnum.R'
     'rsed.R'
     'rag.blocks.R'
+    'age.years.R'
