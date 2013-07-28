@@ -61,12 +61,17 @@ sampsi.means<-function(m1, m2, sd1, sd2=NA, ratio=1, power=.90, alpha=.05, two.s
   n<-(ct*sd1/effect.size)^2
   
   if(one.sample==FALSE){
+    n1 <- ceiling(n1)
+    n2 <- ceiling(n1 * ratio)
     col1<-c("alpha", "power", "m1", "m2", "sd1", "sd2", "effect size", "n2/n1", "n1", "n2")
-    col2<-c(alpha,  power, m1, m2, sd1, sd2, effect.size, ratio, ceiling(n1), ceiling(n1*ratio))
+    col2<-c(alpha,  power, m1, m2, sd1, sd2, effect.size, ratio, n1, n2)
+    min.n <- min(n1, n2)
   }
   else{
-    col1<-c("alpha", "power", "null", "alternative", "n")
-    col2<-c(alpha, power, m1, m2, ceiling(n))
+    n <- ceiling(n)
+    col1 <- c("alpha", "power", "null", "alternative", "n")
+    col2 <- c(alpha, power, m1, m2, )
+    min.n <- n
   }
   ret<-as.data.frame(cbind(col1, col2))
   ret$col2<-as.numeric(as.character(ret$col2))
@@ -74,7 +79,7 @@ sampsi.means<-function(m1, m2, sd1, sd2=NA, ratio=1, power=.90, alpha=.05, two.s
   
   description<-paste(ifelse(one.sample==FALSE, "Two-sample", "One-sample"), ifelse(two.sided==TRUE, "two-sided", "one-sided"), "test of means")
   
-  retlist<-list(description, ret)
+  retlist<-list(description = description, results = ret, min.n = min.n)
   
   return(retlist)
 }

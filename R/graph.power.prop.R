@@ -4,9 +4,9 @@
 ##' 
 ##' @details p1 and p2 are are required for the function to run. 
 ##' 
-##' @param p1  p1 and p2, which are either the null and alternative proportions, respectively, for the one-sample test, 
+##' @param p1 p1 and p2, which are either the null and alternative proportions, respectively, for the one-sample test, 
 ##' or two proportions for the two-sample test. These arguments are required for the function to run.
-##' @param p2  p1 and p2, which are either the null and alternative proportions, respectively, 
+##' @param p2 p1 and p2, which are either the null and alternative proportions, respectively, 
 ##' for the one-sample test, or two proportions for the two-sample test. If p2 is a vector multiple lines will be drawn.
 ##' @param ratio The ratio of smaller group to larger group (default=1)
 ##' @param power  Default of β=.80
@@ -57,28 +57,20 @@ graph.power.prop <- function(from.power, to.power,
   if (to.power == 1.0)
     warning("to.power == 1.0 This will probably break the plot with Inf xlim")
   seq.p<-seq(from.power, to.power, by=.01)
-  n<-rep(NA, length(seq.p))
-  
-  samp.size <- function(seq.p, p1=p1, p2=p2, power=seq.p[i], alpha=alpha, ratio=ratio, cont.corr=cont.corr, two.sided=two.sided, one.sample=one.sample) {
-    for(i in 1:length(seq.p)){
-      ob<-sampsi.prop(p1=p1, p2=p2, power=seq.p[i], alpha=alpha, ratio=ratio, cont.corr=cont.corr, two.sided=two.sided, one.sample=one.sample)[[2]]
-      n[i]<-as.numeric(ob[7,2])
-    }
-    n
-  }
   
   n <- list()
   for (i in 1:length(p2)) {
     this.p2 <- p2[i]
-    n[[i]] <- samp.size(seq.p, p1=p1, p2=this.p2, power=seq.p[i], alpha=alpha, ratio=ratio, cont.corr=cont.corr, two.sided=two.sided, one.sample=one.sample)
+    n[[i]] <- unlist(lapply(seq.p, function(x) sampsi.prop(p1 = p1, this.p2, power = x, alpha=alpha, ratio=ratio, cont.corr=cont.corr, two.sided=two.sided, one.sample=one.sample)[["min.n"]]))
   }
+
   n <- matrix(unlist(n), ncol = length(p2))
   my.xlim  <-  c(min(n), max(n))
   plot(n[, 1], seq.p,
        xlim = my.xlim,
        ylab="Power", 
        xlab="n (in smaller arm)", type="n",  
-       main=paste("Power graph for p1=", p1, "and p2=", paste(p2, collapse = ", ")))
+       main=paste("Power graph for p1 =", p1, "and p2 =", paste(p2, collapse = ", ")))
   
   max.n <- max(n)
   for (i in 1:ncol(n)) {
