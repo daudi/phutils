@@ -21,7 +21,7 @@
 ##'                         row.spec = jina.row,
 ##'                         css.class = c("firstline", "secondline"))
 ## 
-##' HTML.data.frame(z, file = "0.html", table.header = my.table.header)
+##' HTML.data.frame(z, file = "0.html", table.header = my.table.header, row.names = FALSE)
 
 
 
@@ -202,8 +202,10 @@ html.table.header.rows <- function(x, num.cols, row.names, classfirstline) {
   }
   stopifnot(ncol(x) == num.cols.expected)
 
-  ## Why do I do this?
-  if (nrow(x) > 1) {
+  ## This only useful when row.names = TRUE. It wipes out the column name.
+  ## I'm not convinced this logic is correct in every case. What if there
+  ## are 3 header rows?
+  if (nrow(x) > 1 & row.names) {
     x[2:nrow(x), 1] <- NA
   }
   
