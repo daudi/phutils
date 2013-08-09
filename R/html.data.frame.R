@@ -81,13 +81,13 @@
    if (!is.null(Border))
      txt <- paste(txt, "\n<table cellspacing=\"0\" border=\"", Border, "\">",
                   txtcaption,"<tr><td>",
-                  "\n\t<table border=\"", innerBorder, "\" class=\"",classtable,"\">",
+                  "\n<table border=\"", innerBorder, "\" class=\"",classtable,"\">",
                   sep = "")
    else txt <- paste(txt, "\n<table border=", innerBorder,
                      " class=\"",classtable,"\" cellspacing=\"0\">",
                      txtcaption, sep = "")
 
-   txt <- paste(txt,"\t<tbody>",sep="\n")
+   txt <- paste(txt,"<tbody>",sep="\n")
 
    ## Create the table header
    if(!is.null(table.header)) {
@@ -96,10 +96,10 @@
    } else {
 
      VecDebut <- c(
-                   if(row.names) paste("\n\t\t<th>",
+                   if(row.names) paste("\n<th>",
                                        if(sortableDF) '<b class="tablesort">',
                                        sep = "", collapse = ""),
-                   rep(paste("\n\t\t<th>",
+                   rep(paste("\n<th>",
                              if(sortableDF) '<b class="tablesort">',
                              sep = "", collapse = ""), ncol(x) - 1)
                    )
@@ -120,9 +120,9 @@
                  "</th>"
                  )
      dmf <- paste(VecDebut, VecMilieu, VecFin, sep = "", collapse = "")
-     txt <- paste0(txt, "\n\t<tr class=\"", classfirstline, "\">",
+     txt <- paste0(txt, "\n<tr class=\"", classfirstline, "\">",
                   dmf,
-                  "\n\t</tr>"
+                  "\n</tr>"
                   )
    }
 
@@ -159,7 +159,7 @@
    txt <- paste(txt, "\n</tbody>\n</table>\n",
                 if (!is.null(Border)) "</td></tr></table>\n",
                 if (!is.null(CSV.path)) paste0("<a href=\"", paste0(CSV.server.root, "/", CSV.path),"\">Download these data</a>\n"),
-                "<br />")
+                "")
    cat(txt, "\n", file = file, sep = "", append = TRUE)
  }
 
