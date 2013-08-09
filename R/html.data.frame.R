@@ -156,7 +156,7 @@
      txt <- paste(txt,  "\n<tr>",
                   paste(VecDebut, VecMilieu, VecFin, sep = "", collapse = ""))
    }
-   txt <- paste(txt, "\n\t</tbody>\n</table>\n",
+   txt <- paste(txt, "\n</tbody>\n</table>\n",
                 if (!is.null(Border)) "</td></tr></table>\n",
                 if (!is.null(CSV.path)) paste0("<a href=\"", paste0(CSV.server.root, "/", CSV.path),"\">Download these data</a>\n"),
                 "<br />")
