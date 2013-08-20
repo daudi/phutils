@@ -1,8 +1,8 @@
 Package: phutils
 Type: Package
 Title: Utilities for the Public Health Intelligence Team in Medway
-Version: 1.1.19
-Date: 2013-08-18
+Version: 1.1.20
+Date: 2013-08-20
 Author: David Whiting, Mark Chambers, Laura Bottle
 Maintainer: David Whiting  <david.whiting@publichealth.me.uk>
 Description: A small and growing collection of utilities for Public Health
