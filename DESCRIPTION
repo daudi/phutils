@@ -36,3 +36,4 @@ Collate:
     'samp.clus.R'
     'sampsi.means.R'
     'sampsi.prop.R'
+    'png.scalable.R'
