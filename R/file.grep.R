@@ -30,7 +30,6 @@ file.grep <- function(pattern = NULL,
   
   x <- list.files(path = path, pattern = file.pattern, recursive = recursive, 
                   ignore.case = ignore.case)
-  print(x)
   
   grep.in.file <- function(infile, pattern) {  
     ret <- NULL
@@ -43,8 +42,8 @@ file.grep <- function(pattern = NULL,
   }
 
   ret <- list()
-  for (i in 1:length(x)){
+  for (i in seq_along(x)){
     ret[[i]] <- grep.in.file(x[i], pattern)
   }
-  invisible(do.call("rbind", ret))
+  do.call("rbind", ret)
 }
