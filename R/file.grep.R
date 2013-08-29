@@ -20,6 +20,7 @@
 ##' sensitive.
 ##' @return Returns a data.frame with the name of files that contain the search
 ##' expression, the line number of any matches, and the content of the line that matches.
+##' @export
 ##' @examples
 ##' x <- file.grep("wibble", ".", "txt")
 
