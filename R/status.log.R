@@ -1,19 +1,19 @@
-##' Function to write entries to a status log, with a timestamp.
+##' Print a status message and log it with a timestamp
 ##' 
-##' This function simply writes lines to a status log file with a timestamp.
-##' 
-##' This function simply writes lines to a status log file with a timestamp.
-##' 
-##' @param x The message to be written to the status log.
+##' @param msg The status message
+##' @param append If TRUE (the default) append to the existing log file. Usually, therefore, you will want to set this to FALSE the first time you call it in your program.
+##' @param file The name of the log file. Default is "STATUS.LOG"
 ##' @return None.
-##' @author David Whiting, dwhiting@@nhs.net
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 ##' @keywords utils
 ##' @examples
 ##' 
-##' ##   x <- status.log("Finished calculating mortality rates.")
+##' x <- status.log("Finished calculating mortality rates.")
 ##' 
 ##' @export
-status.log <- function(x) {
-  right.now <- strftime(Sys.time(), format = "%Y-%m-%d %H:%M:%S")
-  cat(paste(right.now, x, "\n"), file = "STATUS.LOG", append = TRUE)
+
+status.log <- function(msg, append = TRUE, file = "STATUS.LOG") {  
+  print(msg)
+  msg <- paste(Sys.time(), msg, "\n")
+  cat(msg, file = file, append = append)
 }
