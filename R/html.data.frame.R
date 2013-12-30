@@ -27,7 +27,7 @@
 
 
 "HTML.data.frame" <- function(
-                              x, file = get(".HTML.file"),
+                              x, file = "",
                               Border = 1, innerBorder = 0,
                               classfirstline = "firstline",
                               classfirstcolumn = "firstcolumn",
