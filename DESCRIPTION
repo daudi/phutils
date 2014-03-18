@@ -1,44 +1,10 @@
 Package: phutils
 Type: Package
 Title: Utilities for the Public Health Intelligence Team in Medway
-Version: 1.1.24
+Version: 1.1.25
 Date: 2013-12-30
 Author: David Whiting, Mark Chambers, Laura Bottle
 Maintainer: David Whiting  <david.whiting@publichealth.me.uk>
 Description: A small and growing collection of utilities for Public Health
     Intelligence in Medway.
 License: GPL v3
-Collate:
-    'age.groups.R'
-    'age.labels.R'
-    'cipoisson.R'
-    'ciproportion.R'
-    'dateToQuarter.R'
-    'fix.dumb.excel.percents.and.commas.R'
-    'html.data.frame.R'
-    'ls.rda.R'
-    'make.pop.R'
-    'penultimate.R'
-    'phutils-internal.R'
-    'phutils-package.R'
-    'quarterToDates.R'
-    'searchable.html.table.R'
-    'sparkline.R'
-    'splice.R'
-    'status.log.R'
-    'is.valid.NHSnum.R'
-    'rsed.R'
-    'rag.blocks.R'
-    'age.years.R'
-    'between.R'
-    'graph.power.means.R'
-    'graph.power.prop.R'
-    'samp.clus.R'
-    'sampsi.means.R'
-    'sampsi.prop.R'
-    'png.scalable.R'
-    'file.grep.R'
-    'read.snap.R'
-    'ci.mean.R'
-    'isdebugged.all.R'
-    'sourceDir.R'
