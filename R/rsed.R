@@ -14,6 +14,7 @@
 #' @param ignore.case When searching for file should the case be ignored?
 #' @param show.only If TRUE (the default) don't actually change anything. Only really useful if verbose = TRUE
 #' @param verbose If TRUE (the default) provide verbose information about the changes.
+#' @param ... Other options to pass to gsub()
 #'
 #' @export
 #' @return Invisibly returns a dataframe showing the files matched, and the lines that match before and after changes.
@@ -21,7 +22,7 @@
 rsed <- function(old = NULL, new = NULL,
                  path = ".", pattern = NULL, recursive = FALSE,
                  ignore.case = FALSE, show.only = TRUE, verbose = TRUE,
-                 make.backup = TRUE) {
+                 make.backup = TRUE, ...) {
   
   if (is.null(old))
     stop("Please specify an expression to replace (old = NULL)")
@@ -30,8 +31,7 @@ rsed <- function(old = NULL, new = NULL,
   
   x <- list.files(path = path, pattern = pattern, recursive = recursive,
                   ignore.case = ignore.case)
-  
-  modify.file <- function(infile, old, new) { 
+  modify.file <- function(infile, old, new, ...) {
     ret <- NULL
     xx <- readLines(infile)
     need.changing <- grep(old, xx)
@@ -45,8 +45,8 @@ rsed <- function(old = NULL, new = NULL,
         if (verbose)
           print(paste0("Line: ", line.to.change))
         print(paste0("(before): ", xx[line.to.change]))
-        xx[line.to.change] <- gsub(old, new, xx[line.to.change])
-        if (verbose)
+        xx[line.to.change] <- gsub(old, new, xx[line.to.change], ...)
+        if (verbose) 
           print(paste0("(after): ", xx[line.to.change]))
       }
       ret <- data.frame(file = infile, line = need.changing, before = orig, after = xx[need.changing])
