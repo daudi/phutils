@@ -14,12 +14,12 @@
 #' 
 #' @export
 #' @example
-#' ## Example from page 62 of Statistics with Confidence
+#' # Example from page 62 of Statistics with Confidence
 #' std.pop <- c(2773, 2556, 1113, 184)
 #' cases <- c(4, 13, 8, 7)
 #' n <- c(96, 237, 105, 32)
 #' ci.standardised.rate(std.pop, cases, n) * 100
-#' ## For 90% confidence intervals:
+#' # For 90% confidence intervals:
 #' ci.standardised.rate(std.pop, cases, n, alpha = 0.1) * 100
 
 
