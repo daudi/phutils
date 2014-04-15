@@ -8,7 +8,7 @@
 #' 
 #' @details This uses an approximation and assumes that the rates are small.
 #' 
-#' @references Statistics with confidence, Garner and Altman, 1989.
+#' @references Statistics with confidence, Gardner and Altman, 1989.
 #' @author david.whiting@@publichealth.me.uk
 #' @keywords utils
 #' 
