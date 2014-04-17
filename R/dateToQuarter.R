@@ -13,7 +13,6 @@
 ##' @keywords utils
 ##' @examples
 ##' 
-##' library(phutils)
 ##' x <- seq(from = as.Date("2010-04-01"), to = as.Date("2011-03-31"), by  = 1)
 ##' y <- data.frame(x = x, 
 ##'                 month = strftime(x, format = "%m"),

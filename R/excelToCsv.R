@@ -3,6 +3,7 @@
 ##' @param file.path The path to the excel file to convert
 ##' @param keep.sheets A vector of sheet names to keep (see details)
 ##' @param target.dir The output directory. The default is the current working directory.
+##' @param ... Other parameters (not sure what or how they are used)
 ##' 
 ##' @details This only works on windows (but presumably libreoffice code could be added). All 
 ##' sheets are converted, and if keep.sheets is not NULL then those not named in keep.sheets are deleted. 
@@ -14,11 +15,12 @@
 ##' @export 
 ##' @examples
 ##' ## Download the phof data file for England, then...
+##' \dontrun{
 ##' excelToCsv("data.xlsx", keep.sheets = "County UA")
 ##' phof <- read.csv("County UA.csv")
 ##' saveRDS(phof, file = "phof.Rds")
 ##' unlink("County UA.csv")
-##' 
+##' }
 
 excelToCsv <- function(file.path, keep.sheets = NULL, target.dir = getwd(), ...) {
   

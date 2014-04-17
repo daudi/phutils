@@ -1,5 +1,8 @@
 #' Confidence interval for a directly standardised rate
 #' 
+#' Confidence interval for a directly standardised rate using an approximation. Based on
+#' Statistics with Confidence by Gardner and Altman (1989).
+#' 
 #' @param N A numeric vector of the number of individuals in each (age) group. 
 #' @param x A numeric vector of the number of cases in each (age) group
 #' @param n A numeric vector of the denominator in the study population in each (age) group.
@@ -8,12 +11,13 @@
 #' 
 #' @details This uses an approximation and assumes that the rates are small.
 #' 
-#' @references Statistics with confidence, Gardner and Altman, 1989.
+#' @references Statistics with confidence, Gardner and Altman (1989).
 #' @author david.whiting@@publichealth.me.uk
 #' @keywords utils
+#' @return A named vector with three elements: lower CI, mean, upper CI
 #' 
 #' @export
-#' @example
+#' @examples
 #' # Example from page 62 of Statistics with Confidence
 #' std.pop <- c(2773, 2556, 1113, 184)
 #' cases <- c(4, 13, 8, 7)

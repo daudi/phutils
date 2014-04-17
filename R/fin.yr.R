@@ -4,7 +4,7 @@
 ##' @details At the moment this is not vectorised.
 ##' @export
 ##' @author david.whiting@@publichealth.me.uk
-##' @example
+##' @examples
 ##' fin.yr(Sys.Date())
 
 fin.yr <- function(date) {

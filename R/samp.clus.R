@@ -3,10 +3,10 @@
 ##' @description Based on the sampclus function in Stata.
 ##' 
 ##' @details sampclus takes a sampsi.prop() or sampsi.means() object, along with an interclass correlation 
-##' coefficient (ρ) and either the number of observations per cluster or the number of clusters, and 
+##' coefficient (rho) and either the number of observations per cluster or the number of clusters, and 
 ##' calculates the corresponding effective sample size.
 ##' 
-##' @param sampsi.object
+##' @param sampsi.object An object created by sampsi.prop() or perhaps sampsi.means()
 ##' @param rho Interclass correlation coefficient
 ##' @param num.clus The number of clusters. If NA (the default) obs.clus (the number of observations per cluster) must be specified
 ##' @param obs.clus The number of observations per cluster. If NA (the default) num.clus (the number of clusters) must be specified
@@ -29,7 +29,7 @@
 ##' 
 ##' 
 ##' ##clustering
-##' ss<-sampsi.prop(.10, .25, power=.8, two.sided=FALSE)
+##' ss <- sampsi.prop(.10, .25, power=.8, two.sided=FALSE)
 ##' samp.clus(ss, rho=.05, obs.clus=15)
 ##' samp.clus(ss, rho=.05, num.clus=150)
 ##' 

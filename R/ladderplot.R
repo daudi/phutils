@@ -8,12 +8,16 @@
 ##' @param pch 	Point type to use. If longer than 1, its value is recycled.
 ##' @param lty 	Line type to use. If longer than 1, its value is recycled.
 ##' @param lwd.lines Specify the thickness of the lines between the two sets of data.
-##' @param xlim, ylim 	Limits for axes.
+##' @param xlim Limits for axes.
+##' @param ylim	Limits for axes.
 ##' @param vertical 	Logical, if the orientation of the ladderplot should be vertical or horizontal.
 ##' @param ordered 	Logical, if the columns in x should be ordered.
 ##' @param ... 	Other arguments passed to the function stripchart. 
 ##' 
-##' @example
+##' @export
+##' @keywords utils
+##' 
+##' @examples
 ##' 
 ##' males <- c(0.222, 0.261, 0.131, 0.104, 0.095, 0.166, 0.023)
 ##' females <- c(0.312, 0.161, 0.203, 0.063, 0.094, 0.165, 0)

@@ -7,8 +7,8 @@
 ##' @param p1  p1 and p2, which are either the null and alternative proportions, respectively, for the one-sample test, or two proportions for the two-sample test. These arguments are required for the function to run.
 ##' @param p2  p1 and p2, which are either the null and alternative proportions, respectively, for the one-sample test, or two proportions for the two-sample test. These arguments are required for the function to run.
 ##' @param ratio The ratio of smaller group to larger group (default=1)
-##' @param power  Default of β=.80
-##' @param alpha  Significance level (default of α=.05)
+##' @param power  Default of beta = 0.80
+##' @param alpha  Significance level (default of alpha = 0.05)
 ##' @param cont.corr A logical argument for whether to include the continuity correction (default is TRUE)
 ##' @param two.sided Whether to perform a two-sided test or one-sided (default is two)
 ##' @param one.sample Whether to perform the two-sample or one-sample test (defaut is two-sample test)

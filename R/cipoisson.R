@@ -1,26 +1,14 @@
-### https://stat.ethz.ch/pipermail/r-help/2008-February/154897.html
-### Use for SMR, e.g. HSMR.
-
-
-
 ##' Function to calculate lower and upper estimates based on the poisson
 ##' distribution.
 ##' 
 ##' This function is useful for calculating confidence intervals for a
 ##' standardised mortality ratio (SMR) e.g. HSMR.
 ##' 
-
-##' 
-
 ##' 
 ##' @param k The number of observed events.
-##' @param time
-##' 
-
-##' @param p
-##' 
-
-##' @param method
+##' @param time 
+##' @param p The percentile of the normal distribution (i.e. 0.95 = 95\% CIs)
+##' @param method exact or anscombe
 ##' 
 
 ##' @return The lower and upper number of events.

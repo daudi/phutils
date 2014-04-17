@@ -10,8 +10,8 @@
 ##' @param sd1 Standard deviation in the first sample
 ##' @param sd2 Standard deviation in the second sample. If NA (the default) the function uses sd1 for both samples.
 ##' @param ratio The ratio of smaller group to larger group (default=1)
-##' @param power Default of β=.80
-##' @param alpha Significance level (default of α=.05)
+##' @param power Default of beta = 0.80
+##' @param alpha Significance level (default of alpha = 0.05)
 ##' @param two.sided Whether to perform a two-sided test or one-sided (default is two)
 ##' @param one.sample Whether to perform the two-sample or one-sample test (defaut is two-sample test)
 ##' 
@@ -51,7 +51,7 @@
 graph.power.means <- function(from.power, to.power, 
                               m1, m2, 
                               sd1, sd2=NA, 
-                              ratio=1, alpha=.05, cont.corr=TRUE, two.sided=TRUE, one.sample=FALSE){
+                              ratio=1, alpha=.05, two.sided=TRUE, one.sample=FALSE){
   
   seq.p<-seq(from.power, to.power, by=.01)
   n<-rep(NA, length(seq.p))

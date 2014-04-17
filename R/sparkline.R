@@ -6,7 +6,7 @@
 ##'   @param eng A single value for England (or any other comparator). If NULL (the default) this is not shown.
 ##'   @param width The width of the sparkline in inches.
 ##'   @param height The height of the sparkline in inches.
-##'   @param sigfigs 
+##'   @param sigfigs Number of significant figures in the labels.
 ##'   @param line.col The colour of the line.
 ##'   @param cex Character expansion (the size of the font)
 ##'   

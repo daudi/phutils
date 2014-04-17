@@ -9,12 +9,14 @@
 ##' @param p2 p1 and p2, which are either the null and alternative proportions, respectively, 
 ##' for the one-sample test, or two proportions for the two-sample test. If p2 is a vector multiple lines will be drawn.
 ##' @param ratio The ratio of smaller group to larger group (default=1)
-##' @param power  Default of β=.80
-##' @param alpha  Significance level (default of α=.05)
+##' @param power  Default of beta = 0.80
+##' @param alpha  Significance level (default of alpha = 0.05)
 ##' @param cont.corr A logical argument for whether to include the continuity correction (default is TRUE)
 ##' @param two.sided Whether to perform a two-sided test or one-sided (default is two)
 ##' @param one.sample Whether to perform the two-sample or one-sample test (defaut is two-sample test)
 ##' @param legend.adj adj parameter for legend placement. May need to may y value a large negative when there are multiple lines.
+##' @param from.power The lower end of the range of powers over which to plot the power curve.
+##' @param to.power The upper end of the range of powers over which to plot the power curve.
 ##' 
 ##' @return A dataframe with power and n
 ##' @author Originally by Slawa Rokicki srokicki@@fas.harvard.edu, extended by david.whiting@@publichealth.me.uk

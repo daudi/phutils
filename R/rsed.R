@@ -14,6 +14,7 @@
 #' @param ignore.case When searching for file should the case be ignored?
 #' @param show.only If TRUE (the default) don't actually change anything. Only really useful if verbose = TRUE
 #' @param verbose If TRUE (the default) provide verbose information about the changes.
+#' @param make.backup If TRUE (the default) then make a back-up of the files that are changed.
 #' @param ... Other options to pass to gsub()
 #'
 #' @export
