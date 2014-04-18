@@ -27,8 +27,10 @@
 file.grep <- function(pattern = NULL, 
                       path = ".", file.pattern = NULL, recursive = FALSE,
                       ignore.case = FALSE) {
-  
-  x <- list.files(path = path, pattern = file.pattern, recursive = recursive, 
+  ## Change to the path specified (it works better this way)
+  cwd <- getwd()
+  setwd(path)
+  x <- list.files(path = ".", pattern = file.pattern, recursive = recursive, 
                   ignore.case = ignore.case)
   
   grep.in.file <- function(infile, pattern) {  
@@ -45,5 +47,7 @@ file.grep <- function(pattern = NULL,
   for (i in seq_along(x)){
     ret[[i]] <- grep.in.file(x[i], pattern)
   }
+  ## Return to the original working directory
+  setwd(cwd)
   do.call("rbind", ret)
 }
