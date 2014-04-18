@@ -16,6 +16,10 @@
 ##' that it is in (- 5, 5) is much better.
 ##' 
 ##' @return A named vector with three elements: lower CI, mean, upper CI.
+##' ##' @seealso 
+##' \code{\link{ci.poisson}}, 
+##' \code{\link{ci.proportion}}, 
+##' \code{\link{ci.standardised.rate}}
 ##' @export
 ##' @examples
 ##' x <- rnorm(1000)

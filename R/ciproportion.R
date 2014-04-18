@@ -8,6 +8,10 @@
 ##' 
 ##' @return A named numeric vector with the lower confidence interval, 
 ##' point estimate and upper confidence interval.
+##' ##' @seealso 
+##' \code{\link{ci.mean}}, 
+##' \code{\link{ci.poisson}}, 
+##' \code{\link{ci.standardised.rate}}
 ##' @author dwhiting@@nhs.net
 ##' @keywords stats
 ##' @examples 
