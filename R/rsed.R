@@ -17,6 +17,8 @@
 #' @param make.backup If TRUE (the default) then make a back-up of the files that are changed.
 #' @param ... Other options to pass to gsub()
 #'
+#' @seealso 
+#' \code{\link{file.grep}}
 #' @export
 #' @return Invisibly returns a dataframe showing the files matched, and the lines that match before and after changes.
 #'
