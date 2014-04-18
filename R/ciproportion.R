@@ -25,8 +25,8 @@ ci.proportion <- function(x, n){
   ci <- 1.96 * sqrt((p * q) / n)
   p.lower <- p - ci
   p.upper <- p + ci
-  c(p.lower = p.lower,
+  c(lower.CI = p.lower,
     p = p,
-    p.upper = p.upper)
+    upper.CI = p.upper)
 }
 

@@ -45,10 +45,10 @@
 ##' 
 ##' @export
 "ci.poisson" <- 
-  function(k, time = 1, p = 0.95, method = c("exact", "anscombe") ) {
-    nn <- max(length(k), length(time), length(p))
+  function(observed, expected, time = 1, p = 0.95, method = c("exact", "anscombe") ) {
+    nn <- max(length(observed), length(time), length(p))
     if(nn > 1) {
-      k <- rep(k, length = nn)
+      observed <- rep(observed, length = nn)
       time <- rep(time, length = nn)
       p <- rep(p, length = nn)
     }
@@ -56,20 +56,24 @@
     
     method <- match.arg(method)
     if(method == "exact") {
-      dummy1 <- ifelse(k == 0, 1, k)
+      dummy1 <- ifelse(observed == 0, 1, observed)
       #avoid an error message of qgamma
-      lower <- ifelse(k == 0, 0, qgamma(p, dummy1))
-      upper <- qgamma(1 - p, k + 1)
+      lower <- ifelse(observed == 0, 0, qgamma(p, dummy1))
+      upper <- qgamma(1 - p, observed + 1)
     }
     else if(method == "anscombe") {
       # anscombe's method
-      upper <- (sqrt(k + 7/8) - qnorm(p)/2)^2
-      lower <- (sqrt(k - 1/8) + qnorm(p)/2)^2
+      upper <- (sqrt(observed + 7/8) - qnorm(p)/2)^2
+      lower <- (sqrt(observed - 1/8) + qnorm(p)/2)^2
     }
     else stop("Invalid method")
-    if(nn == 1)
-      c(lower = lower, upper = upper)/time
-    else cbind(lower = lower, upper = upper)/time
+    
+    if(nn == 1) 
+      res <- c(lower.CI = lower / expected, SMR = observed / expected, upper.CI = upper / expected)/time
+    else 
+      res <- cbind(lower.CI = lower / expected, SMR = observed / expected, upper.CI = upper / expected)/time
+    
+    res
   }
 
 

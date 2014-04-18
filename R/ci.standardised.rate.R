@@ -38,9 +38,9 @@ ci.standardised.rate <- function(N, x, n, alpha = 0.05) {
   SE <- sqrt(sum(N^2 * rate / n)) / sum(N)
   lower.ci <- SR - (qnorm.val * SE)
   upper.ci <- SR + (qnorm.val * SE)
-  c(lower.ci = lower.ci,
+  c(lower.CI = lower.ci,
     std.rate = SR,
-    upper.ci = upper.ci)
+    upper.CI = upper.ci)
 }
 
 
