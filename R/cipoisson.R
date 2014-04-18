@@ -4,6 +4,7 @@
 ##' This function is useful for calculating confidence intervals for a
 ##' standardised mortality ratio (SMR) e.g. HSMR.
 ##' 
+##' @aliases cipoisson
 ##' 
 ##' @param k The number of observed events.
 ##' @param time 
@@ -24,21 +25,21 @@
 ##' expected <- 45.6
 ##' 
 ##' SMR <- observed / expected * 100
-##' limits <- cipoisson(observed) * 100
+##' limits <- ci.poisson(observed) * 100
 ##' limits
 ##' ci.limits <- limits / expected 
 ##' ci.limits
 ##' 
 ##' ci.hsmr <- function(observed, expected) {
 ##'   SMR <- observed / expected * 100
-##'   limits <- cipoisson(observed) * 100
+##'   limits <- ci.poisson(observed) * 100
 ##'   ci.limits <- limits / expected 
 ##'   list(smr = SMR, ci.limits = ci.limits)
 ##' }
 ##' 
 ##' 
 ##' @export
-"cipoisson" <- 
+"ci.poisson" <- 
   function(k, time = 1, p = 0.95, method = c("exact", "anscombe") ) {
     nn <- max(length(k), length(time), length(p))
     if(nn > 1) {
