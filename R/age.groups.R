@@ -12,10 +12,11 @@
 ##' @param y A vector of age breaks, e.g. using the seq() function.
 ##' @param final.open If TRUE (the default) the last age group will be open,
 ##' e.g 85+ but this can be changed.
+##' @param ordered_result logical: should the result be an ordered factor? Default is TRUE.
 ##' @return A factor with the level that corresponds to the age and age ranges
 ##' provided.
 ##' @author David Whiting, dwhiting@@nhs.net
-##' @seealso \code{\link{seq}}, \code{\link{age.labels}}, \code{\link{lapply}}
+##' @seealso \code{\link{seq}}, \code{\link{age.labels}}, \code{\link{lapply}, , \code{\link{cut}}
 ##' @keywords utils
 ##' @examples
 ##' 
@@ -31,23 +32,15 @@
 ##' age.groups(100, age.breaks) # 95+
 ##' age.groups(101, age.breaks) # NA
 ##' 
-##' ## THIS IS WRONG AND NEEDS FIXING
-##' age.groups(100, age.breaks, final.open = FALSE) # 95-99
+##' age.groups(95:100, age.breaks, final.open = TRUE)
+##' age.groups(95:100, age.breaks, final.open = FALSE)
 ##' 
-##' ## Creating age groups for a vector of ages
-##' ages <- c(2,4,5,68,24,4,56,34)
-##' unlist(lapply(ages, age.groups, age.breaks))
-##' ## 0-4   0-4   5-9   65-69 20-24 0-4   55-59 30-34
 ##' 
 ##' @export
 
 age.groups <-
-function(x, y, final.open = TRUE) {
-	## x: age in years (must be integers I think)
-	## y: a vector of breaks, e.g. seq(from = 0, to = 100, by = 5) or c(0, 14, 24, 100)
-	## By default it will leave the last group open, e.g 85+ but this can be changed
-	## by specifying final.open = FALSE
-	xx <- cut(x, breaks = y, include.lowest = TRUE, right = FALSE)
+function(x, y, final.open = TRUE, ordered_result = TRUE) {
+	xx <- cut(x, breaks = y, include.lowest = TRUE, right = FALSE, ordered_result = ordered_result)
 	levels(xx) <- gsub("\\(", "", levels(xx))
 	levels(xx) <- gsub("\\)", "", levels(xx))
 	levels(xx) <- gsub("\\[", "", levels(xx))
@@ -55,8 +48,13 @@ function(x, y, final.open = TRUE) {
 	x1 <- as.numeric(gsub("([0-9]+),.*", "\\1", levels(xx)))
 	x2 <- as.numeric(gsub(".*,([0-9]+)", "\\1", levels(xx)))
 	x2 <- x2 - 1
+	## If any x > the end of the interval and the final is not open, make it NA
+	if (!final.open) 
+	  xx[x > x2[length(x2)]] <- NA
+	
 	levels(xx) <- paste(x1, "-", x2, sep = "")
-	if (final.open) levels(xx)[nlevels(xx)] <- gsub("-[0-9]+", "\\+", levels(xx)[nlevels(xx)])
-	## TODO: ADD CODE TO MAKE THIS AN ORDERED FACTOR
-	xx
+	if (final.open) 
+    levels(xx)[nlevels(xx)] <- gsub("-[0-9]+", "\\+", levels(xx)[nlevels(xx)])
+  
+  xx
 }
