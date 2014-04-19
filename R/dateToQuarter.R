@@ -21,6 +21,13 @@
 ##' table(y$q)
 ##' table(y$q, y$month)
 ##' 
+##' ## Now with the year first (e.g. to help with sorting)
+##' y <- data.frame(x = x,
+##'   month = strftime(x, format = "%m"),
+##'   cmonth = strftime(x, format = "%b"),
+##'   q = dateToQuarter(x, year.first = TRUE))
+##'   table(y$q)
+##'   table(y$q, y$month)
 ##' 
 ##' 
 ##' @export
