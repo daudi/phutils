@@ -13,6 +13,17 @@
 ##' date attributes. I'm not sure how to fix this. One nasty fudge would be to convert
 ##' the dates to characters first, run this, then convert back to dates.
 ##' 
+##' THIS DOES NOT (CUURENTLY) SORT THE DATA, so if value order matters you will need to sort it yourself.
+##' 
+##' @return A data.frame with three columns: first value, last value and length of the group. If by.var is 
+##' specified each value of by.var is used for the row names in the data.frame.
+##' 
+##' @examples
+##' x <- runif(n = 100)
+##' y <- rep(letters[1:5], 20)
+##' z <- data.frame(x = x, y = y)
+##' first.and.last(z, "x", y)
+##' 
 ##' @export
 
 first.and.last <- function(x, fld, by.var = NULL, na.rm = FALSE) {
@@ -41,25 +52,8 @@ first.and.last <- function(x, fld, by.var = NULL, na.rm = FALSE) {
   } else {
     res <- f.and.l(x, fld, na.rm = na.rm)
   }
+  res <- data.frame(first = unlist(res$first), last = unlist(res$last), length = unlist(res$length))
   res
 }
 
 
-## Example
-# load("v:/33 - Pembroke Court/Public Health Intelligence/Datasets/Secure/tipping the balance/ttb_Alldata_reShaped.Rda")
-# ## Make sure the data are in the right order
-# x <- x[order(x$id, x$time), ]
-# 
-# first.and.last(x, "AppointmentDate")
-# first.and.last(x, "AppointmentDate", na.rm = TRUE)
-# first.and.last(x[x$id == 1, ], "AppointmentDate")
-# 
-# xx <- x[900:1200, ]
-# xx <- xx[xx$AppointmentWeight > 0 & !is.na(xx$AppointmentWeight), ]
-# first.and.last(xx, "AppointmentDate", by.var = xx$id, na.rm = TRUE)
-# first.and.last(xx, "AppointmentHeight", by.var = xx$id, na.rm = TRUE)
-# 
-# first.and.last(xx, "AppointmentWeight", by.var = xx$id, na.rm = FALSE)
-# 
-# 
-# first.and.last(xx, "AppointmentWeight", na.rm = TRUE)
