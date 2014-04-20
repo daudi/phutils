@@ -6,19 +6,19 @@
 ##' @author david.whiting@@publichealth.me.uk
 ##' @examples
 ##' fin.yr(Sys.Date())
-##' x <- Sys.Date - (1:10) * 300
+##' x <- Sys.Date() - ((1:10) * 300)
 ##' fin.yr(x)
 
 fin.yr <- function(date) {
   
-  .fin.yr <- function(date) {
-    if (as.numeric(strftime(date, format = "%m")) >= 4) {
-      x <- paste0(as.numeric(strftime(date, format = "%Y")), "/",
-                  as.numeric(strftime(date, format = "%y")) + 1)
+  .fin.yr <- function(x) {
+    if (as.numeric(strftime(x, format = "%m")) >= 4) {
+      x <- paste0(as.numeric(strftime(x, format = "%Y")), "/",
+                  as.numeric(strftime(x, format = "%y")) + 1)
       
     } else {
-      x <- paste0(as.numeric(strftime(date, format = "%Y")) - 1, "/",
-                  as.numeric(strftime(date, format = "%y")))
+      x <- paste0(as.numeric(strftime(x, format = "%Y")) - 1, "/",
+                  as.numeric(strftime(x, format = "%y")))
     }
     x
   }
