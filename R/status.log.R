@@ -9,6 +9,7 @@
 ##' @examples
 ##' 
 ##' x <- status.log("Finished calculating mortality rates.")
+##' readLines("STATUS.LOG")
 ##' 
 ##' @export
 
