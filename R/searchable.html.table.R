@@ -4,7 +4,9 @@
 ##' table. The table has a search box to provide a rapid search of the table.
 ##' 
 ##' For the search to work jquery-1.4.1.min.js or newer needs to be in the same
-##' directory as the generated HTML page.
+##' directory as the generated HTML page. 
+##' 
+##' Row names are dropped.
 ##' 
 ##' @param x A data.frame object.
 ##' @param title The title that will in the browser tab.
@@ -19,6 +21,11 @@
 ##' @author David Whiting david.whiting@@publichealth.me.uk
 ##' @keywords utils
 ##' @export
+##' @examples 
+##' x <- letters[1:10]
+##' y <- LETTERS[1:10]
+##' z <- data.frame(x = x, y = y)
+##' searchable.html.table(z)
 
 searchable.html.table <- function(x,
                                   title = "My table",
@@ -138,7 +145,7 @@ html.bottom <- function() {
 </table>
           <p>", html.after.table, "</p>
 <p>
- <small>Updated:", Sys.Date(), "</small>
+ <small>Created:", Sys.Date(), "</small>
 </p>
 </body>
 </html>")
