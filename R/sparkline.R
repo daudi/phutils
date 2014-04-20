@@ -11,7 +11,7 @@
 ##'   @param cex Character expansion (the size of the font)
 ##'   
 ##'   @examples
-##' temppar<-par(no.readonly = TRUE) # store default graphics parameters
+##' temppar <- par(no.readonly = TRUE) # store default graphics parameters
 ##' 
 ##' width <- 1
 ##' height <- 0.5
@@ -48,6 +48,7 @@
 ##' 
 ##' 
 ##' ## A single sparkline in a png file
+##' temppar <- par(no.readonly = TRUE) # store default graphics parameters
 ##' png(file = "test.png", width = 150, height = 50)
 ##' spark.mai <- c(0.10, 0.05, 0.10, 0.05)
 ##' par(mai = spark.mai)
