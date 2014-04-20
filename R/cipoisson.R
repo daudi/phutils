@@ -28,19 +28,7 @@
 ##' 
 ##' observed <- 64
 ##' expected <- 45.6
-##' 
-##' SMR <- observed / expected * 100
-##' limits <- ci.poisson(observed) * 100
-##' limits
-##' ci.limits <- limits / expected 
-##' ci.limits
-##' 
-##' ci.hsmr <- function(observed, expected) {
-##'   SMR <- observed / expected * 100
-##'   limits <- ci.poisson(observed) * 100
-##'   ci.limits <- limits / expected 
-##'   list(smr = SMR, ci.limits = ci.limits)
-##' }
+##' ci.poisson(observed, expected)
 ##' 
 ##' 
 ##' @export
