@@ -20,14 +20,21 @@
 ##' @keywords utils
 ##' @examples
 ##' 
+##' ## Create a data.frame
 ##' x <- 1:10
 ##' y <- 10:1
 ##' a <- letters[x]
-##' z <- data.frame(xx = x, yy = y, aa = a)
+##' z <- data.frame(x, y, a)
+##' 
+##' ## Create another data.frame
 ##' x <- 11:20
 ##' y <- 20:11
 ##' a <- letters[x]
 ##' zz <- data.frame(x, y, a)
+##' 
+##' ## Have a look at z and zz:
+##' z
+##' zz
 ##' 
 ##' splice(z, zz)
 ##' 
