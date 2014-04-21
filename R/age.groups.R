@@ -16,8 +16,11 @@
 ##' @return A factor with the level that corresponds to the age and age ranges
 ##' provided.
 ##' @author David Whiting, dwhiting@@nhs.net
-##' @seealso \code{\link{seq}}, \code{\link{age.labels}}, \code{\link{lapply}, , \code{\link{cut}}
-##' @keywords utils
+##' @seealso 
+##' \code{\link{seq}}, 
+##' \code{\link{age.labels}}, 
+##' \code{\link{lapply}}, 
+##' \code{\link{cut}}
 ##' @examples
 ##' 
 ##' age.groups(5, c(0, 5, 10)) # 5+
