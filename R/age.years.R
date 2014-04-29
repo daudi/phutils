@@ -21,7 +21,9 @@ age.years <- function(first, second)
     second <- as.Date(second)
   lt <- data.frame(first, second)
   age <- as.numeric(format(lt[, "second"], format = "%Y")) - as.numeric(format(lt[, "first"], format = "%Y"))
-  first <- as.Date(paste(format(lt[, "second"], format = "%Y"), "-", format(lt[, "first"], format = "%m-%d"), sep = ""))
+  x <- paste(format(lt[, "second"], format = "%Y"), "-", format(lt[, "first"], format = "%m-%d"), sep = "")
+  x[grepl("NA", x)] <- NA
+  first <- as.Date(x)
   i <- which(first > lt[, "second"]) 
   age[i] <- age[i] - 1
   age
