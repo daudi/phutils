@@ -1,4 +1,14 @@
 ##' Simple reasonably random password generator
+##' 
+##' @param size The length of the password to be generated (default is 10)
+##' @param lower.case Logical. Include lowercase letters? Default is TRUE.
+##' @param upper.case Logical. Include uppercase letters? Default is TRUE.
+##' @param numbers Logical. Include numbers? Default is TRUE.
+##' @param symbols Logical. Include symboks (e.g. !"£$%^&* etc.) ? Default is TRUE.
+##' 
+##' @export 
+##' @return A character string.
+
 
 pw <- function(size = 10, lower.case = TRUE, upper.case = TRUE, numbers = TRUE, symbols = TRUE) {
   sym <- c("!", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "@", "~", "#", "<", ">", "?")
