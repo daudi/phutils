@@ -1,3 +1,11 @@
+##' Display a dataframe in the Rstudio viewer with a search filter
+##' 
+##' @param x A data.frame
+##' @author David Whiting <david.whiting@@publichealth.me.uk>
+##' 
+##' @export
+##' @return Nothing. Nada. 
+
 searchable.dataframe.viewer <- function(x) {
 
   ## Create HTML file to display in the viewer
