@@ -12,7 +12,9 @@
 fin.yr <- function(date) {
   
   .fin.yr <- function(x) {
-    if (as.numeric(strftime(x, format = "%m")) >= 4) {
+    if (is.na(x)) {
+      ## Trap NAs
+    } else if (as.numeric(strftime(x, format = "%m")) >= 4) {
       x <- paste0(as.numeric(strftime(x, format = "%Y")), "/",
                   as.numeric(strftime(x, format = "%y")) + 1)
       
