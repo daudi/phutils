@@ -3,7 +3,7 @@
 ##' This reads in the first sheet from an excel file.
 ##' 
 ##' @param file The path to an excel file
-##' @param keep.sheets See excelToCsv() DW TO USE templates FOR THIS BIT
+##' @template keep.sheets
 ##' @param ... Other parameters to be passed to read.csv()
 ##' 
 ##' @details This only works on Windows. By default it reads in the first sheet from an excel file. You can use 
