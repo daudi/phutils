@@ -10,8 +10,9 @@
 ##' 
 ##' 
 ##' @source http://housesofstones.com/blog/2013/06/18/quickly-read-excel-worksheets-into-r-windows-only-sorry/#.UxR-jM6wRsA
-##' Modified slighly by David Whiting.
+##' Modified slightly by David Whiting.
 ##' 
+##' @seealso \code{\link{read.excel}}, \code{\link{read.csv}}
 ##' @export 
 ##' @examples
 ##' ## Download the phof data file for England, then...

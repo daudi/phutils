@@ -7,10 +7,11 @@
 ##' @param ... Other parameters to be passed to read.csv()
 ##' 
 ##' @details This only works on Windows. By default it reads in the first sheet from an excel file. You can use 
-##' keep.sheets to specify the name of a later sheet. See excelToCsv() for more details about how this works.
+##' keep.sheets to specify the name of a later sheet. If this picks up the wrong sheet, specify the sheet you want
+##' using keep.sheets. See excelToCsv() for more details about how this works.
 ##' 
 ##' @export 
-##' @seealso excelToCsv
+##' @seealso \code{\link{excelToCsv}}, \code{\link{read.csv}}
 
 read.excel <- function(file, keep.sheets = NULL, ...) {
   excelToCsv(file, keep.sheets = keep.sheets)
