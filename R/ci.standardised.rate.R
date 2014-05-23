@@ -6,7 +6,7 @@
 #' @param N A numeric vector of the number of individuals in each (age) group. 
 #' @param x A numeric vector of the number of cases in each (age) group
 #' @param n A numeric vector of the denominator in the study population in each (age) group.
-#' @param alpha The significance level of the confidence intervals. The default is 0.05, i.e. 95% confidence intervals.
+#' @param alpha The significance level of the confidence intervals. The default is 0.05, i.e. 95\% confidence intervals.
 #' 
 #' 
 #' @details This uses an approximation and assumes that the rates are small.
