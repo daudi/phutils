@@ -4,15 +4,15 @@
 ##' 
 ##' @param file The path to an excel file
 ##' @template keep.sheets
-##' @param fix.cols The columns to run through \code{\link{fix.dumb.excel.percents.and.commas()}}
-##' @param rbind If TRUE use do.call("rbind", x) to combine the sheets. See details. Defaults to FALSE.
+##' @param fix.cols The columns to run through \code{\link{fix.dumb.excel.percents.and.commas}()}
+##' @param rbind If TRUE use \code{do.call("rbind", x)} to combine the sheets. See details. Defaults to FALSE.
 ##' @param save.sheet.name If TRUE the name of the sheet will be added to the data.frame as a new column 
-##' @param ... Other parameters to be passed to read.csv()
+##' @param ... Other parameters to be passed to \code{\link{read.csv}()}
 ##' 
 ##' @details This only works on Windows. By default it reads in all sheets from an excel file. You can use 
 ##' keep.sheets to specify the name of specific sheets to read. See \code{\link{excelToCsv()}} for more details about how this works.
 ##' 
-##' Using fix.cols and/or rbind when reading in multiple sheets is only likely to 
+##' Using \code{fix.cols} and/or \code{rbind} when reading in multiple sheets is only likely to 
 ##' work as expected if all of the sheets
 ##' have exactly the same structure. 
 ##' 
