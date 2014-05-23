@@ -6,6 +6,7 @@
 ##' @template keep.sheets
 ##' @param fix.cols The columns to run through \code{\link{fix.dumb.excel.percents.and.commas()}}
 ##' @param rbind If TRUE use do.call("rbind", x) to combine the sheets. See details. Defaults to FALSE.
+##' @param save.sheet.name If TRUE the name of the sheet will be added to the data.frame as a new column 
 ##' @param ... Other parameters to be passed to read.csv()
 ##' 
 ##' @details This only works on Windows. By default it reads in the first sheet from an excel file. You can use 
@@ -24,7 +25,7 @@
 ##' @seealso \code{\link{excelToCsv}}, \code{\link{read.csv}},
 ##' \code{\link{fix.dumb.excel.percents.and.commas}}
 
-read.excel <- function(file, keep.sheets = NULL, fix.cols = NULL, rbind = FALSE, ...) {
+read.excel <- function(file, keep.sheets = NULL, fix.cols = NULL, rbind = FALSE, save.sheet.name = FALSE, ...) {
   excelToCsv(file, keep.sheets = keep.sheets)
   x <- file.info(list.files(path = ".", pattern = ".*csv$"))
   csv.file <- rownames(x)
@@ -37,6 +38,9 @@ read.excel <- function(file, keep.sheets = NULL, fix.cols = NULL, rbind = FALSE,
     if (!is.null(fix.cols))
       y <- fix.dumb.excel.percents.and.commas(y, cols = fix.cols)
     
+    if (save.sheet.name)
+      y$sheet.name <- gsub("(.*).csv$", "\\1", csv.file[i])
+      
     x[[i]] <- y
     
     unlink(csv.file[i])
