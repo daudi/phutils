@@ -9,9 +9,8 @@
 ##' @param save.sheet.name If TRUE the name of the sheet will be added to the data.frame as a new column 
 ##' @param ... Other parameters to be passed to read.csv()
 ##' 
-##' @details This only works on Windows. By default it reads in the first sheet from an excel file. You can use 
-##' keep.sheets to specify the name of a later sheet. If this picks up the wrong sheet, specify the sheet you want
-##' using keep.sheets. See \code{\link{excelToCsv()}} for more details about how this works.
+##' @details This only works on Windows. By default it reads in all sheets from an excel file. You can use 
+##' keep.sheets to specify the name of specific sheets to read. See \code{\link{excelToCsv()}} for more details about how this works.
 ##' 
 ##' Using fix.cols and/or rbind when reading in multiple sheets is only likely to 
 ##' work as expected if all of the sheets
@@ -26,24 +25,24 @@
 ##' \code{\link{fix.dumb.excel.percents.and.commas}}
 
 read.excel <- function(file, keep.sheets = NULL, fix.cols = NULL, rbind = FALSE, save.sheet.name = FALSE, ...) {
-  excelToCsv(file, keep.sheets = keep.sheets)
-  x <- file.info(list.files(path = ".", pattern = ".*csv$"))
-  csv.file <- rownames(x)
-  if (is.null(keep.sheets)) {
-    csv.file <- csv.file[x$ctime == max(x$ctime)]
-  }
+  tmp <- tempfile()
+  dir.create(tmp)
+  excelToCsv(file, keep.sheets = keep.sheets, target.dir = tmp)
+  x <- file.info(list.files(path = tmp, pattern = ".*csv$"))
+  csv.files <- rownames(x)
   x <- list()
-  for (i in 1:length(csv.file)) {
-    y <- read.csv(csv.file[i], ...)  
+  for (thisfile in csv.files) {
+    sheet.name <- gsub("(.*).csv$", "\\1", thisfile)
+    y <- read.csv(file.path(tmp, thisfile), ...)  
     if (!is.null(fix.cols))
       y <- fix.dumb.excel.percents.and.commas(y, cols = fix.cols)
     
     if (save.sheet.name)
-      y$sheet.name <- gsub("(.*).csv$", "\\1", csv.file[i])
+      y$sheet.name <- sheet.name
       
-    x[[i]] <- y
+    x[[sheet.name]] <- y
     
-    unlink(csv.file[i])
+    unlink(file.path(tmp, thisfile))
   }
   if (length(x) == 1)
     x <- x[[1]]
