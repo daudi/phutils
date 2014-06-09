@@ -52,7 +52,7 @@ function(x,
   ones <- c("zero", "one", "two", "three", "four", "five", "six", "seven",
             "eight", "nine")
   teens <- c("ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
-             "sixteen", " seventeen", "eighteen", "nineteen")
+             "sixteen", "seventeen", "eighteen", "nineteen")
   names(ones) <- names(teens) <- 0:9
   tens <- c("twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty",
             "ninety")
