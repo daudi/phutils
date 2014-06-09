@@ -28,18 +28,18 @@
 ##' @param x A vector of NHS numbers.
 ##' 
 ##' @return A logical vector of the same length as x. 
-##' @author Mark Chambers mark.chambers@@nhs.net and dwhiting@@nhs.net
+##' @author Mark Chambers mark.chambers@@nhs.net and david.whiting@@publichealth.me.uk
 ##' @keywords utils
 ##' @examples 
 ##' # Create some dummy data
 ##' x <- data.frame(NHSnum = c("temp12 1zzz", "712.457 766", "5265 784454", 2222222222, 4146515092, 4446394339, 4380590096, 3459124359))
-##' is.valid.NHSnum(x)
+##' is.valid.NHSnum(x$NHSnum)
 ##' @export
 
 
 is.valid.NHSnum <- function(x){
   # Where x is a vector of NHS numbers
-
+  stopifnot(class(x) %in% c("factor", "character", "numeric"))
   # Create a function to split NHS number into first 9 digits and check digit
   check.sum <- function(x) {
     x <- as.character(x)
