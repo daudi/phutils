@@ -7,6 +7,8 @@
 ##' @param split The string to use to split
 ##' @param element A number specifying the position of the element within each result
 ##' in the list to return from each split.
+##' 
+##' @export
 
 
 strsplit.element <- function (x, split, element, ...) {
