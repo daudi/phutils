@@ -38,7 +38,7 @@
 
 read.excel <- function(file, keep.sheets = NULL, fix.cols = NULL, rbind = FALSE, save.sheet.name = FALSE, 
                        cols.to.keep = NULL, ...) {
-  stopifnot(exists(file))
+  stopifnot(file.exists(file))
   tmp <- tempfile()
   dir.create(tmp)
   excelToCsv(file, keep.sheets = keep.sheets, target.dir = tmp)
