@@ -33,7 +33,7 @@
 "ci.standardised.ratio" <- 
   function(observed, expected, time = 1, p = 0.95, method = c("exact", "anscombe") ) {
     res <- ci.poisson(observed, time, p, method)
-    res <- c(lower.CI = res['lower.CI'] / expected, SR = res['count'] / expected, upper.CI = res['upper.CI'] / expected)
+    res <- c(lower.CI = res[['lower.CI']] / expected, SR = res[['count']] / expected, upper.CI = res[['upper.CI']] / expected)
         
     res
   }
