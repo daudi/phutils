@@ -1,13 +1,11 @@
 ##' Function to calculate lower and upper estimates based on the poisson
 ##' distribution.
 ##' 
-##' 
-##' This function is useful for calculating confidence intervals for a
-##' standardised mortality ratio (SMR) e.g. HSMR.
+##' Useful for rare count data.
 ##' 
 ##' @aliases cipoisson ci.poisson
 ##' 
-##' @param k The number of observed events.
+##' @param observed The number of observed events.
 ##' @param time 
 ##' @param p The percentile of the normal distribution (i.e. 0.95 = 95\% CIs)
 ##' @param method exact or anscombe
@@ -21,19 +19,19 @@
 ##' @seealso 
 ##' \code{\link{ci.mean}}, 
 ##' \code{\link{ci.proportion}}, 
+##' \code{\link{ci.standardised.ratio}}, 
 ##' \code{\link{ci.standardised.rate}}
 ##' @examples
 ##' 
 ##' ### Example from Statistics with Confidence (1989), page 60.
 ##' 
 ##' observed <- 64
-##' expected <- 45.6
-##' ci.poisson(observed, expected)
+##' ci.poisson(observed)
 ##' 
 ##' 
 ##' @export
 "ci.poisson" <- 
-  function(observed, expected, time = 1, p = 0.95, method = c("exact", "anscombe") ) {
+  function(observed, time = 1, p = 0.95, method = c("exact", "anscombe") ) {
     nn <- max(length(observed), length(time), length(p))
     if(nn > 1) {
       observed <- rep(observed, length = nn)
@@ -57,9 +55,9 @@
     else stop("Invalid method")
     
     if(nn == 1) 
-      res <- c(lower.CI = lower / expected, SMR = observed / expected, upper.CI = upper / expected)/time
+      res <- c(lower.CI = lower, count = observed, upper.CI = upper)/time
     else 
-      res <- cbind(lower.CI = lower / expected, SMR = observed / expected, upper.CI = upper / expected)/time
+      res <- cbind(lower.CI = lower, count = observed, upper.CI = upper)/time
     
     res
   }
