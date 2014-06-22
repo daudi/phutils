@@ -3,7 +3,8 @@
 ##' This function is useful for calculating confidence intervals for a
 ##' standardised mortality ratio (SMR) e.g. HSMR.
 ##' 
-##' @param observed The number of observed events.
+##' @param observed The observed number of observed events.
+##' @param expected The expected number of events.
 ##' @param time 
 ##' @param p The percentile of the normal distribution (i.e. 0.95 = 95\% CIs)
 ##' @param method exact or anscombe
