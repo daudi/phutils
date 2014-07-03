@@ -8,9 +8,9 @@
 ##' @param year.first If TRUE format the result as 2010/2011 Q1. If FALSE (the
 ##' default) format the output with the quarter first, i.e. Q1 2010/2011.
 ##' @param fin.yr If TRUE (the default) format for financial years
-##' @param year.format A character string representing the year format. The default is "%Y/%Y", i.e. a 4-digit year 
+##' @param year.format A character string representing the year format. The default is "\%Y/\%Y", i.e. a 4-digit year 
 ##' followed by a slash, followed by a 4-digit year, e.g. 2014/2015. A lowercase %y represents a 2-digit year, i.e. 
-##' "%y/%y" would be formatted as "14/15". The separator can also be changed, e.g. "%Y-%y" would produce "2014-15".
+##' "\%y/\%y" would be formatted as "14/15". The separator can also be changed, e.g. "\%Y-\%y" would produce "2014-15".
 ##' @param sep The separator between the year and the quarter. Default is a space.
 ##' 
 ##' @return An object of the characters class.
@@ -40,11 +40,13 @@
 ##' dateToQuarter(Sys.Date(), fin.yr=FALSE, sep = ">>>")
 ##' dateToQuarter(Sys.Date(), fin.yr=FALSE, sep = "-")
 ##' dateToQuarter(Sys.Date(), fin.yr=FALSE, sep = "-", year.first=TRUE)
+##' \dontrun{
 ##' dateToQuarter(Sys.Date(), year.format = "%Y/y%)
 ##' dateToQuarter(Sys.Date(), year.format = "%y/y%)
 ##' dateToQuarter(Sys.Date(), year.format = "%Y-y%)
 ##' dd <- seq.Date(from = as.Date("2014/01/01"), to = as.Date("2015/01/01"), by = 1)
 ##' table(dateToQuarter(dd, year.format = "%Y-%y"))
+##' }
 ##' 
 ##' @export
 ##' 
