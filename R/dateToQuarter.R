@@ -40,13 +40,11 @@
 ##' dateToQuarter(Sys.Date(), fin.yr=FALSE, sep = ">>>")
 ##' dateToQuarter(Sys.Date(), fin.yr=FALSE, sep = "-")
 ##' dateToQuarter(Sys.Date(), fin.yr=FALSE, sep = "-", year.first=TRUE)
-##' \dontrun{
-##' dateToQuarter(Sys.Date(), year.format = "%Y/y%)
-##' dateToQuarter(Sys.Date(), year.format = "%y/y%)
-##' dateToQuarter(Sys.Date(), year.format = "%Y-y%)
+##' dateToQuarter(Sys.Date(), year.format = "%Y/y%")
+##' dateToQuarter(Sys.Date(), year.format = "%y/y%")
+##' dateToQuarter(Sys.Date(), year.format = "%Y-y%")
 ##' dd <- seq.Date(from = as.Date("2014/01/01"), to = as.Date("2015/01/01"), by = 1)
 ##' table(dateToQuarter(dd, year.format = "%Y-%y"))
-##' }
 ##' 
 ##' @export
 ##' 
