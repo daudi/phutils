@@ -40,9 +40,9 @@
 ##' dateToQuarter(Sys.Date(), fin.yr=FALSE, sep = ">>>")
 ##' dateToQuarter(Sys.Date(), fin.yr=FALSE, sep = "-")
 ##' dateToQuarter(Sys.Date(), fin.yr=FALSE, sep = "-", year.first=TRUE)
-##' dateToQuarter(Sys.Date(), year.format = "%Y/y%")
-##' dateToQuarter(Sys.Date(), year.format = "%y/y%")
-##' dateToQuarter(Sys.Date(), year.format = "%Y-y%")
+##' dateToQuarter(Sys.Date(), year.format = "%Y/%y")
+##' dateToQuarter(Sys.Date(), year.format = "%y/%y")
+##' dateToQuarter(Sys.Date(), year.format = "%Y-%y")
 ##' dd <- seq.Date(from = as.Date("2014/01/01"), to = as.Date("2015/01/01"), by = 1)
 ##' table(dateToQuarter(dd, year.format = "%Y-%y"))
 ##' 
@@ -72,7 +72,7 @@ dateToQuarter <- function(x, year.first = FALSE, fin.yr = TRUE, year.format = "%
   if (fin.yr) {
     q4 <- month %in% c("01","02","03")
     finYr1[q4] <- as.numeric(finYr1[q4]) - 1    
-    finYr2 <- strftime(strptime(paste0(finYr1, "06", "01"), format = paste0(finYr1, "%m%d")) + (365 * 60 * 60 * 24), format = yr2.format)
+    finYr2 <- strftime(strptime(paste0(finYr1, "06", "01"), format = paste0(yr1.format, "%m%d")) + (365 * 60 * 60 * 24), format = yr2.format)
     yr.part <- paste0(finYr1, yr.sep, finYr2)
   } else {
     yr.part <- finYr1
