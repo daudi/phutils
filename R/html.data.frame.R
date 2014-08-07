@@ -2,6 +2,11 @@
 ##' 
 ##' Hacking HTML.data.frame to see if I can add options for COLSPAN and ROWSPAN in the header
 
+##' @param x A data.frame
+##' @param file The outout file. If file = "" then the output is directed to the terminal. If file = NULL then the function is silent.
+##' 
+##' @return Now returns (invisibly) a string of HTML code.
+##' 
 ##' @export
 
 ##' @examples
@@ -160,7 +165,7 @@
                 if (!is.null(Border)) "</td></tr></table>\n",
                 if (!is.null(CSV.path)) paste0("<a href=\"", paste0(CSV.server.root, "/", CSV.path),"\">Download these data</a>\n"),
                 "")
-   if (file != "")
+   if (!is.null(file))
      cat(txt, "\n", file = file, sep = "", append = TRUE)
    invisible(txt)
  }
