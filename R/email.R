@@ -30,7 +30,7 @@ email <- function(to, subject, body, send = TRUE) {
                 "NewMail.Send\n")
   
   if (send) {
-    tmp <- tempfile()
+    tmp <- paste0(tempfile(), ".vbs")
     cat(vbs, file = tmp)
     system(paste("cscript", tmp))
   }
