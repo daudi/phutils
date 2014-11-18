@@ -5,6 +5,8 @@
 ##' @param to A character vector of email addresses to send the email to.
 ##' @param subject A character string that will be used as the subject line. shQuote() is used. See details.
 ##' @param body A character string for the body of the email. shQuote() is NOT used. See details.
+##' @param attachments A character vector of paths to attachments to add.
+##' @param shQuote.body If TRUE (the default) use shQuote() to quote the body. See details.
 ##' @param send A logical value determining if the email should be sent. Defaults to TRUE. 
 ##' @return Invisibly returns the string that is written to the vbscript file.
 ##' @details This function uses Outlook to send an email. shQuote() is used to make 
@@ -16,9 +18,14 @@
 ##' 
 ##' @export
 
-email <- function(to, subject, body, send = TRUE) {
+email <- function(to, subject, body, attachments = NULL, shQuote.body = TRUE, send = TRUE) {
   
   to  <- paste0("NewMail.Recipients.Add ", shQuote(to), collapse = "\n")
+  if (!is.null(attachments))
+    attachments <- paste0("NewMail.Attachments.Add ", shQuote(attachments), collapse = "\n")
+  
+  if (shQuote.body)
+    body <- shQuote(body)
   
   vbs <- paste0("\nOn Error Resume Next\n",
                 "Set Outlook = CreateObject(\"Outlook.Application\")
@@ -27,6 +34,7 @@ email <- function(to, subject, body, send = TRUE) {
                 "NewMail.Subject = ", shQuote(subject), "\n",
                 "NewMail.Body = ", body, "\n",
                 to, "\n",
+                attachments, "\n",
                 "NewMail.Send\n")
   
   if (send) {
