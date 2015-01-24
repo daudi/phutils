@@ -11,6 +11,11 @@
 #' @param blocks If TRUE (the default) draw rectangular blocks. If FALSE, use the pch symbol(s)
 #' @param pch The symbol to use if blocks = FALSE. 
 #' @param symbol.cex Character expansion for the symbol. This is going to have to be large to be useful. The default is 20. This will need to be changed depending on the symbol (pch) used.
+#' @param col A list with two elements named \code{rag.colours} and \code{rag}. \code{rag.colours} 
+#' is a character vector of colour names, and \code{rag} is a corresponding vector of labels. The 
+#' defaults are c("red", "orange", "green") and c("R", "A", "G") respectively for rag-rating.
+#' @param show.text If TRUE (the default) show the text label (e.g. R, A, G).
+#' 
 #' @details When using symbols (blocks = FALSE) pch 15 to 20 are good, others also.
 #' @author David Whiting, david.whiting@@publichealth.me.uk
 #' @keywords utils
@@ -25,10 +30,18 @@
 #' 
 
 
-rag.blocks <- function(status, cex = 1, blocks = TRUE, pch = 16, symbol.cex = 20) {
+rag.blocks <- function (status, cex = 1, blocks = TRUE, pch = 16, symbol.cex = 20,
+                        show.text = TRUE,
+                        col = list(rag.colours = c("red", "orange", "green"),
+                                   rag = c("R", "A", "G"))
+                        ) {
   num.items <- length(status)
-  rag <- c("R", "A", "G")
-  rag.colours <- c("red", "orange", "green")
+
+  if (length(col$rag) != length(col$rag.colours))
+    warning("The number of colours and colour look-up codes don't match (rag and rag.colours).")
+
+  rag <- col$rag
+  rag.colours <- col$rag.colours
   rag.status <- rag.colours[match(status, rag)]
   rag.status[is.na(rag.status)] <- "white"
   rag.xpos <- seq(from = 0, by = 1 / num.items, length.out = num.items)
@@ -40,6 +53,7 @@ rag.blocks <- function(status, cex = 1, blocks = TRUE, pch = 16, symbol.cex = 20
   } else {
     points(rag.text.xpos, rep(0.5, length(rag.text.xpos)), pch = pch, cex = symbol.cex, col = rag.status)
   }
-  text(rag.text.xpos, 0.5, labels = status, cex = cex)
+  if (show.text)
+    text(rag.text.xpos, 0.5, labels = status, cex = cex)
   invisible(list(rag.xpos = rag.xpos, rag.text.xpos = rag.text.xpos))
 }
