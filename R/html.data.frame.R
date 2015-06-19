@@ -54,10 +54,11 @@
                               CSV.path = NULL,
                               CSV.local.root = NULL,
                               CSV.server.root = CSV.local.root,
+                              threshold = 5,
                               ...)
 {
 
-    check.for.small.counts(x, threshold = 5)
+    check.for.small.counts(x, threshold = threshold)
     if (!is.null(CSV.path)) write.csv(x, file = paste0(CSV.local.root, "/", CSV.path), row.names = TRUE)  # Modified by MC 2013-01-30 from row.names = FALSE
     
     cat("\n", file = file, append = append)
