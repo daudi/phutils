@@ -72,8 +72,9 @@ is.valid.NHSnum <- function(x){
   # Identify obviously invalid NHS numbers (not 10 characters in length, 
   # contains non-numeric, first number repeated 9 times)
   i <- nchar(as.character(x)) != 10 | grepl("[^0-9]", x) | grepl("(\\d+?)\\1{9}", x)
-  x[i] <- FALSE
+  ret <- rep(NA, length(x))
+  ret[i] <- FALSE
   
-  x[!i] <- check.sum(x[!i])
-  x
+  ret[!i] <- check.sum(x[!i])
+  ret
 }
