@@ -2,6 +2,8 @@
 
 export(Bottle)
 export(HTML.data.frame)
+export(ODBC_connect)
+export(ODBC_connection_string)
 export(SQL_WHERE_SUS_ICD_codes)
 export(age.groups)
 export(age.labels)
