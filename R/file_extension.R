@@ -8,7 +8,7 @@
 ##' @export
 ##' @examples 
 ##' 
-##' file.extension("temp.txt")
+##' file_extension("temp.txt")
 
 file_extension <- function(x) {
   x <- unlist(strsplit(x, "\\."))
