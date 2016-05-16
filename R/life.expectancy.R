@@ -50,11 +50,11 @@
 LE <- function(x, deaths, population, age.bands, output = c("simple", "full")[1], LE.age = NULL) {
   
   # Error trapping
-  stopifnot(class(x) == "data.frame")
-  stopifnot(nrow(x) == 19)
-  stopifnot(ncol(x) >= 3)
-  stopifnot(class(x[, deaths]) == "numeric")
-  stopifnot(class(x[, population]) == "numeric")
+  # stopifnot(class(x) == "data.frame")
+  # stopifnot(nrow(x) == 19)
+  # stopifnot(ncol(x) >= 3)
+  # stopifnot(class(x[, deaths]) == "numeric")
+  # stopifnot(class(x[, population]) == "numeric")
   
   # Simplify data frame
   x <- x[, c(age.bands, deaths, population)]
