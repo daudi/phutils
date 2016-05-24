@@ -36,7 +36,7 @@ percentile_plot <- function(data,
   
   # Data traps
   # pick must be an integer between 1 and nrow(data)
-  stopifnot(pick > 0 & pick <= length(x))
+  stopifnot(pick > 0 & pick <= nrow(data))
   # x must be a matrix or dataframe
   stopifnot(class(data) %in% c("matrix", "data.frame"))
   # Additional probabilities must be greater than zero and less than 1
@@ -153,7 +153,7 @@ percentile_plot <- function(data,
            x.intersp = 0.8)
     
     # Title
-    title(main = myTitle, line = 3)
+    title(main = title, line = 3)
     
   }
   
