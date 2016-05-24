@@ -31,11 +31,11 @@
 
 percentile_plot <- function(data, 
                        pick = 1, 
-                       additionalProbs = c(0.05, 0.95), 
-                       lowIsGood = rep(FALSE, ncol(data)), 
-                       cex = (20/ncol(data)),
+                       additional_probs = c(0.05, 0.95), 
+                       low_is_good = rep(FALSE, ncol(data)), 
+                       cex = (20 / ncol(data)),
                        labels = colnames(data),
-                       myTitle = "Percentile plot") {
+                       my_title = "Percentile plot") {
   
   # Data traps
   # pick must be an integer between 1 and length(x)
@@ -43,17 +43,17 @@ percentile_plot <- function(data,
   # x must be a matrix or dataframe
   stopifnot(class(data) %in% c("matrix", "data.frame"))
   # Additional probabilities must be greater than zero and less than 1
-  stopifnot(additionalProbs > 0 & additionalProbs < 1)
-  stopifnot(length(additionalProbs) == 2)
+  stopifnot(additional_probs > 0 & additional_probs < 1)
+  stopifnot(length(additional_probs) == 2)
   
   # Store number of variables to setup empty plot and cycle through in for loop
-  numVariables <- ncol(data)
+  num_variables <- ncol(data)
   
 
   # Setup an empty plotting window
   op <- par(mar = c(5, 10, 5, 2) + 0.1, xpd = TRUE)
   
-  plot(c(0, 1), c(0, numVariables), 
+  plot(c(0, 1), c(0, num_variables), 
        type = "n", 
        xlim = c(-0.1, 1.1), 
        xaxt = "n",
@@ -64,14 +64,14 @@ percentile_plot <- function(data,
   
   axis(side = 2, 
        labels = colnames(data), 
-       at = (1:numVariables) - 0.5, 
+       at = (1:num_variables) - 0.5, 
        las = 2, 
        tick = FALSE, 
        line = 3,
        hadj = 1)
 
   # Cycle through the variables in data to plot bars etc
-  for (i in 1:numVariables) {
+  for (i in 1:num_variables) {
     
     x <- data[, i]
     
@@ -79,10 +79,10 @@ percentile_plot <- function(data,
     xMin <- min(x, na.rm = TRUE)
     xMax <- max(x, na.rm = TRUE)
     xMean <- mean(x, na.rm = TRUE)
-    xBtmQuartile <- quantile(x, probs = 0.25, na.rm = TRUE)
-    xTopQuartile <- quantile(x, probs = 0.75, na.rm = TRUE)
+    x_btm_quartile <- quantile(x, probs = 0.25, na.rm = TRUE)
+    x_top_uartile <- quantile(x, probs = 0.75, na.rm = TRUE)
     
-    tmp <- quantile(x, probs = additionalProbs, na.rm = TRUE)
+    tmp <- quantile(x, probs = additional_probs, na.rm = TRUE)
     # names(tmp) <- gsub("%", "", names(tmp))
     xAddProb1 <- tmp[1]
     xAddProb2 <- tmp[2]
@@ -90,7 +90,7 @@ percentile_plot <- function(data,
     # Determine worst and best values
     worst <- xMin
     best <- xMax
-    if(lowIsGood[i] == TRUE) {
+    if(low_is_good[i] == TRUE) {
       worst <- xMax
       best <- xMin
     }
@@ -103,7 +103,7 @@ percentile_plot <- function(data,
     # Determine worst and best scale values
     ScaleWorst <- xScaleMin
     ScaleBest <- xScaleMax
-    if(lowIsGood[i] == TRUE) {
+    if(low_is_good[i] == TRUE) {
       ScaleWorst <- xScaleMax
       ScaleBest <- xScaleMin
     }
@@ -111,8 +111,8 @@ percentile_plot <- function(data,
     # Chart data
     value <- (x[pick] - ScaleWorst) / (ScaleBest - ScaleWorst)
     plotWorst <- (worst - ScaleWorst) / (ScaleBest - ScaleWorst)
-    btmQuartile <- (xBtmQuartile - ScaleWorst) / (ScaleBest - ScaleWorst)
-    topQuartile <- (xTopQuartile - ScaleWorst) / (ScaleBest - ScaleWorst)
+    btmQuartile <- (x_btm_quartile - ScaleWorst) / (ScaleBest - ScaleWorst)
+    topQuartile <- (x_top_uartile - ScaleWorst) / (ScaleBest - ScaleWorst)
     plotMean <- 0.5
     plotBest <- (best - ScaleWorst) / (ScaleBest - ScaleWorst)
     plotAddProb1 <- (xAddProb1 - ScaleWorst) / (ScaleBest - ScaleWorst)
@@ -139,8 +139,8 @@ percentile_plot <- function(data,
     mtext("Local\nvalue", side = 1, line = 1, at = -0.23, cex = 1)
     
     # Legend
-    prob1 <- paste0(additionalProbs[1] * 100, "%")
-    prob2 <- paste0(additionalProbs[2] * 100, "%")
+    prob1 <- paste0(additional_probs[1] * 100, "%")
+    prob2 <- paste0(additional_probs[2] * 100, "%")
     
     legend("top",
            c(prob1, "Range", "Local value", "Middle 50%", prob2),
@@ -156,7 +156,7 @@ percentile_plot <- function(data,
            x.intersp = 0.8)
     
     # Title
-    title(main = myTitle, line = 3)
+    title(main = my_title, line = 3)
     
   }
   
