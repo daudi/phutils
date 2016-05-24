@@ -30,9 +30,9 @@ percentile_plot <- function(data,
                        pick = 1, 
                        additionalProbs = c(0.05, 0.95), 
                        lowIsGood = rep(FALSE, ncol(data)), 
-                       cex = (20/ncol(data)),
-                       labels = colnames(data),
-                       title = "Percentile plot") {
+                       localValueCex = (20/ncol(data)),
+                       plotLabels = colnames(data),
+                       plotTitle = "Percentile plot") {
   
   # Data traps
   # pick must be an integer between 1 and nrow(data)
@@ -46,9 +46,14 @@ percentile_plot <- function(data,
   # Store number of variables to setup empty plot and cycle through in for loop
   numVariables <- ncol(data)
   
+  # Determine necessary left margin par settings to accommodate longer labels
+  data <- a[, 1:7]
+  plotLabels <- myLabels
+  
+  leftMar <- ceiling(max(nchar(plotLabels), na.rm = TRUE) / 1.5)
 
   # Setup an empty plotting window
-  op <- par(mar = c(5, 10, 5, 2) + 0.1, xpd = TRUE)
+  op <- par(mar = c(5, leftMar, 5, 2) + 0.1, xpd = TRUE)
   
   plot(c(0, 1), c(0, numVariables), 
        type = "n", 
@@ -60,7 +65,7 @@ percentile_plot <- function(data,
        bty = "n")
   
   axis(side = 2, 
-       labels = labels, 
+       labels = plotLabels, 
        at = (1:numVariables) - 0.5, 
        las = 2, 
        tick = FALSE, 
@@ -124,7 +129,7 @@ percentile_plot <- function(data,
     segments(x0 = 0.5, y0 = y1, x1 = 0.5, y1 = y2, lwd = 2)
     segments(x0 = plotAddProb1, y0 = y1, x1 = plotAddProb1, y1 = y2, lwd = 2, col = "red")
     segments(x0 = plotAddProb2, y0 = y1, x1 = plotAddProb2, y1 = y2, lwd = 2, col = "darkgreen")
-    points(value, doty, pch = 16, col = "blue", cex = cex)
+    points(value, doty, pch = 16, col = "blue", cex = localValueCex)
     
     # Annotation
     text(-0.02, doty, worst, cex = 0.8, pos = 2)
@@ -139,23 +144,28 @@ percentile_plot <- function(data,
     prob1 <- paste0(additionalProbs[1] * 100, "%")
     prob2 <- paste0(additionalProbs[2] * 100, "%")
     
-    legend("top",
+    legend("topright",
            c(prob1, "Range", "Local value", "Middle 50%", prob2),
            pch = c(NA, NA, 16, NA, NA),
            fill = c(NA, "lightgrey", NA, "grey", NA),
            border = NA,
            col = c("red", NA, "blue", NA, "darkgreen"),
            lty = c(1, NA, NA, NA, 1),
-           horiz = TRUE,
-           bty = "n",
-           inset = -0.05, 
+           horiz = FALSE,
+           ncol = 2,
+           bty = "o",
+           box.col = "grey",
+           inset = c(0, -0.2),
            cex = 0.8,
-           x.intersp = 0.8)
+           x.intersp = 0.5)
     
     # Title
-    title(main = title, line = 3)
-    
-  }
+    mtext(text = plotTitle, 
+          side = 3, 
+          line = 2, 
+          at = -0.5, 
+          cex = 1.5)
+}
   
   par(op)
   
