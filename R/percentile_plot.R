@@ -60,7 +60,7 @@ percentile_plot <- function(data,
        bty = "n")
   
   axis(side = 2, 
-       labels = colnames(data), 
+       labels = labels, 
        at = (1:numVariables) - 0.5, 
        las = 2, 
        tick = FALSE, 
