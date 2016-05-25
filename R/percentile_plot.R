@@ -1,19 +1,29 @@
-##' Plot multiple variables showing mean, 5th, 25th, 75th and 95th percentiles
-##' 
-##' Could also be used for GP practice feedback, etc.
-##' Data will be percentiles.
-##' 
-##' @param data A matrix or data.frame of values
-##' @param pick ???
-##' @param additional_probs ???
-##' @param low_is_good A vector specifying whether a low value is good
-##' @param cex The size of the dot showing the current area
+##' Create a Percentile plot
+
+##' @description A percentile plot is a means of simultaneously displaying the
+##' summary statistics of multiple numeric variables whilst highlighting the 
+##' position of a particular element within the distribution of each variable. 
+
+##' @details  Values are scaled so that the mean is centrered in the plotting 
+##' window. This is a similar methodology as used by Public Health England in 
+##' the area profiles section of 'Finger tips' tools 
+##' (http://www.phoutcomes.info/).
+
+##' @param data data frame or matrix of numeric and/or integer variables
+##' @param pick element or row of data to highlight with dot overlaid on bars. 
+##' Must be an integer between 1 and nrow(data). Default is 1.
+##' @param additionalProbs pair of values at which to draw additional vertical 
+##' lines on each bar. Must be a numeric vector of length two where values are 
+##' greater than zero and less than one. Default is c(0.05, 0.95).
+##' @param lowIsGood
+##' @param cex
 ##' @param labels
-##' @param my_title
+##' @param title
+
+##' @author Mark Chambers mark.chambers@@medway.gov.uk
+##' @reference 
 ##' @export
-##' @return COLLECT DATA PLOTTED AND RETURN IT
-##' 
-##' 
+##' @return Does not return anything at the moment. Creates a plot as a side-effect.
 ##' @examples 
 ##' attach(mtcars)
 ##' x <- wt
@@ -26,34 +36,40 @@
 ##' percentile_plot(df3, pick = 5, low_is_good = c(rep(FALSE, 9), TRUE))
 ##'
 ##' percentile_plot(df1, pick = 5)
-##'
-##' test <- data.frame(x = wt, basic = scale(wt, center = FALSE, scale = FALSE), centered = scale(wt, center = TRUE, scale = FALSE), rootMeanSq = scale(wt, center = FALSE, scale = TRUE), standard = scale(wt))
+
+
+
 
 percentile_plot <- function(data, 
                        pick = 1, 
-                       additional_probs = c(0.05, 0.95), 
-                       low_is_good = rep(FALSE, ncol(data)), 
-                       cex = (20 / ncol(data)),
-                       labels = colnames(data),
-                       my_title = "Percentile plot") {
+                       additionalProbs = c(0.05, 0.95), 
+                       lowIsGood = rep(FALSE, ncol(data)), 
+                       localValueCex = (20/ncol(data)),
+                       plotLabels = colnames(data),
+                       plotTitle = "Percentile plot") {
   
   # Data traps
-  # pick must be an integer between 1 and length(x)
-  stopifnot(pick > 0 & pick <= length(x))
+  # pick must be an integer between 1 and nrow(data)
+  stopifnot(pick > 0 & pick <= nrow(data))
   # x must be a matrix or dataframe
   stopifnot(class(data) %in% c("matrix", "data.frame"))
   # Additional probabilities must be greater than zero and less than 1
-  stopifnot(additional_probs > 0 & additional_probs < 1)
-  stopifnot(length(additional_probs) == 2)
+  stopifnot(additionalProbs > 0 & additionalProbs < 1)
+  stopifnot(length(additionalProbs) == 2)
   
   # Store number of variables to setup empty plot and cycle through in for loop
-  num_variables <- ncol(data)
+  numVariables <- ncol(data)
   
+  # Determine necessary left margin par settings to accommodate longer labels
+  data <- a[, 1:7]
+  plotLabels <- myLabels
+  
+  leftMar <- ceiling(max(nchar(plotLabels), na.rm = TRUE) / 1.5)
 
   # Setup an empty plotting window
-  op <- par(mar = c(5, 10, 5, 2) + 0.1, xpd = TRUE)
+  op <- par(mar = c(5, leftMar, 5, 2) + 0.1, xpd = TRUE)
   
-  plot(c(0, 1), c(0, num_variables), 
+  plot(c(0, 1), c(0, numVariables), 
        type = "n", 
        xlim = c(-0.1, 1.1), 
        xaxt = "n",
@@ -63,15 +79,15 @@ percentile_plot <- function(data,
        bty = "n")
   
   axis(side = 2, 
-       labels = colnames(data), 
-       at = (1:num_variables) - 0.5, 
+       labels = plotLabels, 
+       at = (1:numVariables) - 0.5, 
        las = 2, 
        tick = FALSE, 
        line = 3,
        hadj = 1)
 
   # Cycle through the variables in data to plot bars etc
-  for (i in 1:num_variables) {
+  for (i in 1:numVariables) {
     
     x <- data[, i]
     
@@ -79,10 +95,10 @@ percentile_plot <- function(data,
     xMin <- min(x, na.rm = TRUE)
     xMax <- max(x, na.rm = TRUE)
     xMean <- mean(x, na.rm = TRUE)
-    x_btm_quartile <- quantile(x, probs = 0.25, na.rm = TRUE)
-    x_top_uartile <- quantile(x, probs = 0.75, na.rm = TRUE)
+    xBtmQuartile <- quantile(x, probs = 0.25, na.rm = TRUE)
+    xTopQuartile <- quantile(x, probs = 0.75, na.rm = TRUE)
     
-    tmp <- quantile(x, probs = additional_probs, na.rm = TRUE)
+    tmp <- quantile(x, probs = additionalProbs, na.rm = TRUE)
     # names(tmp) <- gsub("%", "", names(tmp))
     xAddProb1 <- tmp[1]
     xAddProb2 <- tmp[2]
@@ -90,7 +106,7 @@ percentile_plot <- function(data,
     # Determine worst and best values
     worst <- xMin
     best <- xMax
-    if(low_is_good[i] == TRUE) {
+    if(lowIsGood[i] == TRUE) {
       worst <- xMax
       best <- xMin
     }
@@ -103,7 +119,7 @@ percentile_plot <- function(data,
     # Determine worst and best scale values
     ScaleWorst <- xScaleMin
     ScaleBest <- xScaleMax
-    if(low_is_good[i] == TRUE) {
+    if(lowIsGood[i] == TRUE) {
       ScaleWorst <- xScaleMax
       ScaleBest <- xScaleMin
     }
@@ -111,8 +127,8 @@ percentile_plot <- function(data,
     # Chart data
     value <- (x[pick] - ScaleWorst) / (ScaleBest - ScaleWorst)
     plotWorst <- (worst - ScaleWorst) / (ScaleBest - ScaleWorst)
-    btmQuartile <- (x_btm_quartile - ScaleWorst) / (ScaleBest - ScaleWorst)
-    topQuartile <- (x_top_uartile - ScaleWorst) / (ScaleBest - ScaleWorst)
+    btmQuartile <- (xBtmQuartile - ScaleWorst) / (ScaleBest - ScaleWorst)
+    topQuartile <- (xTopQuartile - ScaleWorst) / (ScaleBest - ScaleWorst)
     plotMean <- 0.5
     plotBest <- (best - ScaleWorst) / (ScaleBest - ScaleWorst)
     plotAddProb1 <- (xAddProb1 - ScaleWorst) / (ScaleBest - ScaleWorst)
@@ -127,7 +143,7 @@ percentile_plot <- function(data,
     segments(x0 = 0.5, y0 = y1, x1 = 0.5, y1 = y2, lwd = 2)
     segments(x0 = plotAddProb1, y0 = y1, x1 = plotAddProb1, y1 = y2, lwd = 2, col = "red")
     segments(x0 = plotAddProb2, y0 = y1, x1 = plotAddProb2, y1 = y2, lwd = 2, col = "darkgreen")
-    points(value, doty, pch = 16, col = "blue", cex = cex)
+    points(value, doty, pch = 16, col = "blue", cex = localValueCex)
     
     # Annotation
     text(-0.02, doty, worst, cex = 0.8, pos = 2)
@@ -139,28 +155,32 @@ percentile_plot <- function(data,
     mtext("Local\nvalue", side = 1, line = 1, at = -0.23, cex = 1)
     
     # Legend
-    prob1 <- paste0(additional_probs[1] * 100, "%")
-    prob2 <- paste0(additional_probs[2] * 100, "%")
+    prob1 <- paste0(additionalProbs[1] * 100, "%")
+    prob2 <- paste0(additionalProbs[2] * 100, "%")
     
-    legend("top",
+    legend("topright",
            c(prob1, "Range", "Local value", "Middle 50%", prob2),
            pch = c(NA, NA, 16, NA, NA),
            fill = c(NA, "lightgrey", NA, "grey", NA),
            border = NA,
            col = c("red", NA, "blue", NA, "darkgreen"),
            lty = c(1, NA, NA, NA, 1),
-           horiz = TRUE,
-           bty = "n",
-           inset = -0.05, 
+           horiz = FALSE,
+           ncol = 2,
+           bty = "o",
+           box.col = "grey",
+           inset = c(0, -0.2),
            cex = 0.8,
-           x.intersp = 0.8)
+           x.intersp = 0.5)
     
     # Title
-    title(main = my_title, line = 3)
-    
-  }
+    mtext(text = plotTitle, 
+          side = 3, 
+          line = 2, 
+          at = -0.5, 
+          cex = 1.5)
+}
   
   par(op)
   
 }
-
