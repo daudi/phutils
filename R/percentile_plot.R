@@ -47,9 +47,6 @@ percentile_plot <- function(data,
   numVariables <- ncol(data)
   
   # Determine necessary left margin par settings to accommodate longer labels
-  data <- a[, 1:7]
-  plotLabels <- myLabels
-  
   leftMar <- ceiling(max(nchar(plotLabels), na.rm = TRUE) / 1.5)
 
   # Setup an empty plotting window
@@ -119,6 +116,10 @@ percentile_plot <- function(data,
     plotBest <- (best - ScaleWorst) / (ScaleBest - ScaleWorst)
     plotAddProb1 <- (xAddProb1 - ScaleWorst) / (ScaleBest - ScaleWorst)
     plotAddProb2 <- (xAddProb2 - ScaleWorst) / (ScaleBest - ScaleWorst)
+    if(lowIsGood[i] == TRUE) {
+      plotAddProb1 <- (xAddProb2 - ScaleWorst) / (ScaleBest - ScaleWorst)
+      plotAddProb2 <- (xAddProb1 - ScaleWorst) / (ScaleBest - ScaleWorst)
+    }
     
     # Plot the data
     y1 <- i + 0.1 - 1
@@ -135,10 +136,10 @@ percentile_plot <- function(data,
     text(-0.02, doty, worst, cex = 0.8, pos = 2)
     text(1.01, doty, best, cex = 0.8, pos = 4)
     mtext(x[pick], side = 2, line = 1, at = doty, las = 2, cex = 0.8, col = "blue")
-    mtext("Mean\naverage", side = 1, line = 1, at = 0.5, cex = 1)
-    mtext("Worst", side = 1, line = 1, at = -0.07, cex = 1)
-    mtext("Best", side = 1, line = 1, at = 1.07, cex = 1)
-    mtext("Local\nvalue", side = 1, line = 1, at = -0.23, cex = 1)
+    mtext("Mean\naverage", side = 1, line = 1, at = 0.5, cex = 0.8, font = 1)
+    mtext("Worst", side = 1, line = 1, at = -0.07, cex = 0.8, font = 1)
+    mtext("Best", side = 1, line = 1, at = 1.07, cex = 0.8, font = 1)
+    mtext("Local\nvalue", side = 1, line = 1, at = -0.23, cex = 0.8, font = 1)
     
     # Legend
     prob1 <- paste0(additionalProbs[1] * 100, "%")
@@ -163,7 +164,7 @@ percentile_plot <- function(data,
     mtext(text = plotTitle, 
           side = 3, 
           line = 2, 
-          at = -0.5, 
+          at = -0.4, 
           cex = 1.5)
 }
   
