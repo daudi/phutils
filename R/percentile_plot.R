@@ -1,4 +1,3 @@
-
 ##' Create a Percentile plot
 
 ##' @description A percentile plot is a means of simultaneously displaying the
@@ -41,7 +40,20 @@
 ##' @author Mark Chambers mark.chambers@@medway.gov.uk
 ##' @reference 
 ##' @export
-##' @return plot image
+##' @return Does not return anything at the moment. Creates a plot as a side-effect.
+##' @examples 
+##' attach(mtcars)
+##' x <- mtcars$wt
+##' y <- mtcar$mpg
+##' 
+##' df1 <- data.frame(var1 = x, var2 = y)
+##' df2 <- data.frame(var1 = x, var2 = y, var3 = 1:length(wt), var4 = x, abcdefghijklmno = mpg)
+##' df3 <- data.frame(var1 = x, var2 = y, var3 = 1:length(wt), var4 = x, var5 = y, var6 = x, var7 = y, var8 = 1:length(x), var9 = x, abcdefghijklmno = y)
+##' 
+##' percentile_plot(df3, pick = 5, lowIsGood = c(rep(FALSE, 9), TRUE))
+##'
+##' percentile_plot(df1, pick = 5)
+
 
 
 percentile_plot <- function(data, 
@@ -138,7 +150,7 @@ percentile_plot <- function(data,
       plotAddProb1 <- (xAddProb2 - ScaleWorst) / (ScaleBest - ScaleWorst)
       plotAddProb2 <- (xAddProb1 - ScaleWorst) / (ScaleBest - ScaleWorst)
     }
-    
+
     # Plot the data
     y1 <- i + 0.1 - 1
     y2 <- i + 0.9 - 1
@@ -158,7 +170,7 @@ percentile_plot <- function(data,
     mtext("Worst", side = 1, line = 1, at = -0.07, cex = 0.8, font = 1)
     mtext("Best", side = 1, line = 1, at = 1.07, cex = 0.8, font = 1)
     mtext("Local\nvalue", side = 1, line = 1, at = -0.23, cex = 0.8, font = 1)
-    
+
     # Legend
     prob1 <- paste0(additionalProbs[1] * 100, "%")
     prob2 <- paste0(additionalProbs[2] * 100, "%")
