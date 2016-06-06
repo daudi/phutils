@@ -57,12 +57,12 @@
 
 
 percentile_plot <- function(data, 
-                       pick = 1, 
-                       additionalProbs = c(0.05, 0.95), 
-                       lowIsGood = rep(FALSE, ncol(data)), 
-                       localValueCex = (20/ncol(data)),
-                       plotLabels = colnames(data),
-                       plotTitle = "Percentile plot") {
+                            pick = 1, 
+                            additionalProbs = c(0.05, 0.95), 
+                            lowIsGood = rep(FALSE, ncol(data)), 
+                            localValueCex = (20/ncol(data)),
+                            plotLabels = colnames(data),
+                            plotTitle = "Percentile plot") {
   
   # Data traps
   # pick must be an integer between 1 and nrow(data)
@@ -78,7 +78,7 @@ percentile_plot <- function(data,
   
   # Determine necessary left margin par settings to accommodate longer labels
   leftMar <- ceiling(max(nchar(plotLabels), na.rm = TRUE) / 1.5)
-
+  
   # Setup an empty plotting window
   op <- par(mar = c(5, leftMar, 5, 2) + 0.1, xpd = TRUE)
   
@@ -98,7 +98,39 @@ percentile_plot <- function(data,
        tick = FALSE, 
        line = 3,
        hadj = 1)
-
+  
+  # Annotation
+  mtext("Mean\naverage", side = 1, line = 1, at = 0.5, cex = 0.8, font = 1)
+  mtext("Worst", side = 1, line = 1, at = -0.07, cex = 0.8, font = 1)
+  mtext("Best", side = 1, line = 1, at = 1.07, cex = 0.8, font = 1)
+  mtext("Local\nvalue", side = 1, line = 1, at = -0.23, cex = 0.8, font = 1)
+  
+  # Legend
+  prob1 <- paste0(additionalProbs[1] * 100, "%")
+  prob2 <- paste0(additionalProbs[2] * 100, "%")
+  
+  legend("topright",
+         c(prob1, "Range", "Local value", "Middle 50%", prob2),
+         pch = c(NA, NA, 16, NA, NA),
+         fill = c(NA, "lightgrey", NA, "grey", NA),
+         border = NA,
+         col = c("red", NA, "blue", NA, "darkgreen"),
+         lty = c(1, NA, NA, NA, 1),
+         horiz = FALSE,
+         ncol = 2,
+         bty = "o",
+         box.col = "grey",
+         inset = c(0, -0.2),
+         cex = 0.8,
+         x.intersp = 0.5)
+  
+  # Title
+  mtext(text = plotTitle, 
+        side = 3, 
+        line = 2, 
+        at = -0.4, 
+        cex = 1.5)
+  
   # Cycle through the variables in data to plot bars etc
   for (i in 1:numVariables) {
     
@@ -150,7 +182,7 @@ percentile_plot <- function(data,
       plotAddProb1 <- (xAddProb2 - ScaleWorst) / (ScaleBest - ScaleWorst)
       plotAddProb2 <- (xAddProb1 - ScaleWorst) / (ScaleBest - ScaleWorst)
     }
-
+    
     # Plot the data
     y1 <- i + 0.1 - 1
     y2 <- i + 0.9 - 1
@@ -163,40 +195,10 @@ percentile_plot <- function(data,
     points(value, doty, pch = 16, col = "blue", cex = localValueCex)
     
     # Annotation
+    mtext(x[pick], side = 2, line = 1, at = doty, las = 2, cex = 0.8, col = "blue")
     text(-0.02, doty, worst, cex = 0.8, pos = 2)
     text(1.01, doty, best, cex = 0.8, pos = 4)
-    mtext(x[pick], side = 2, line = 1, at = doty, las = 2, cex = 0.8, col = "blue")
-    mtext("Mean\naverage", side = 1, line = 1, at = 0.5, cex = 0.8, font = 1)
-    mtext("Worst", side = 1, line = 1, at = -0.07, cex = 0.8, font = 1)
-    mtext("Best", side = 1, line = 1, at = 1.07, cex = 0.8, font = 1)
-    mtext("Local\nvalue", side = 1, line = 1, at = -0.23, cex = 0.8, font = 1)
-
-    # Legend
-    prob1 <- paste0(additionalProbs[1] * 100, "%")
-    prob2 <- paste0(additionalProbs[2] * 100, "%")
-    
-    legend("topright",
-           c(prob1, "Range", "Local value", "Middle 50%", prob2),
-           pch = c(NA, NA, 16, NA, NA),
-           fill = c(NA, "lightgrey", NA, "grey", NA),
-           border = NA,
-           col = c("red", NA, "blue", NA, "darkgreen"),
-           lty = c(1, NA, NA, NA, 1),
-           horiz = FALSE,
-           ncol = 2,
-           bty = "o",
-           box.col = "grey",
-           inset = c(0, -0.2),
-           cex = 0.8,
-           x.intersp = 0.5)
-    
-    # Title
-    mtext(text = plotTitle, 
-          side = 3, 
-          line = 2, 
-          at = -0.4, 
-          cex = 1.5)
-}
+  }
   
   par(op)
   
