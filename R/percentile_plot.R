@@ -44,7 +44,7 @@
 ##' @examples 
 ##' attach(mtcars)
 ##' x <- mtcars$wt
-##' y <- mtcar$mpg
+##' y <- mtcars$mpg
 ##' 
 ##' df1 <- data.frame(var1 = x, var2 = y)
 ##' df2 <- data.frame(var1 = x, var2 = y, var3 = 1:length(wt), var4 = x, abcdefghijklmno = mpg)
