@@ -37,6 +37,13 @@
 ##' @param cexLabels size of the labels on left-hand side of plot. Default is 1.
 ##' @param plotTitle the title given to the plot. This is placed towards the 
 ##' left-hand corner of the window.
+##' @param horizLegend Whether to display the legend horizontally. Default is 
+##' TRUE.
+##' @param ncolLegend Number of columns used in legend. Default is 1 but is 
+##' overidden if horizLegend is set to TRUE.
+##' @param xInterspLegend character interspacing factor for horizontal legend. 
+##' Default is 1.
+##' @param upperMar top margin height. Default is 5.
 
 ##' @author Mark Chambers mark.chambers@@medway.gov.uk
 ##' @reference 
@@ -64,7 +71,11 @@ percentile_plot <- function(data,
                             localValueCex = (20/ncol(data)),
                             plotLabels = colnames(data),
                             cexLabels = 1,
-                            plotTitle = "Percentile plot") {
+                            plotTitle = "Percentile plot",
+                            horizLegend = TRUE,
+                            ncolLegend = 1,
+                            xInterspLegend = 1,
+                            upperMar = 5) {
   
   # Data traps
   # pick must be an integer between 1 and nrow(data)
@@ -82,7 +93,7 @@ percentile_plot <- function(data,
   leftMar <- ceiling(max(nchar(plotLabels), na.rm = TRUE) / (1.5 / cexLabels))
   
   # Setup an empty plotting window
-  op <- par(mar = c(5, leftMar, 5, 2) + 0.1, xpd = TRUE)
+  op <- par(mar = c(5, leftMar, upperMar, 2) + 0.1, xpd = TRUE)
   
   plot(c(0, 1), c(0, numVariables), 
        type = "n", 
@@ -119,13 +130,13 @@ percentile_plot <- function(data,
          border = NA,
          col = c("red", NA, "blue", NA, "darkgreen"),
          lty = c(1, NA, NA, NA, 1),
-         horiz = FALSE,
-         ncol = 2,
+         horiz = horizLegend,
+         ncol = ncolLegend,
          bty = "o",
          box.col = "grey",
-         inset = c(0, -0.2),
+         inset = c(0, -0.3),
          cex = 0.8,
-         x.intersp = 0.5)
+         x.intersp = xInterspLegend)
   
   # Title
   mtext(text = plotTitle, 
