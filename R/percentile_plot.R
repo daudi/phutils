@@ -34,6 +34,7 @@
 ##' variables in data which works as a rough rule of thumb.
 ##' @param plotLabels character vector of labels to insert to the left of the
 ##' plot. Default is colnames of data.
+##' @param cexLabels size of the labels on left-hand side of plot. Default is 1.
 ##' @param plotTitle the title given to the plot. This is placed towards the 
 ##' left-hand corner of the window.
 
@@ -62,6 +63,7 @@ percentile_plot <- function(data,
                             lowIsGood = rep(FALSE, ncol(data)), 
                             localValueCex = (20/ncol(data)),
                             plotLabels = colnames(data),
+                            cexLabels = 1,
                             plotTitle = "Percentile plot") {
   
   # Data traps
@@ -77,7 +79,7 @@ percentile_plot <- function(data,
   numVariables <- ncol(data)
   
   # Determine necessary left margin par settings to accommodate longer labels
-  leftMar <- ceiling(max(nchar(plotLabels), na.rm = TRUE) / 1.5)
+  leftMar <- ceiling(max(nchar(plotLabels), na.rm = TRUE) / (1.5 / cexLabels))
   
   # Setup an empty plotting window
   op <- par(mar = c(5, leftMar, 5, 2) + 0.1, xpd = TRUE)
@@ -97,7 +99,8 @@ percentile_plot <- function(data,
        las = 2, 
        tick = FALSE, 
        line = 3,
-       hadj = 1)
+       hadj = 1, 
+       cex.axis = cexLabels)
   
   # Annotation
   mtext("Mean\naverage", side = 1, line = 1, at = 0.5, cex = 0.8, font = 1)
