@@ -61,7 +61,7 @@ LE <- function(x, deaths, population, age.bands, output = c("simple", "full")[1]
   names(x) <- c("age.bands", "deaths", "population")
   
   # Order age bands
-  x <- x[order(x$age.band), ]  
+  x <- x[order(x$age.bands), ]  
   
   # Death rate in interval
   x$death.rate <- x$deaths / x$population
@@ -153,7 +153,7 @@ LE <- function(x, deaths, population, age.bands, output = c("simple", "full")[1]
   x$UL95 <- x$LE + (1.96 * x$se.LE)
   
   # Add variable for Life expectancy at different ages
-  x$LE.age <- as.numeric(gsub("(.*)[-\\+].*", "\\1", x$age.band))
+  x$LE.age <- as.numeric(gsub("(.*)[-\\+].*", "\\1", x$age.bands))
   
   # Trim x according to chosen parameters
   if(output == "simple") {
