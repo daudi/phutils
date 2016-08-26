@@ -46,7 +46,6 @@
 ##' @param upperMar top margin height. Default is 5.
 
 ##' @author Mark Chambers mark.chambers@@medway.gov.uk
-##' @reference 
 ##' @export
 ##' @return Does not return anything at the moment. Creates a plot as a side-effect.
 ##' @examples 
