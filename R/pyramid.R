@@ -1,9 +1,16 @@
 ##' Create population pyramids
 ##' 
-##' @param data A dataframe or matrix where the first two columns are numeric values
-##'  (e.g. males and females). The first column will be plotted on the left, the 
-##'  second on the right.
+##' @param data A dataframe or matrix or a vetor. If a dataframe or matrix 
+##'  the first two columns are numeric values
+##'  (e.g. numbers of males and females). The first column will be plotted on the left, the 
+##'  second on the right. A third column may contain the names, e.g. age groups, 
+##'  otherwise the dataframe row names will be used. If a vector, then this will be the
+##'  left values and the right values will be supplied using the Right parameter (see next).
 ##'  
+##' @param Right If not NULL this will be the values to be plotted on the right (the default is NULL)
+##' @param Center The values to be plotted in between the left and right portions 
+##' of the pyramid. If NULL (the default) then the row names of the dataframe will be used.
+##' 
 ##' @param Laxis A vector of axis for left pyramid. If missing, automatically given.
 ##' @param Raxis A vector of axis for right pyramid. If missing, Laxis is used.
 ##' @param AxisFM A format code of formatC for plotting axis. If missing, "g" is used.
@@ -45,16 +52,18 @@
 ##' 
 ##' @author Original code Minato Nakazawa <minato-nakazawa@umin.net>. 
 ##' Modified by David Whiting <david.whiting@publichealth.me.uk>
+##' @export
 ##' @examples
 ##' x <- data.frame(males = 10:1, females = 10:1)
 ##' pyramid(x)
 ##' 
 ##' males <- 20:1
 ##' females <- 20:1
-##' pyramids(males, females)
+##' pyramid(males, females)
 ##' 
 
-pyramid <- function(data, Laxis=NULL, Raxis=NULL, 
+pyramid <- function(data, Right = NULL, Center = NULL,
+                    Laxis = NULL, Raxis = NULL, 
                     AxisFM="g", AxisBM="", AxisBI=3, Cgap=0.3, Cstep=1, Csize=1, 
                     Llab="Males", Rlab="Females", Clab="Ages", GL=TRUE, Cadj = 0, 
                     Lcol="Cyan", Rcol="Pink", Ldens=-1, Rdens=-1, main="", 
@@ -67,12 +76,22 @@ pyramid <- function(data, Laxis=NULL, Raxis=NULL,
   ##          options, as suggested by Dr. Philippe Guillet.
   ## (C) Minato Nakazawa <minato-nakazawa@umin.net>
   ## Extended by David Whiting <david.whiting@publichealth.me.uk>
-  Left <- data[, 1]
-  Right <- data[, 2]
-  if (length(data) == 2) { 
-    Center <- row.names(data) 
-  } else { 
-    Center <- data[,3] 
+  if (!is.null(Right)) {
+    Left <- data
+    if (length(Left) != length(Right)) warning("Length of left and right data differ")
+  } else {
+    Left <- data[, 1]
+    Right <- data[, 2]
+  }
+  if (!is.null(Right) & is.null(Center)) {
+    Center <- 1:length(Right)
+  }
+  if (is.null(Right) & is.null(Center)) {
+    if (length(data) == 2) { 
+      Center <- row.names(data) 
+    } else { 
+      Center <- data[, 3] 
+    }
   }
   if (overlay & is.null(Laxis))
     stop("You MUST use the Laxis information from the previous pyramid. See help page.")
@@ -143,12 +162,3 @@ pyramid <- function(data, Laxis=NULL, Raxis=NULL,
   invisible(Laxis)
 }
 
-pyramids <- function(Left, Right, Center=NULL, ...) {
-  ## Wrapper function for pyramid to use separate two vectors
-  if (is.null(Center)) {
-    dx <- data.frame(Left, Right, row.names=names(Left))
-  } else { 
-    dx <- data.frame(Left, Right, Center) 
-  }
-  pyramid(dx, ...)
-}
