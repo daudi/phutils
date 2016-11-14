@@ -11,11 +11,10 @@
 ##' This is a work in progress.
 ##' 
 ##' @param x A decimal value
-##' @param max_denom The largest denominator to consider when looking for fractions
+##' @param denoms A vector of denominators to consider when looking for fractions
 ##' @export
 
-cases_noncases <- function(x, max_denom = 20, units = "people") {
-  denoms <- 1:max_denom
+cases_noncases <- function(x, denoms = 1:20, units = "people") {
   
   ## Function to calculate each of the proportions for the range of 
   ## values for a given denominator

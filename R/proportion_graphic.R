@@ -4,17 +4,17 @@
 ##' save it to a png file.
 ##' 
 ##' @param prop The proportion to represent
-##' @param max_demon The largest denominator to try. Defaults to 20
+##' @param denoms A vector of denominators to try. Defaults to 1:20
 ##' @param case The png image to use for a case (for now it must be square)
 ##' @param notcase The png image to use to represent those that are not cases (must be square)
 ##' @param units The units to be used in the message. Defaults to 'people'
 ##' @export
 ##' @details This calls cases_noncases()
 
-proportion_graphic <- function(prop, max_denom = 20, 
+proportion_graphic <- function(prop, denoms = 1:20, 
                                case, notcase, 
                                units = "people") {
-  infog <- cases_noncases(prop, max_denom = max_denom, units = units)
+  infog <- cases_noncases(prop, denoms = denoms, units = units)
   notcase <- png::readPNG(notcase)
   case <- png::readPNG(case)
   

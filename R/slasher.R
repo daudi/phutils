@@ -15,5 +15,5 @@ slasher <- function() {
   x <- scan(what = "")
   xa <- gsub('\\\\', '/', x)
   writeClipboard(paste(xa, collapse=" "))
-  cat('Here is your de-windowsified path. (It is also on the clipboard.)n', xa, 'n')
+  cat('Here is your de-windowsified path. (It is also on the clipboard.)n', xa)
 }
