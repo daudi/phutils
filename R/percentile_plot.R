@@ -32,18 +32,40 @@
 ##' on the left of the plot. Default is FALSE
 ##' @param localValueCex size of the dot. Default is 20 divided by number of 
 ##' variables in data which works as a rough rule of thumb.
+##' @param localValueLabel The generic label to apply to each row of data. Appears 
+##' at bottom of plot. Default is "Local value"
+##' @param localValueLabelXpos determines where on the plot to place the local
+##' value label. Used in mtext. Default is -0.23
 ##' @param plotLabels character vector of labels to insert to the left of the
 ##' plot. Default is colnames of data.
 ##' @param cexLabels size of the labels on left-hand side of plot. Default is 1.
 ##' @param plotTitle the title given to the plot. This is placed towards the 
 ##' left-hand corner of the window.
+##' @param plotTitleXpos determines where on the plot to place the plot title.
+##' Used in mtext. Default is -0.4
+##' @param plotTitleYpos the value of the horizontal line in top margin to
+##' position plot title. Used in mtext. Default is 2
+##' @param plotTitleCex font size of plot title. Used in mtext. Default is 1.5
 ##' @param horizLegend Whether to display the legend horizontally. Default is 
 ##' TRUE.
 ##' @param ncolLegend Number of columns used in legend. Default is 1 but is 
 ##' overidden if horizLegend is set to TRUE.
 ##' @param xInterspLegend character interspacing factor for horizontal legend. 
 ##' Default is 1.
+##' @param insetLegend inset distance(s) from the margins. Default is c(0, -0.3)
 ##' @param upperMar top margin height. Default is 5.
+##' @param minMaxLabels character vector of length 2 for left and right extremes 
+##' of the plot. Default is c("Worst", "Best"). Alternative could be 
+##' c("Lowest", "Highest") with lowIsGood all set to FALSE.
+##' @param minLabelXpos determines where on the plot to place the min label.
+##' Used in mtext. Default is -0.07
+##' @param maxLabelXpos determines where on the plot to place the max label.
+##' Used in mtext. Default is 1.07
+##' @param avgLabel Currently the function is only set up to calculate the mean
+##' of the numeric vectors (even if they are rates or percentages with different 
+##' denominators. A future development should be to give additional options of 
+##' a vector of weighted means and/or to calculate the median. Default is "Mean 
+##' average"
 
 ##' @author Mark Chambers mark.chambers@@medway.gov.uk
 ##' @export
@@ -68,13 +90,23 @@ percentile_plot <- function(data,
                             additionalProbs = c(0.05, 0.95), 
                             lowIsGood = rep(FALSE, ncol(data)), 
                             localValueCex = (20/ncol(data)),
+                            localValueLabel = "Local\nvalue",
+                            localValueLabelXpos = -0.23,
                             plotLabels = colnames(data),
                             cexLabels = 1,
                             plotTitle = "Percentile plot",
+                            plotTitleXpos = -0.4,
+                            plotTitleYpos = 2,
+                            plotTitleCex = 1.5,
                             horizLegend = TRUE,
                             ncolLegend = 1,
                             xInterspLegend = 1,
-                            upperMar = 5) {
+                            insetLegend = c(0, -0.3),
+                            upperMar = 5,
+                            minMaxLabels = c("Worst", "Best"),
+                            minLabelXpos = -0.07,
+                            maxLabelXpos = 1.07,
+                            avgLabel = "Mean\naverage") {
   
   # Data traps
   # pick must be an integer between 1 and nrow(data)
@@ -113,17 +145,17 @@ percentile_plot <- function(data,
        cex.axis = cexLabels)
   
   # Annotation
-  mtext("Mean\naverage", side = 1, line = 1, at = 0.5, cex = 0.8, font = 1)
-  mtext("Worst", side = 1, line = 1, at = -0.07, cex = 0.8, font = 1)
-  mtext("Best", side = 1, line = 1, at = 1.07, cex = 0.8, font = 1)
-  mtext("Local\nvalue", side = 1, line = 1, at = -0.23, cex = 0.8, font = 1)
+  mtext(avgLabel, side = 1, line = 1, at = 0.5, cex = 0.8, font = 1)
+  mtext(minMaxLabels[1], side = 1, line = 1, at = minLabelXpos, cex = 0.8, font = 1)
+  mtext(minMaxLabels[2], side = 1, line = 1, at = maxLabelXpos, cex = 0.8, font = 1)
+  mtext(localValueLabel, side = 1, line = 1, at = localValueLabelXpos, cex = 0.8, font = 1)
   
   # Legend
   prob1 <- paste0(additionalProbs[1] * 100, "%")
   prob2 <- paste0(additionalProbs[2] * 100, "%")
   
   legend("topright",
-         c(prob1, "Range", "Local value", "Middle 50%", prob2),
+         c(prob1, "Range", localValueLabel, "Middle 50%", prob2),
          pch = c(NA, NA, 16, NA, NA),
          fill = c(NA, "lightgrey", NA, "grey", NA),
          border = NA,
@@ -133,16 +165,16 @@ percentile_plot <- function(data,
          ncol = ncolLegend,
          bty = "o",
          box.col = "grey",
-         inset = c(0, -0.3),
+         inset = insetLegend,
          cex = 0.8,
          x.intersp = xInterspLegend)
   
   # Title
   mtext(text = plotTitle, 
         side = 3, 
-        line = 2, 
-        at = -0.4, 
-        cex = 1.5)
+        line = plotTitleYpos, 
+        at = plotTitleXpos, 
+        cex = plotTitleCex)
   
   # Cycle through the variables in data to plot bars etc
   for (i in 1:numVariables) {
