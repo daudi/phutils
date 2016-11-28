@@ -16,6 +16,7 @@
 #'  @param slidenotes A dataframe with two columns: a numeric column with the slide 
 #'  number and a character column with the slide notes content. At the moment this needs 
 #'  to be simple text.
+#'  @export
 #'  
 #'  @examples 
 #'  dontrun{
