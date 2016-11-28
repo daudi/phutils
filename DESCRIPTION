@@ -8,4 +8,5 @@ Maintainer: David Whiting  <david.whiting@publichealth.me.uk>
 Description: A small and growing collection of utilities for Public Health
     Intelligence in Medway.
 License: GPL-3
+Encoding: latin1
 RoxygenNote: 5.0.1
