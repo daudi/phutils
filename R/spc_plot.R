@@ -10,6 +10,8 @@
 ##' @export
 ##' @return A list containing the mean and 2nd and 3rd standard 
 ##' deviations above and below the mean.
+##' 
+##' @references A nice summary can be found here https://www.isixsigma.com/tools-templates/control-charts/a-guide-to-control-charts/
 
 spc_plot <- function(x, y, ...) {
   
