@@ -6,6 +6,8 @@
 ##' 
 ##' @param x A vector of values to look for.
 ##' @param table The object in which to look
+##' @usage x \%notin\% y
+##' @rdname notin
 ##' @export
 ##' @return A vector of the same length as x
 ##' @examples 

@@ -54,9 +54,9 @@ splitscreen_pdf <- function(x, FUN,
     height <- ppsize[2]
   }
   
-  while (dev.cur() > 1) {
-    dev.off()
-  }
+  # while (dev.cur() > 1) {
+  #   dev.off()
+  # }
   pdf(file = paste0(path, "/", prefix, ".pdf"),
       paper = paper, height = height, width = width)
   if(!is.null(title)) {
@@ -82,9 +82,9 @@ splitscreen_pdf <- function(x, FUN,
     }
     screen.num <- screen.num + 1
   }
-  close.screen(all.screens = TRUE)
+  zz <- close.screen(all.screens = TRUE)
 
-  while (dev.cur() > 1) {
-    dev.off()
-  }
+  # while (dev.cur() > 1) {
+  dev.off()
+  # }
 }

@@ -5,26 +5,28 @@
 #' 
 #' This function enables you to add speaker notes to a completed powerpoint.
 #' 
-#'  @details You need to accumulate the notes as you go along and keep track of
-#'  the slide number for the notes. This will all go wrong if you change the slide 
-#'  order or add a new slide. 
-#'  
-#'  To create paragraphs you need to use vbCrLf. See the example code below.
-#'  
 #'  @param pptfile The path to a powerpoint file. This must be a fullpath, relative
 #'  paths don't seem to work.
 #'  @param slidenotes A dataframe with two columns: a numeric column with the slide 
 #'  number and a character column with the slide notes content. At the moment this needs 
 #'  to be simple text.
-#'  @export
+#' 
+#'  @details You need to accumulate the notes as you go along and keep track of
+#'  the slide number for the notes. This will all go wrong if you change the slide 
+#'  order or add a new slide. 
 #'  
-#'  @examples 
-#'  dontrun{
+#'  To create paragraphs you need to use vbCrLf. See the example code below. (Putting
+#'  this in the examples section causes an error when building the package.)
+#'  
+#'  \code{
 #'  vbCrLf <- "& vbCrLf &"
 #'  ex1 <- paste(shQuote("Notes for slide 1"), vbCrLf, shQuote("This is on the next line"))
 #'  slidenotes <- data.frame(slide = 1:2, notes = c(ex1, "Notes for Slide 2"))
 #'  add_notes_to_ppt(mfile, slidenotes)
 #'  }
+#'  
+#'  @export
+#'  
 
 
 

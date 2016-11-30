@@ -14,10 +14,10 @@
 #' @references Statistics with confidence, Gardner and Altman (1989).
 #' @author david.whiting@@publichealth.me.uk
 #' @keywords utils
-#' ##' @seealso 
-##' \code{\link{ci.mean}}, 
-##' \code{\link{ci.proportion}}, 
-##' \code{\link{ci.poisson}}
+#' @seealso 
+#' \code{\link{ci.mean}}, 
+#' \code{\link{ci.proportion}}, 
+#' \code{\link{ci.poisson}}
 #' @return A named vector with three elements: lower CI, mean, upper CI
 #' 
 #' @export
