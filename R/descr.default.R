@@ -5,5 +5,5 @@
 ##' @export
 ##' 
 descr.default <- function(...) {
-  desc.character(...)
+  descr.character(...)
 }

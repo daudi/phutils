@@ -8,5 +8,5 @@
 ##' 
 descr <- function(x, ...) {
   cat(paste("Class:", class(x), "\n\n"))
-  UseMethod("desc", x)
+  UseMethod("descr", x)
 }

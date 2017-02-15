@@ -36,7 +36,7 @@ run_desc <- function(x) {
     this_col <- col_names[i]
     cat(paste0(\"\n\n# \", this_col, \"\n\"))
     y <- x[, i]
-    yy <- desc(y, this_col)
+    yy <- descr(y, this_col)
   }
 }
 
@@ -67,7 +67,7 @@ body {
 )
   
   
-  
+print(RmdFile)  
 rmarkdown::render(RmdFile)
 
 ##file.copy("describe.html", htmlFile)
