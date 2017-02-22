@@ -19,7 +19,6 @@
 #'  To create paragraphs you need to use vbCrLf. See the example code below. (Putting
 #'  this in the examples section causes an error when building the package.)
 #'  
-#' \code{
 #'  
 #'  vbCrLf <- "& vbCrLf &" 
 #'  
@@ -29,7 +28,6 @@
 #'  
 #'  add_notes_to_ppt(mfile, slidenotes)
 #'  
-#'  }
 #'  
 #' @export
 #'  
