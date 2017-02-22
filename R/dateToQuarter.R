@@ -14,7 +14,7 @@
 ##' @param sep The separator between the year and the quarter. Default is a space.
 ##' 
 ##' @return An object of the characters class.
-##' @author David Whiting, dwhiting@@nhs.net Mark Chambers,
+##' @author David Whiting, dwhiting@@nhs.net david.whiting@@publichealth.me.uk Mark Chambers,
 ##' mark.chambers@@nhs.net
 ##' @keywords utils
 ##' @examples

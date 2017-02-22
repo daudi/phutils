@@ -12,7 +12,7 @@
 ##' \code{\link{ci.mean}}, 
 ##' \code{\link{ci.poisson}}, 
 ##' \code{\link{ci.standardised.rate}}
-##' @author dwhiting@@nhs.net
+##' @author dwhiting@@nhs.net david.whiting@@publichealth.me.uk
 ##' @keywords stats
 ##' @examples 
 ##' ci.proportion(3, 20) 

@@ -1,7 +1,9 @@
 ##' Return the first and last values from a column of a dataframe.
 ##' 
 ##' Get the first and last values of a data.frame. This is probably most useful if 
-##' by.var is specified as 
+##' by.var is specified as  ??? what??? 
+##' 
+##' I can't remember why this was useful. I certainly haven't used it for a long time.
 ##' 
 ##' 
 ##' @param x The dataframe

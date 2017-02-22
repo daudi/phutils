@@ -15,7 +15,7 @@
 ##' @param ordered_result logical: should the result be an ordered factor? Default is TRUE.
 ##' @return A factor with the level that corresponds to the age and age ranges
 ##' provided.
-##' @author David Whiting, dwhiting@@nhs.net
+##' @author David Whiting, dwhiting@@nhs.net david.whiting@@publichealth.me.uk 
 ##' @seealso 
 ##' \code{\link{seq}}, 
 ##' \code{\link{age.labels}}, 
@@ -23,11 +23,13 @@
 ##' \code{\link{cut}}
 ##' @examples
 ##' 
-##' age.groups(5, c(0, 5, 10)) # 5+
-##' age.groups(15, c(0, 5, 10, 15, 20, 25)) # 15-19
+##' age.groups(5, c(0, 5, 10)) # 5+. Levels: 0-4 < 5+
+##' 
+##' age.groups(15, c(0, 5, 10, 15, 20, 25)) # 15-19. Levels: 0-4 < 5-9 < 10-14 < 15-19 < 20+
 ##' 
 ##' ## Using a sequence of breaks
 ##' age.breaks <- seq(from = 0, to = 100, by = 5)
+##' age.breaks # 0   5  10  15  20  25  30  35  40  45  50  55  60  65  70  75  80  85  90  95 100
 ##' age.groups(15, age.breaks) # 15-19
 ##' age.groups(23, age.breaks) # 20-24
 ##' age.groups(96, age.breaks) # 95+
@@ -35,8 +37,8 @@
 ##' age.groups(100, age.breaks) # 95+
 ##' age.groups(101, age.breaks) # NA
 ##' 
-##' age.groups(95:100, age.breaks, final.open = TRUE)
-##' age.groups(95:100, age.breaks, final.open = FALSE)
+##' age.groups(95:100, age.breaks, final.open = TRUE) # 95+ 95+ 95+ 95+ 95+ 95+
+##' age.groups(95:100, age.breaks, final.open = FALSE) # 95-99 95-99 95-99 95-99 95-99 <NA>
 ##' 
 ##' 
 ##' @export

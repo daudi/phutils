@@ -2,15 +2,15 @@
 ##'
 ##' Simple function to create sparklines.
 ##'   
-##'   @param ydata Numeric vector of data to display.
-##'   @param eng A single value for England (or any other comparator). If NULL (the default) this is not shown.
-##'   @param width The width of the sparkline in inches.
-##'   @param height The height of the sparkline in inches.
-##'   @param sigfigs Number of significant figures in the labels.
-##'   @param line.col The colour of the line.
-##'   @param cex Character expansion (the size of the font)
+##' @param ydata Numeric vector of data to display.
+##' @param eng A single value for England (or any other comparator). If NULL (the default) this is not shown.
+##' @param width The width of the sparkline in inches.
+##' @param height The height of the sparkline in inches.
+##' @param sigfigs Number of significant figures in the labels.
+##' @param line.col The colour of the line.
+##' @param cex Character expansion (the size of the font)
 ##'   
-##'   @examples
+##' @examples
 ##' temppar <- par(no.readonly = TRUE) # store default graphics parameters
 ##' 
 ##' width <- 1

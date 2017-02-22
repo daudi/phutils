@@ -16,7 +16,7 @@
 ##' @return A data.frame that is a combination of the two supplied data.frames.
 ##' The result will be coerced to numeric if any of the input columns are
 ##' numeric.
-##' @author David Whiting, dwhiting@@nhs.net
+##' @author David Whiting, dwhiting@@nhs.net david.whiting@@publichealth.me.uk
 ##' @keywords utils
 ##' @examples
 ##' 

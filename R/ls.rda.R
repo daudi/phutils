@@ -10,7 +10,7 @@
 ##' object name, class, short description and size in Kb.
 ##' @return A vector with the names of the objects in the file. If details =
 ##' TRUE then a dataframe with summary details about each object.
-##' @author David Whiting, dwhiting@@nhs.net
+##' @author David Whiting, dwhiting@@nhs.net david.whiting@@publichealth.me.uk
 ##' @keywords utils
 ##' @examples
 ##' 

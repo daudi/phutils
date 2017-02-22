@@ -16,7 +16,7 @@
 ##' columns that are legitimate factors. The default is 1:ncol(x)
 ##' @return A data.frame or vector (depending on what we supplied to the
 ##' function).
-##' @author David Whiting, dwhiting@@nhs.net
+##' @author David Whiting, dwhiting@@nhs.net  david.whiting@@publichealth.me.uk
 ##' @keywords utils
 ##' @export
 fix.dumb.excel.percents.and.commas <-

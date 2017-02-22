@@ -13,7 +13,7 @@
 ##' @param to An integer defining the end of the sequence.
 ##' @param by An integer defining the sequence interval.
 ##' @return A character vector of hyphenated age groups.
-##' @author David Whiting, dwhiting@@nhs.net
+##' @author David Whiting, dwhiting@@nhs.net david.whiting@@publichealth.me.uk
 ##' @seealso \code{\link{age.groups}}
 ##' @keywords utils
 ##' @examples

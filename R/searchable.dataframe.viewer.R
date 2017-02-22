@@ -1,5 +1,8 @@
 ##' Display a dataframe in the Rstudio viewer with a search filter
 ##' 
+##' This needs jquery-1.4.1.min.js and is currently setup to work with the 
+##' Medway Public Health Intelligence team file structure. 
+##' 
 ##' @param x A data.frame
 ##' @author David Whiting <david.whiting@@publichealth.me.uk>
 ##' 
