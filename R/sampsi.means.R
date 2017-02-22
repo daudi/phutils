@@ -42,9 +42,10 @@
 ##' samp.clus(ss2, rho=.05, num.clus=15) 
 ##' 
 ##' ##graphs
+##' \dontrun{
 ##' graph.power.prop(0.4, .99, p1=0.2, p2=c(0.18, 0.16, 0.10), power = 0.80)
 ##' graph.power.means(.7, 1, m1=0, m2=10, sd1=15)
-##' 
+##' }
 
 
 

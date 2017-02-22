@@ -32,8 +32,9 @@
 ##' @keywords utils
 ##' @examples 
 ##' # Create some dummy data
-##' x <- data.frame(NHSnum = c("temp12 1zzz", "712.457 766", "5265 784454", 2222222222, 4146515092, 4446394339, 4380590096, 3459124359))
-##' is.valid.NHSnum(x$NHSnum)
+##' x <- c("temp12 1zzz", "712.457 766", "5265 784454", 2222222222, 4146515092, 4446394339, 4380590096, 3459124359)
+##' is.valid.NHSnum(x)
+##' 
 ##' @export
 
 
