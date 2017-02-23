@@ -23,7 +23,9 @@
 ##' @param Cadj The vertical adjustment factor for the labels of age classes. 
 ##' Default is 0
 ##' @param Llab The label of the left pyramid. Default is "Males".
+##' @param cex.Llab Character expansion for the left label
 ##' @param Rlab The label of the right pyramid. Default is "Females".
+##' @param cex.Rlab Character expansion for the right label
 ##' @param Clab The label of the center age-class. Default is "Ages".
 ##' @param GL Logical value to draw the vertical dotted lines. Default is TRUE.
 ##' @param Lcol The color of the left pyramid. Default is "Cyan".
@@ -65,7 +67,9 @@
 pyramid <- function(data, Right = NULL, Center = NULL,
                     Laxis = NULL, Raxis = NULL, 
                     AxisFM="g", AxisBM="", AxisBI=3, Cgap=0.3, Cstep=1, Csize=1, 
-                    Llab="Males", Rlab="Females", Clab="Ages", GL=TRUE, Cadj = 0, 
+                    Llab="Males", Rlab="Females", Clab="Ages", 
+                    cex.Llab = 1, cex.Rlab = 1,
+                    GL=TRUE, Cadj = 0, 
                     Lcol="Cyan", Rcol="Pink", Ldens=-1, Rdens=-1, main="", 
                     border = NULL, glCol = "blue", textSrt = 0,
                     overlay = FALSE, ...) {
@@ -132,8 +136,8 @@ pyramid <- function(data, Right = NULL, Center = NULL,
   }
   ## labels
   if (!overlay) {
-    text(-0.5 - Cgap / 2, 1, Llab, pos = 3)
-    text( 0.5 + Cgap / 2, 1, Rlab, pos = 3)
+    text(-0.5 - Cgap / 2, 1, Llab, pos = 3, cex = cex.Llab)
+    text( 0.5 + Cgap / 2, 1, Rlab, pos = 3, cex = cex.Rlab)
     text(0, 1, Clab, pos = 3)
   }
   Ci <- length(Center)
