@@ -13,7 +13,8 @@
 ##' 
 ##' @export
 
-status.log <- function(msg, append = TRUE, file = "STATUS.LOG") {  
+status.log <- function(msg, append = TRUE, file = LOGFILE) {  
+  if (!exists("LOGFILE")) file <- "STATUS.LOG"
   print(msg)
   msg <- paste0("[", Sys.time(), "] ", msg, "\n")
   cat(msg, file = file, append = append)
