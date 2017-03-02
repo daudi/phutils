@@ -23,9 +23,9 @@
 ##' @param Cadj The vertical adjustment factor for the labels of age classes. 
 ##' Default is 0
 ##' @param Llab The label of the left pyramid. Default is "Males".
-##' @param cex.Llab Character expansion for left label
+##' @param cex.Llab Character expansion for the left label
 ##' @param Rlab The label of the right pyramid. Default is "Females".
-##' @param cex.Rlab Character expansion for right label
+##' @param cex.Rlab Character expansion for the right label
 ##' @param Clab The label of the center age-class. Default is "Ages".
 ##' @param cex.Clab Character expansion for centre label
 ##' @param GL Logical value to draw the vertical dotted lines. Default is TRUE.
