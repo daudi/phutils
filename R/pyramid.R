@@ -23,8 +23,11 @@
 ##' @param Cadj The vertical adjustment factor for the labels of age classes. 
 ##' Default is 0
 ##' @param Llab The label of the left pyramid. Default is "Males".
+##' @param cex.Llab Character expansion for left label
 ##' @param Rlab The label of the right pyramid. Default is "Females".
+##' @param cex.Rlab Character expansion for right label
 ##' @param Clab The label of the center age-class. Default is "Ages".
+##' @param cex.Clab Character expansion for centre label
 ##' @param GL Logical value to draw the vertical dotted lines. Default is TRUE.
 ##' @param Lcol The color of the left pyramid. Default is "Cyan".
 ##' @param Ldens The density of hatching lines (/inch) for left pyramid. 
@@ -46,9 +49,7 @@
 ##'  
 ##' @return A vector of Laxis values. These are needed if an overlay 
 ##' is created. 
-##' @details Still need to work on this to make it look nice.
 ##' 
-##' Use the wrapper pyramids() if you want to use two vectors instead of a dataframe.
 ##' 
 ##' @author Original code Minato Nakazawa <minato-nakazawa@umin.net>. 
 ##' Modified by David Whiting <david.whiting@publichealth.me.uk>
@@ -65,7 +66,9 @@
 pyramid <- function(data, Right = NULL, Center = NULL,
                     Laxis = NULL, Raxis = NULL, 
                     AxisFM="g", AxisBM="", AxisBI=3, Cgap=0.3, Cstep=1, Csize=1, 
-                    Llab="Males", Rlab="Females", Clab="Ages", GL=TRUE, Cadj = 0, 
+                    Llab="Males", Rlab="Females", Clab="Ages", 
+                    cex.Llab = 1, cex.Rlab = 1, cex.Clab = 1,
+                    GL=TRUE, Cadj = 0, 
                     Lcol="Cyan", Rcol="Pink", Ldens=-1, Rdens=-1, main="", 
                     border = NULL, glCol = "blue", textSrt = 0,
                     overlay = FALSE, ...) {
@@ -132,9 +135,9 @@ pyramid <- function(data, Right = NULL, Center = NULL,
   }
   ## labels
   if (!overlay) {
-    text(-0.5 - Cgap / 2, 1, Llab, pos = 3)
-    text( 0.5 + Cgap / 2, 1, Rlab, pos = 3)
-    text(0, 1, Clab, pos = 3)
+    text(-0.5 - Cgap / 2, 1, Llab, cex = cex.Llab, pos = 3)
+    text( 0.5 + Cgap / 2, 1, Rlab, cex = cex.Rlab, pos = 3)
+    text(0, 1, Clab, pos = 3, cex = cex.Clab)
   }
   Ci <- length(Center)
   if (!overlay) {
