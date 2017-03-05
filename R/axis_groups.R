@@ -21,6 +21,8 @@
 ##' Make sure that you order the data correctly, i.e. by the values that are 
 ##' plotted on the x-axis, e.g. your dates.
 ##' 
+##' @author David Whiting david.whiting@@publichealth.me.uk
+##' 
 ##' @export
 ##'  
 ##' 
