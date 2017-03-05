@@ -10,6 +10,7 @@
 ##' @param subgroup_opts A list of parameters or options that can be used by 
 ##' axis() for formatting the subgroup labels
 ##' @param group_opts A list of parameters or options that can be used by 
+##' axis() for formatting the group labels
 ##' @param group_div_opts A list of parameters or options that can be used by 
 ##' axis() for formatting the tick marks between the main groups
 ##' 
@@ -24,28 +25,34 @@
 ##'  
 ##' 
 ##' @examples 
+##' ## Create some data
 ##' ff <- data.frame(x = rep(LETTERS[1:10], 3), y = rep(LETTERS[1:3], 10), val = runif(n = 30))
 ##' ff <- ff[order(ff$y, ff$x), ]
 ##' ff$z <- 1:30
 ##' ff
-##' plot(ff$z, ff$val, xlab = "", xaxt = "n")
-##' axis_groups(ff$z, ff$y, ff$x)
 ##' 
+##' plot(ff$z, ff$val, xlab = "", xaxt = "n")
+##' axis_groups(ff$z, ff$y, ff$x) # Default grouped axis
+##' 
+##' ## Simulate year-quarter data
 ##' ff <- data.frame(x = rep(c("Q1", "Q2", "Q3", "Q4"), 3), 
 ##'                  y = rep(c("2014/15", "2015/16", "2016/17"), 4), val = runif(n = 12))
 ##' ff <- ff[order(ff$y, ff$x), ]
 ##' ff$z <- 1:12
 ##' ff
-##' plot(ff$z, ff$val, xlab = "", xaxt = "n")
+##' plot(ff$z, ff$val, xlab = "", xaxt = "n") # Default grouped axis
 ##' axis_groups(ff$z, ff$y, ff$x)
 ##' 
 ##' plot(ff$z, ff$val, xlab = "", xaxt = "n")
-##' axis_groups(ff$z, ff$y, ff$x, group_div_opts = list(col = "red"))
+##' ## Make the group divider red
+##' axis_groups(ff$z, ff$y, ff$x, group_div_opts = list(col = "red")) 
 ##' 
 ##' plot(ff$z, ff$val, xlab = "", xaxt = "n")
+##' ## Change the font of the main groups
 ##' axis_groups(ff$z, ff$y, ff$x, group_opts = list(cex.axis = 3, col.axis = "green"))
 ##' 
 ##' plot(ff$z, ff$val, xlab = "", xaxt = "n")
+##' ## Change the fonts of the main groups and subgroups
 ##' axis_groups(ff$z, ff$y, ff$x, 
 ##'             group_opts = list(cex.axis = 3, col.axis = "green"),
 ##'             subgroup_opts = list(cex.axis = 0.8, col.axis = "blue"))
