@@ -99,7 +99,9 @@ axis_groups <- function(x, groups, subgroups,
   if (!"lty" %in% names(group_div_opts)) group_div_opts$lty <- "dashed"
   if (!"lwd" %in% names(group_div_opts)) group_div_opts$lwd <- 0
   if (!"lwd.ticks" %in% names(group_div_opts)) group_div_opts$lwd.ticks <- 1
-  do.call(axis, group_div_opts)
+  ## Don't try to add tickmarks if there is only one main group
+  if (!all(is.na(group_div_opts$at))) do.call(axis, group_div_opts)
+  
   
   invisible(list(firstidx = firstidx, lastidx = lastidx,
                  grppos = grppos, 
