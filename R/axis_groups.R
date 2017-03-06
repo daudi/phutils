@@ -77,9 +77,9 @@ axis_groups <- function(x, groups, subgroups,
   
   ## Work out the midpoints of the groups.
   grps <- table(groups)
-  lastpos <- cumsum(grps)
-  firstpos <- lastpos - grps + 1
-  grppos <- x[firstpos] + (x[lastpos] - x[firstpos]) / 2
+  lastidx <- cumsum(grps)
+  firstidx <- lastidx - grps + 1
+  grppos <- x[firstidx] + (x[lastidx] - x[firstidx]) / 2
   
   if (!"side" %in% names(group_opts)) group_opts$side <- 1
   if (!"x" %in% names(group_opts)) group_opts$at <- grppos
@@ -89,8 +89,8 @@ axis_groups <- function(x, groups, subgroups,
   do.call(axis, group_opts)
   
   ## Work out the points between the groups for the tickmarks
-  nextpos <- lastpos + 1
-  tck_pos <- x[lastpos] + (x[nextpos] - x[lastpos]) / 2
+  nextidx <- lastidx + 1
+  tck_pos <- x[lastidx] + (x[nextidx] - x[lastidx]) / 2
   
   if (!"side" %in% names(group_div_opts)) group_div_opts$side <- 1
   if (!"x" %in% names(group_div_opts)) group_div_opts$at <- tck_pos
@@ -101,9 +101,9 @@ axis_groups <- function(x, groups, subgroups,
   if (!"lwd.ticks" %in% names(group_div_opts)) group_div_opts$lwd.ticks <- 1
   do.call(axis, group_div_opts)
   
-  invisible(list(firstpos = firstpos, lastpos = lastpos,
+  invisible(list(firstidx = firstidx, lastidx = lastidx,
                  grppos = grppos, 
-                 nextpos = nextpos,
+                 nextidx = nextidx,
                  tck_pos = tck_pos))
 }
 
