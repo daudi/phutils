@@ -102,7 +102,6 @@ axis_groups <- function(x, groups, subgroups,
   ## Don't try to add tickmarks if there is only one main group
   if (!all(is.na(group_div_opts$at))) do.call(axis, group_div_opts)
   
-  
   invisible(list(firstidx = firstidx, lastidx = lastidx,
                  grppos = grppos, 
                  nextidx = nextidx,
