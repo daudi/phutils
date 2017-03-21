@@ -20,11 +20,12 @@
 ##' @keywords utils
 ##' @export
 fix.dumb.excel.percents.and.commas <-
-  function(x, cols = 1:ncol(x)) {
+  function(x, cols = 1:ncol(x), show_coerced_NAs = FALSE) {
     ## When Excel saves columns of numbers formatted as percents
     ## as csv files it stupidly saves % symbols in csv files.
     ## This function strips the % and makes the number numeric.
     
+    if (show_coerced_NAs) x_orig <- x
     fix.percents <- function(x) {
       x <- gsub("%", "", x)
     }
@@ -49,6 +50,10 @@ fix.dumb.excel.percents.and.commas <-
           x[, i] <- as.numeric(as.character(x[, i]))
         }
       }
+    }
+    i <- is.na(x)
+    if (any(i) & show_coerced_NAs) {
+      warning(paste("Values of x coerced to NA:\n", paste(unique(x_orig[i]), collapse = "\n")))
     }
     x
   }
