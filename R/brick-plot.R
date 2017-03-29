@@ -24,8 +24,9 @@
 ##' labels is NULL, the counts are used.
 ##' @param max_height The maximum number of bricks in each column. Defaults 
 ##' to the square root of the sum of the counts.
-##' @param brick_colours A vector of colours, one for each group of columns
-##' @param axis_opts A list of parameters used by axis()
+##' @param brick_colours A vector of colours, one for each group of columns. 
+##' @param axis_opts A list of parameters used by axis(). See ?axis
+##' @param rect_opts A list of parameters used by rect() to create the bricks. See ?rect
 ##' @param ... Other parameters used by plot()
 ##' @return A dataframe with the plot values, labels and information 
 ##' used for plotting the blocks and axis labels.
@@ -46,6 +47,17 @@
 ##' x <- x * 10 # Scale up decimals to counts per 1,000
 ##' brick_plot(x, ylab = "", xlab = "", horizontal = TRUE, axis_opts = list(cex.axis = 0.7, tick = FALSE), bty = "n", main = "Most common languages spoken in Medway")
 ##' 
+##' ## Now set the max height and remove the borders from the bricks
+##' brick_plot(x, ylab = "", xlab = "", horizontal = TRUE, 
+##' max_height = 80, 
+##' axis_opts = list(cex.axis = 0.7, tick = FALSE), 
+##' rect_opts = list(border = NA), bty = "n", 
+##' main = "Most common languages spoken in Medway")
+##' 
+##' 
+##' 
+##' 
+##' 
 
 
 
@@ -54,6 +66,7 @@ brick_plot <- function(x, labels = NULL,
                        brick_colours = NULL, 
                        horizontal = FALSE,
                        axis_opts = list(),
+                       rect_opts = list(),
                        ...) {
 
   if (is.null(labels) & !is.null(names(x))) labels <- names(x)
@@ -98,16 +111,27 @@ brick_plot <- function(x, labels = NULL,
         ## Next column for this group
         current_col_number <- current_col_number + 1
       }
+      ## Work out the positions of the corners of the brick
       my_xleft <- current_col_number - 1
       my_ybottom <- current_col_height - 1
       my_xright <- current_col_number - 0.1
       my_ytop <- current_col_height - 0.1
       if (horizontal) {
-        rect(xleft = my_ybottom, ybottom = my_xleft, xright = my_ytop, ytop = my_xright, col = this_colour)
+        rect_opts$xleft <- my_ybottom
+        rect_opts$ybottom <- my_xleft
+        rect_opts$xright <- my_ytop
+        rect_opts$ytop <- my_xright
       } else {
-        rect(xleft = my_xleft, ybottom = my_ybottom, xright = my_xright, ytop = my_ytop, col = this_colour)
+        rect_opts$xleft <- my_xleft
+        rect_opts$ybottom <- my_ybottom
+        rect_opts$xright <- my_xright
+        rect_opts$ytop <- my_ytop
       }
-        current_col_height <- current_col_height + 1
+      rect_opts$col<- this_colour
+      ## Draw the brick
+      do.call(rect, rect_opts)
+      
+      current_col_height <- current_col_height + 1
       if (j == x$count[i]) group_end_pos <- c(group_end_pos, (current_col_number - 0.1))
     }
     ## Next group
