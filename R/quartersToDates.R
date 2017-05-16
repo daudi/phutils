@@ -77,15 +77,14 @@ quartersToDates <-
     first.day <- 1
     start.point <- as.Date(paste0(my.year, "-", my.month, "-", first.day), format = "%Y-%m-%d")
     
-    ## mid-point
-    my.month <- c(2, 5, 8, 11, 2)[my.quarter]
-    mid.day <- 15
-    mid.point <- as.Date(paste0(my.year, "-", my.month, "-", mid.day), format = "%Y-%m-%d")
-    
     ## end
     my.month <- c(3, 6, 9, 12, 3)[my.quarter]
     last.day <- c(31, 30, 30, 31, 31)[my.quarter]
     end.point <- as.Date(paste0(my.year, "-", my.month, "-", last.day), format = "%Y-%m-%d")
+  
+    ## mid-point
+    mid.point <- start.point + (end.point - start.point) / 2
+
     
     list(start.point = start.point,
          mid.point = mid.point,
