@@ -10,22 +10,18 @@
 ##'   currently requires you to use the specific age groups in the SEPHO spreadsheet;
 ##'   it could be adapted to become more generic.
 
-##' @param x Dataframe containing age-bands, deaths and population. There should
-##'   be 19 rows (one for each age-band) and at least 3 columns.
-##' @param deaths The name of the variable in x containing a numeric vector of 
-##'   deaths
-##' @param population The name of the variable in x containing a numeric vector 
-##'   of population counts
-##' @param age.bands The name of the variable in x containing a vector of 
-##'   age-bands. There should be 19 in total beginning "0, 1-4, 5-9, 10-14, ... 
-##'   85+".
+##' @param x Dataframe containing age-bands, population and deaths IN THAT ORDER. Column
+##' names are not important. Subsequent columns are dropped. There should
+##'   be 19 rows (one for each age-band) and at least 3 columns. There should be 19 age bands 
+##'   in total beginning "0, 1-4, 5-9, 10-14, ... 85+" and this should be an ordered 
+##'   factor, e.g. as produced by age.groups()
 ##' @param output Default is "simple" which trims number of variables in output 
 ##'   dataframe. Alternative is "full" which shows all the variables involved in
 ##'   LE calculations.
 ##' @param LE.age Default is NULL which selects all rows from output dataframe. 
 ##'   Specifying a vector of one or more integers will return a dataframe of 
 ##'   Life expectancies at those ages rounded to the nearest 5.
-##' @author Mark Chambers mark.chambers@@nhs.net
+##' @author Mark Chambers mark.chambers@@nhs.net david.whiting@@publichealth.me.uk
 ##' @references http://www.sepho.org.uk/viewResource.aspx?id=8943
 ##' @references Eayres DP, Williams ES, Evaluation of methodologies for small
 ##'   area life expectancy estimation, J Epidemiol Community Health
@@ -35,30 +31,25 @@
 ##' @examples 
 ##' \dontrun{
 ##' # # Sample data
-##' test <- readRDS("V:/33 - Pembroke Court/Public Health Intelligence/Tools and Tutorials/R/dev/life-expectancy-example.Rds")
+##' x <- readRDS("V:/33 - Pembroke Court/Public Health Intelligence/Tools and Tutorials/R/dev/life-expectancy-example.Rds")
+##' x <- x[, c("age.band", "pop", "Deaths")]
 
 ##' # Life expectancy at birth only
-##' LE(x = test, deaths = "Deaths", population = "pop", age.bands = "age.band", output = "simple", LE.age = 0)
+##' LE(x, output = "simple", LE.age = 0)
 
 ##' # Life expectancy at 65 and 85
-##' LE(x = test, deaths = "Deaths", population = "pop", age.bands = "age.band", output = "simple", LE.age = c(65, 85))
+##' LE(x, output = "simple", LE.age = c(65, 85))
 ##' }
 ##' 
 ##' 
 
 
-LE <- function(x, deaths, population, age.bands, output = c("simple", "full")[1], LE.age = NULL) {
-  
-  # Error trapping
-  # stopifnot(class(x) == "data.frame")
-  # stopifnot(nrow(x) == 19)
-  # stopifnot(ncol(x) >= 3)
-  # stopifnot(class(x[, deaths]) == "numeric")
-  # stopifnot(class(x[, population]) == "numeric")
+LE <- function(x, output = c("simple", "full")[1], LE.age = NULL) {
   
   # Simplify data frame
-  x <- x[, c(age.bands, deaths, population)]
-  names(x) <- c("age.bands", "deaths", "population")
+  # Assume the order is age, population, deaths
+  x <- x[, c(1:3)]
+  names(x) <- c("age.bands", "population", "deaths")
   
   # Order age bands
   x <- x[order(x$age.bands), ]  
