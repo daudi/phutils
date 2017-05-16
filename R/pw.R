@@ -4,7 +4,7 @@
 ##' @param lower.case Logical. Include lowercase letters? Default is TRUE.
 ##' @param upper.case Logical. Include uppercase letters? Default is TRUE.
 ##' @param numbers Logical. Include numbers? Default is TRUE.
-##' @param symbols Logical. Include symboks (e.g. !"£$\%^&* etc.) ? Default is TRUE.
+##' @param symbols Logical. Include symboks (e.g. !"$\%^&* etc.) ? Default is TRUE.
 ##' 
 ##' @export 
 ##' @return A character string.
