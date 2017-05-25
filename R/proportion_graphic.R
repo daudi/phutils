@@ -12,9 +12,23 @@
 ##' @details This calls cases_noncases()
 
 proportion_graphic <- function(prop, denoms = 1:20, 
-                               case, notcase, 
+                               case = NULL, notcase = NULL, 
                                units = "people") {
   infog <- cases_noncases(prop, denoms = denoms, units = units)
+  
+  make_dot <- function(col = "black") {
+    tmp <- paste0(tempfile(), ".png")
+    png(tmp)
+    par(mar = c(0, 0, 0, 0))
+    plot.new()
+    points(0.5, 0.5, cex = 70, pch = 16, col = col)
+    dev.off()
+    tmp
+  }
+  
+  if (is.null(case)) case <- make_dot("black")
+  if (is.null(notcase)) notcase <- make_dot("grey")
+  
   notcase <- png::readPNG(notcase)
   case <- png::readPNG(case)
   
