@@ -53,6 +53,7 @@ LE <- function(x, output = c("simple", "full")[1], LE.age = NULL) {
   
   # Order age bands
   x <- x[order(x$age.bands), ]  
+  rownames(x) <- x$age.bands
   
   # Death rate in interval
   x$death.rate <- x$deaths / x$population
