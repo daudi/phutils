@@ -1,7 +1,8 @@
 ##' Create a two-level grouped axis
 ##' 
 ##' This is especially useful when ploting dates or quarters where you 
-##' want the quarter on one line and the year on another.
+##' want the quarter on one line and the year on another, but can be useful 
+##' in any situation where you have groups and sub-groups.
 ##' 
 ##' @param x The x-axis plotting variable
 ##' @param groups A vector of groups the same length as the vector of x values

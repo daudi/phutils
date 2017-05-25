@@ -5,7 +5,9 @@
 ##'
 ##'  
 ##' 
-##' @details This is inspired by a plot I saw in The Economist. It 
+##' @details This is inspired by a plot I saw in The Economist (see references). 
+##' It is not perfect and could do with some more work to make it prettier.
+##' It 
 ##' is a better form of barchart when the values are integers and 
 ##' have very large and very small numbers.
 ##' 
@@ -16,8 +18,9 @@
 ##' each brick is drawn individually. Also, with that many bricks they will be
 ##' so small that the individual bricks will not be visible.
 ##' 
-##' NOTE: you can create a variable with barplot() with base graphics; see http://stackoverflow.com/questions/14591167/variable-width-bar-plot
+##' NOTE: you can create a variable width barplot() with base graphics; see http://stackoverflow.com/questions/14591167/variable-width-bar-plot
 ##' 
+##' @references Economist plot that inspired this approach http://cdn.static-economist.com/sites/default/files/images/2015/11/blogs/graphic-detail/20151121_woc004_3.png
 ##' @param x A vector of counts
 ##' @param labels A vector of labels for the counts. If x is a named vector 
 ##' and labels is NULL, the names are used. If x is not a named vector and 

@@ -3,7 +3,7 @@
 ##' Create hyphenated age labels based on a simple sequence, by specifying the
 ##' start, end and interval.
 ##' 
-##' This function creates a simple set of age group labels. The interval is the
+##' @details This function creates a simple set of age group labels. The interval is the
 ##' same for each age group. For more a flexible approach see age.groups()
 ##' 
 ##' The last age group is always terminated with a + to indicate an open range,

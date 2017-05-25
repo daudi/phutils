@@ -3,7 +3,7 @@
 #' ReporteRs is a great package for creating powerpoint presentations from R,
 #' but it does not have a facility (at the moment) to add speaker notes.
 #' 
-#' This function enables you to add speaker notes to a completed powerpoint.
+#' This function enables you to add speaker notes to a completed powerpoint file.
 #' 
 #' @author david.whiting@@publichealth.me.uk
 #' @param pptfile The path to a powerpoint file. This must be a fullpath, relative
@@ -12,7 +12,10 @@
 #'  number and a character column with the slide notes content. At the moment this needs 
 #'  to be simple text.
 #' 
-#' @details You need to accumulate the notes as you go along and keep track of
+#' @details This is a bit of a hack, but it works (on Windows). The function
+#' creates and runs a little vbscript that inserts the notes in the appropriate
+#' slides. You need to accumulate the 
+#' notes as you go along and keep track of
 #'  the slide number for the notes. This will all go wrong if you change the slide 
 #'  order or add a new slide. 
 #'  

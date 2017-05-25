@@ -1,6 +1,7 @@
 ##' Calculate age in years
 ##' 
 ##' Calculate age in years from two whole dates. 
+##' 
 ##' @param first The first date. If you want positive ages, then this is the older date. can be a vector of dates. The function will try to coerce to date class if not already of class date.
 ##' @param second The second date. 
 ##' @return A numeric vector of ages in years.

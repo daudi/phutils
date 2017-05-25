@@ -1,8 +1,7 @@
 ##' Function to convert dates to financial quarters.
 ##' 
-##' Convert dates to financial quarters.
+##' Convert dates to quarters. 
 ##' 
-##' Only works for financial years at the moment.
 ##' 
 ##' @param x A vector of dates.
 ##' @param year.first If TRUE format the result as 2010/2011 Q1. If FALSE (the

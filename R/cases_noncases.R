@@ -8,11 +8,8 @@
 ##' There's probably a nice mathematical solution to this, but as I don't know what it 
 ##' is I'm using a brute-force approach.
 ##' 
-##' This is a work in progress.
-##' 
 ##' @param x A decimal value
 ##' @param denoms A vector of denominators to consider when looking for fractions
-##' @export
 
 cases_noncases <- function(x, denoms = 1:20, units = "people") {
   

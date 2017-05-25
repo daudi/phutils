@@ -3,7 +3,8 @@
 ##' @param x A vector of incomplete dates, e.g. 2001 - 03, 2008/09
 ##' @export
 ##' @details Useful for plotting. This is not designed for turning 2010-11 into 15 November 2010,
-##' this will return the mid-point of 2010 and 2011. 
+##' this will return the mid-point of 2010 and 2011. It is currently focussed on handling dates 
+##' in the PHE fingertips data.
 ##' @return A vector of class Date 
 
 
