@@ -58,5 +58,5 @@ proportion_graphic <- function(prop, denoms = 1:20,
     }
   }
   par(mar = mar_orig)
-  infog
+  invisible(infog)
 }
