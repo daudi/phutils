@@ -9,6 +9,7 @@
 ##' @param time 
 ##' @param p The percentile of the normal distribution (i.e. 0.95 = 95\% CIs)
 ##' @param method exact or anscombe
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 ##' 
 
 ##' @return The lower and upper number of events.
