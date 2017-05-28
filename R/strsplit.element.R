@@ -9,7 +9,9 @@
 ##' @param element A number specifying the position of the element within each result
 ##' in the list to return from each split. Or the word "last" in which case the last element is 
 ##' returned regardless of the length of each split.
+##' @param ... Other parameters passed to ???
 ##' 
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 ##' @export
 
 
