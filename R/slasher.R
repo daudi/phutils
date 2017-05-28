@@ -1,6 +1,6 @@
 ##' Fix slashes in paths copied in Windows
 ##' 
-##' When you copy a path in Windows it has backslashes. These are no good in R
+##' @details When you copy a path in Windows it has backslashes. These are no good in R
 ##' code where you need forward slashes. With this function you can copy a path,
 ##' paste it, and have it saved back to the windows clipboard (so you can paste
 ##' it) with the backslashes changed to forward slashes.
