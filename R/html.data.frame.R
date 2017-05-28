@@ -5,7 +5,8 @@
 ##' @param x A data.frame
 ##' @param file The outout file. If file = "" then the output is directed to the terminal. If file = NULL then the function is silent.
 ##' 
-##' @return Now returns (invisibly) a string of HTML code.
+##' @return Returns (invisibly) a string of HTML code.
+##' @references Original in R2HTML package. Modified by david.whiting@@publichealth.me.uk
 ##' 
 ##' @export
 
@@ -244,11 +245,6 @@ span.spec <- function(x, span.type) {
   y[x == 1] <- ""
   y[x > 1] <- paste(span.type, "=\"", x[x > 1], "\"", sep = "")
   y
-}
-
-status.log <- function(x) {
-  right.now <- strftime(Sys.time(), format = "%Y-%m-%d %H:%M:%S")
-  cat(paste(right.now, x, "\n"), file = "STATUS.LOG", append = TRUE)
 }
 
 
