@@ -3,7 +3,7 @@
 ##' This function takes a data.frame and creates an HTML page with an HTML
 ##' table. The table has a search box to provide a rapid search of the table.
 ##' 
-##' For the search to work jquery-1.4.1.min.js or newer needs to be in the same
+##' @details For the search to work jquery-1.4.1.min.js or newer needs to be in the same
 ##' directory as the generated HTML page. 
 ##' 
 ##' Row names are dropped.
