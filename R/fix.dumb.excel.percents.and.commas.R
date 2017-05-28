@@ -5,7 +5,7 @@
 ##' 
 ##' When excel saves CSV files any numeric columns with \% formatting or commas
 ##' as thousand separators will be saved with the percents and commas. This is
-##' really dumb. When such files are read into R these columns are interpreted
+##' really inconvenient. When such files are read into R these columns are interpreted
 ##' as having character and not numeric data.
 ##' 
 ##' This function will look for such columns and try to convert them to
