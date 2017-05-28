@@ -32,6 +32,7 @@
 ##' the function returns a list of dataframes. If there is only one sheet 
 ##' it is returned as a data.frame.
 ##' 
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 ##' @export 
 ##' @seealso \code{\link{excelToCsv}}, \code{\link{read.csv}},
 ##' \code{\link{fix.dumb.excel.percents.and.commas}}

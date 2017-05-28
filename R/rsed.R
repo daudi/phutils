@@ -7,7 +7,7 @@
 #' how they will be changed so you can see if it does what you want. This is the default mode (i.e. paranoid).
 #' 
 #' @details There is a "magic" variable @@FILE@@ that you can use in your replacement (new)
-#' expression. This will be replaced by the name of the that is being changed.
+#' expression. This will be replaced by the name of the file that is being changed.
 #'
 #' @param old The expression that you want to change
 #' @param new The replacement expression.
@@ -19,6 +19,7 @@
 #' @param verbose If TRUE (the default) provide verbose information about the changes.
 #' @param make.backup If TRUE (the default) then make a back-up of the files that are changed.
 #' @param ... Other options to pass to gsub()
+#' @author David Whiting, david.whiting@@publichealth.me.uk
 #'
 #' @seealso 
 #' \code{\link{file.grep}}

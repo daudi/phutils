@@ -2,6 +2,7 @@
 ##' 
 ##' @param x A vector of character strings
 ##' @param out_length The number of characters starting from the right
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 ##' @export
 ##' 
 
