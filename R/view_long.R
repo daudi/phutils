@@ -1,6 +1,6 @@
 ##' A 'long' view of a row of data
 ##' 
-##' Sometimes it can be easier to read data in long, stacked way (like the \\G option in SQL).
+##' Sometimes it can be easier to read data in long, stacked way (like the \\G option in mysql).
 ##' This does that for dataframes. 
 ##' 
 ##' @details This shows the first row by default. Another row can be shown by specifying the row number.
@@ -9,6 +9,7 @@
 ##' unlikely to be helpful.
 ##' @param col_order A vector specifying the column display order, e.g order(names(x)) will 
 ##' sort alphabetically. The default is NULL, which results in the natural column order being used
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 ##' @export
 ##'
 
