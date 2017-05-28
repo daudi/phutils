@@ -10,6 +10,7 @@
 #' will create one page with six screens showing a plot going from 1 to 10, with the 
 #' title being "a" for the first one, "b" for the next and so on.
 #' 
+#' @author David Whiting, david.whiting@@publichealth.me.uk
 #' 
 #' @param x A vector of indices that will be interated over. 
 #' @param FUN A function that will be called, with x[i]
