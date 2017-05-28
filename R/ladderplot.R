@@ -15,6 +15,7 @@
 ##' @param ... 	Other arguments passed to the function stripchart. 
 ##' 
 ##' @export
+##' @references Original from the package plotrix https://cran.r-project.org/package=plotrix 
 ##' @keywords utils
 ##' 
 ##' @examples
