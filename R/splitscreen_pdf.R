@@ -15,6 +15,16 @@
 #' @param x A vector of indices that will be interated over. 
 #' @param FUN A function that will be called, with x[i]
 #' as the parameter. The function will draw a single plot.
+#' @param prefix A prefix for the output file name.
+#' @param path The path of the output file
+#' @param title A title for the title page
+#' @param screen.dim The screen dimensions. The default, c(2, 3) produces 
+#' a PDF with two rows and three columns on each page.
+#' @param paper The paper size. You can use A4, etc.
+#' @param orientation The default is landscape
+#' @param cex The character expansion for the title page title
+#' @param font The font to use for the title page. 
+#' 
 #' @examples 
 #' splitscreen_pdf(c("a", "b", "c", "d", "e", "f"), FUN = function(x) plot(1:10, main = x))
 #' 
