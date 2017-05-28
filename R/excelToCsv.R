@@ -5,7 +5,10 @@
 ##' @param target.dir The output directory. The default is the current working directory.
 ##' @param ... Other parameters (not sure what or how they are used)
 ##' 
-##' @details This only works on windows (but presumably libreoffice code could be added). All 
+##' @details This only works on windows, and was created before readxl::read_excel() existed. 
+##' There are some occassions when readxl::read_excel() chokes so I'm keeping this for now
+##' as a back-up approach. readxl::read_excel() is the preferred tool to use.
+##' All 
 ##' sheets are converted, and if keep.sheets is not NULL then those not named in keep.sheets are deleted. 
 ##' 
 ##' 
