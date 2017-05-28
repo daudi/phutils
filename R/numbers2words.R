@@ -2,6 +2,11 @@
 
 ##' @param x A number in numeric format.
 ##' @param sentence.case If TRUE, capitalise the first letter. Default is FALSE. 
+##' @references Originally based on:
+##'   John Fox.  2005.
+##'   How Do You Spell That Number?
+##'   Rnews Volume 5(1):51-54.
+##'   \href{http://cran.r-project.org/doc/Rnews/Rnews_2005-1.pdf}{[link]}.
 ##'
 ##' @export
 
