@@ -8,6 +8,7 @@
 ##' @param y The y-axis values
 ##' @param ... Other parameters will be passed to plot()
 ##' @export
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 ##' @return A list containing the mean and 2nd and 3rd standard 
 ##' deviations above and below the mean.
 ##' 
