@@ -4,7 +4,7 @@
 ##' first from the second data.frame then the second from the first data.frame
 ##' and so on.
 ##' 
-##' This is useful, for example, when you have counts in one data.frame and
+##' @details This is useful, for example, when you have counts in one data.frame and
 ##' have calculated percents in another, and then want to display the result
 ##' with count followed by percent.
 ##' 
