@@ -6,6 +6,7 @@
 ##' this will return the mid-point of 2010 and 2011. It is currently focussed on handling dates 
 ##' in the PHE fingertips data.
 ##' @return A vector of class Date 
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 
 
 

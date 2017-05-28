@@ -14,6 +14,7 @@
 ##' @details The denominator will define the shape you end up with, so square
 ##' numbers will result in square grids. The function selects the denominator
 ##' that results in the closest value to the proportion you want to represent.
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 ##' 
 ##' @return The function silently returns information about the numerator
 ##' and denominator used, and a summary message that can be used to provide 

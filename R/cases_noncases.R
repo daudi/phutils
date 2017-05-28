@@ -10,6 +10,9 @@
 ##' 
 ##' @param x A decimal value
 ##' @param denoms A vector of denominators to consider when looking for fractions
+##' @param units The name of the units in the proportion graphic. The default is people.
+##' This is used to construct a message that can be used to describe the graphic.
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 
 cases_noncases <- function(x, denoms = 1:20, units = "people") {
   

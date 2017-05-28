@@ -17,6 +17,7 @@
 ##' you send as the body paramter.
 ##' 
 ##' @export
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 
 email <- function(to, subject, body, attachments = NULL, shQuote.body = TRUE, send = TRUE) {
   

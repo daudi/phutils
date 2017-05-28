@@ -6,6 +6,7 @@
 ##' @param x A file name (a character string)
 ##' @return A character string
 ##' @export
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 ##' @examples 
 ##' 
 ##' file_extension("temp.txt")

@@ -6,6 +6,7 @@
 ##' @return The penultimate item from the vector. The
 ##' data type is determined by the data type of the vector. This is the penultimate 
 ##' item by value, not by position in the original vector.
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 ##' @keywords utils
 ##' 
 ##' @export

@@ -15,6 +15,8 @@
 ##' is in the interval (-100, 100) is not useful, but to say that we are 90\% confident 
 ##' that it is in (- 5, 5) is much better.
 ##' 
+##' @author David Whiting, david.whiting@@publichealth.me.uk
+##' 
 ##' @return A named vector with three elements: lower CI, mean, upper CI.
 ##' @seealso 
 ##' \code{\link{ci.poisson}}, 

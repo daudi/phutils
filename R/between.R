@@ -11,6 +11,7 @@
 ##' @param y The lower value.
 ##' @param z The upper value.
 ##' @export
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 ##' 
 ##' @return TRUE or FALSE, possibly a vector or matrix of TRUE or FALSE, depending on the input values.
 ##' 

@@ -18,6 +18,7 @@
 ##' @param ignore.case Ignore case in the file pattern, i.e. if TRUE 
 ##' "txt" will find "txt" and "TXT" files. The default is FALSE, i.e. to be case 
 ##' sensitive.
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 ##' @return Returns a data.frame with the name of files that contain the search
 ##' expression, the line number of any matches, and the content of the line that matches.
 ##' @seealso 
