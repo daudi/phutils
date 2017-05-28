@@ -1,9 +1,11 @@
 ##' Return the penulimate item from a vector
 ##' 
 ##' @param x A vector
-##' @details The vector is sorted so this function returns the penultimate value, not just the second to last item in the list. See the examples.
+##' @details The vector is sorted so this function returns the penultimate value, not 
+##' just the second to last item in the list. See the examples.
 ##' @return The penultimate item from the vector. The
-##' data type is determined by the data type of the vector. This is the penultimate item by value, not by position in the original vector.
+##' data type is determined by the data type of the vector. This is the penultimate 
+##' item by value, not by position in the original vector.
 ##' @keywords utils
 ##' 
 ##' @export
