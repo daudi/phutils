@@ -5,11 +5,19 @@
 ##' 
 ##' @param prop The proportion to represent
 ##' @param denoms A vector of denominators to try. Defaults to 1:20
-##' @param case The png image to use for a case (for now it must be square)
-##' @param notcase The png image to use to represent those that are not cases (must be square)
+##' @param case The png image to use for a case (for now it must be square). If 
+##' NULL, the default, a black circle is used.
+##' @param notcase The png image to use to represent those that are not cases
+##'  (must be square). If NULL, the default, a grey circle is used.
 ##' @param units The units to be used in the message. Defaults to 'people'
 ##' @export
-##' @details This calls cases_noncases()
+##' @details The denominator will define the shape you end up with, so square
+##' numbers will result in square grids. The function selects the denominator
+##' that results in the closest value to the proportion you want to represent.
+##' 
+##' @return The function silently returns information about the numerator
+##' and denominator used, and a summary message that can be used to provide 
+##' narrative to summarise the proportion.
 
 proportion_graphic <- function(prop, denoms = 1:20, 
                                case = NULL, notcase = NULL, 
