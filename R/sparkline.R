@@ -9,6 +9,7 @@
 ##' @param sigfigs Number of significant figures in the labels.
 ##' @param line.col The colour of the line.
 ##' @param cex Character expansion (the size of the font)
+##' @author David Whiting, david.whiting@@publichealth.me.uk
 ##'   
 ##' @examples
 ##' temppar <- par(no.readonly = TRUE) # store default graphics parameters
